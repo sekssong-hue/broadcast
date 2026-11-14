@@ -10,17 +10,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
         :root {
-            --bg-main: #f1f5f9;
+            --bg-main: #e2e8f0;
             --panel-bg: #ffffff;
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --accent: #10b981;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #cbd5e1;
-            --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.06);
-            --radius-lg: 12px;
-            --radius-md: 8px;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #94a3b8;
+            --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.1);
+            --radius-lg: 14px;
+            --radius-md: 10px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, sans-serif; }
@@ -35,116 +35,146 @@
             flex-direction: column; 
             align-items: center; 
             padding: 10px 14px; 
+            font-size: 15px; /* 전체 기본 글자 크기 상향 */
         }
         
         header { 
-            margin-bottom: 6px; 
+            margin-bottom: 8px; 
             width: 100%; 
-            max-width: 1450px; 
+            max-width: 1480px; 
             flex-shrink: 0; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            gap: 10px;
+            gap: 12px;
             background: var(--panel-bg); 
-            padding: 8px 16px; 
+            padding: 12px 20px; 
             border-radius: var(--radius-md); 
             border: 1px solid var(--border-color); 
             box-shadow: var(--shadow-md); 
         }
-        .header-title-area { display: flex; align-items: center; gap: 8px; }
-        header h1 { font-size: 18px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 6px; }
-        header p { font-size: 11px; color: var(--text-muted); font-weight: 500; text-align: left; }
-        .header-status-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .header-title-area { display: flex; align-items: center; gap: 10px; }
+        header h1 { font-size: 21px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        header p { font-size: 13px; color: var(--text-muted); font-weight: 600; text-align: left; }
+        .header-status-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
         
-        .live-clock-badge { font-family: monospace; font-size: 13px; font-weight: 700; background: #0f172a; color: #38bdf8; padding: 5px 10px; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+        /* 🌟 송출 소요시간 배지 크기 및 폰트 대폭 확대 */
+        #broadcastTimerBadge {
+            font-family: monospace; 
+            font-size: 17px !important; 
+            font-weight: 800 !important; 
+            background: #fef08a !important; 
+            color: #78350f !important; 
+            padding: 8px 16px !important; 
+            border-radius: 8px !important; 
+            border: 2px solid #facc15 !important; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 🌟 현재 시간 배지 크기 및 폰트 대폭 확대 */
+        .live-clock-badge { 
+            font-family: monospace; 
+            font-size: 17px !important; 
+            font-weight: 800 !important; 
+            background: #0f172a !important; 
+            color: #38bdf8 !important; 
+            padding: 8px 16px !important; 
+            border-radius: 8px !important; 
+            border: 2px solid #334155 !important; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            white-space: nowrap; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
 
         .top-toolbar { 
             width: 100%; 
-            max-width: 1450px; 
+            max-width: 1480px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            gap: 8px; 
+            gap: 10px; 
             margin-bottom: 8px; 
             flex-shrink: 0; 
             background: var(--panel-bg); 
-            padding: 8px 14px; 
+            padding: 10px 16px; 
             border-radius: var(--radius-md); 
             border: 1px solid var(--border-color); 
             box-shadow: var(--shadow-md); 
         }
-        .toolbar-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; overflow-x: auto; max-width: 70%; padding-bottom: 2px; }
-        .toolbar-settings { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-        .setting-item { display: flex; align-items: center; gap: 5px; }
-        .setting-label { font-size: 12px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 65%; padding-bottom: 2px; }
+        .toolbar-settings { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .setting-item { display: flex; align-items: center; gap: 6px; }
+        .setting-label { font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
         
-        .cat-btn { padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; flex-shrink: 0; }
+        .cat-btn { padding: 8px 14px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
         .cat-btn:hover { background: #f1f5f9; color: var(--text-main); }
         .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
         
         .custom-tab-btn { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
         .custom-tab-btn.active { background: #9333ea; color: #ffffff; border-color: #9333ea; }
-        .tab-del-btn { opacity: 0.7; font-size: 11px; margin-left: 4px; padding: 0 4px; border-radius: 3px; }
+        .tab-del-btn { opacity: 0.8; font-size: 13px; margin-left: 6px; padding: 0 5px; border-radius: 4px; }
         .tab-del-btn:hover { background: rgba(239, 68, 68, 0.2); color: #ef4444; opacity: 1; }
 
         select {
-            padding: 6px 10px;
+            padding: 8px 12px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             background-color: #ffffff;
             color: #0f172a;
             cursor: pointer;
-            max-width: 100%;
         }
 
-        .workspace { display: flex; gap: 16px; width: 100%; max-width: 1450px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
+        .workspace { display: flex; gap: 16px; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
         
-        .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
-        .panel-translator { border-top: 5px solid var(--primary); }
-        .panel-interpreter { border-top: 5px solid var(--accent); }
-        .panel h2 { font-size: 15px; font-weight: 700; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+        .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
+        .panel-translator { border-top: 6px solid var(--primary); }
+        .panel-interpreter { border-top: 6px solid var(--accent); }
+        .panel h2 { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
 
         .large-counter-badge {
-            font-size: 13px !important;
+            font-size: 14.5px !important;
             font-weight: 800 !important;
             background: #e0f2fe !important;
             color: #0369a1 !important;
-            padding: 5px 10px !important;
+            padding: 6px 12px !important;
             border-radius: 8px !important;
             border: 1px solid #bae6fd !important;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .upload-zone {
-            border: 2px dashed #93c5fd;
+            border: 2px dashed #60a5fa;
             background-color: #eff6ff;
             border-radius: var(--radius-md);
-            padding: 12px;
+            padding: 14px;
             text-align: center;
             cursor: pointer;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             transition: background-color 0.2s, border-color 0.2s;
             flex-shrink: 0;
         }
         .upload-zone:hover { background-color: #dbeafe; border-color: var(--primary); }
-        .upload-zone p { font-size: 13px; color: #1e40af; font-weight: 700; }
-        .upload-zone span { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
+        .upload-zone p { font-size: 14.5px; color: #1e40af; font-weight: 800; }
+        .upload-zone span { font-size: 12px; color: var(--text-muted); display: block; margin-top: 3px; font-weight: 600; }
 
         .upload-staging-box {
             background: #faf5ff;
             border: 1px solid #e9d5ff;
             border-radius: var(--radius-md);
-            padding: 10px 14px;
-            margin-bottom: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
             display: none;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             flex-shrink: 0;
         }
 
@@ -152,7 +182,7 @@
             background: #f8fafc; 
             border: 1px solid var(--border-color); 
             border-radius: var(--radius-md); 
-            padding: 14px; 
+            padding: 16px; 
             margin-top: 4px; 
             flex: 1; 
             display: flex;
@@ -162,14 +192,14 @@
         .interpreter-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
+            gap: 14px; 
             flex: 1; 
             min-height: 0;
         }
         .interpreter-pane {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             min-height: 0;
             flex: 1;
         }
@@ -177,23 +207,24 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            gap: 8px; 
-            margin-top: 10px; 
-            padding-top: 8px; 
-            border-top: 1px solid #e2e8f0; 
+            gap: 10px; 
+            margin-top: 12px; 
+            padding-top: 10px; 
+            border-top: 1px solid #cbd5e1; 
             flex-wrap: wrap; 
             flex-shrink: 0;
         }
-        .btn-group-row { display: flex; gap: 6px; flex-wrap: wrap; }
+        .btn-group-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
         textarea, input[type="text"] { 
             width: 100%; 
             background: #ffffff; 
             border: 1px solid var(--border-color); 
-            border-radius: 6px; 
-            color: #1e293b; 
+            border-radius: 8px; 
+            color: #0f172a; 
             padding: 12px 14px; 
-            font-size: 14px; 
+            font-size: 15px; 
+            font-weight: 500;
         }
         #customKoInput {
             resize: none; 
@@ -203,10 +234,11 @@
         #customTranslatedOutput {
             background: #ffffff; 
             border: 1px solid var(--border-color); 
-            border-radius: 6px; 
+            border-radius: 8px; 
             padding: 12px 14px; 
-            font-size: 14px; 
-            color: #1e293b; 
+            font-size: 15px; 
+            font-weight: 500;
+            color: #0f172a; 
             flex: 1;
             min-height: 120px;
             overflow-y: auto; 
@@ -218,41 +250,42 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             padding-right: 4px;
             min-height: 0;
         }
-        .card-scroll-container::-webkit-scrollbar { width: 6px; }
+        .card-scroll-container::-webkit-scrollbar { width: 8px; }
         .card-scroll-container::-webkit-scrollbar-track { background: #f1f5f9; }
-        .card-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .card-scroll-container::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
 
         .dual-card {
             background: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 12px 14px;
+            padding: 14px 16px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            gap: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
             transition: all 0.3s ease;
         }
         .dual-card.active-broadcasting {
-            border: 2px solid #eab308;
+            border: 3px solid #eab308;
             background: #fefce8 !important;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
         }
 
-        .card-pane { display: flex; flex-direction: column; justify-content: space-between; gap: 6px; min-width: 0; }
-        .card-pane-original { border-right: 1px solid #e2e8f0; padding-right: 12px; }
+        .card-pane { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-width: 0; }
+        .card-pane-original { border-right: 1px solid #cbd5e1; padding-right: 14px; }
         
-        .card-header { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
-        .card-text { font-size: 12.5px; color: #334155; line-height: 1.45; outline: none; word-break: keep-all; overflow-wrap: break-word; }
-        [contenteditable="true"]:focus { background: #eff6ff; border-radius: 4px; padding: 2px 4px; outline: 1px solid var(--primary); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+        /* 🌟 본문 카드 글자 크기 대폭 상향 (15px) */
+        .card-text { font-size: 15px !important; font-weight: 600 !important; color: #1e293b; line-height: 1.5; outline: none; word-break: keep-all; overflow-wrap: break-word; }
+        [contenteditable="true"]:focus { background: #eff6ff; border-radius: 6px; padding: 3px 6px; outline: 2px solid var(--primary); }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 6px; padding-top: 6px; border-top: 1px solid #f1f5f9; font-size: 11px; flex-wrap: wrap; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; font-size: 12.5px; flex-wrap: wrap; }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 700; transition: 0.2s; gap: 5px; white-space: nowrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-weight: 800; transition: 0.2s; gap: 6px; white-space: nowrap; }
         .btn:hover { background-color: var(--primary-hover); }
         .btn-danger { background-color: #ef4444; }
         .btn-danger:hover { background-color: #dc2626; }
@@ -260,44 +293,44 @@
         .btn-dark-danger:hover { background-color: #7f1d1d; }
         .btn-warning { background-color: #d97706; }
         .btn-warning:hover { background-color: #b45309; }
-        .btn-secondary { background-color: #64748b; color: #ffffff; }
-        .btn-secondary:hover { background-color: #475569; }
+        .btn-secondary { background-color: #475569; color: #ffffff; }
+        .btn-secondary:hover { background-color: #334155; }
         .btn-purple { background-color: #9333ea; color: #ffffff; }
         .btn-purple:hover { background-color: #7e22ce; }
         .btn-emerald { background-color: #059669; color: #ffffff; }
         .btn-emerald:hover { background-color: #047857; }
 
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); opacity: 0; transition: 0.3s; pointer-events: none; z-index: 100; max-width: 90vw; text-align: center; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; box-shadow: 0 8px 20px rgba(0,0,0,0.3); opacity: 0; transition: 0.3s; pointer-events: none; z-index: 100; max-width: 90vw; text-align: center; }
         .toast.show { opacity: 1; }
 
         @media (max-width: 1024px) { 
             body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; } 
-            header { flex-direction: column; align-items: flex-start; gap: 8px; } 
+            header { flex-direction: column; align-items: flex-start; gap: 10px; } 
             .header-status-group { width: 100%; justify-content: space-between; }
             .top-toolbar { flex-direction: column; align-items: stretch; }
             .toolbar-group { max-width: 100%; }
-            .toolbar-settings { justify-content: space-between; padding-top: 6px; border-top: 1px solid #f1f5f9; }
+            .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
             .workspace { flex-direction: column; height: auto; } 
             .panel { height: auto; flex: none; }
-            #customKoInput, #customTranslatedOutput { min-height: 100px; }
+            #customKoInput, #customTranslatedOutput { min-height: 110px; }
             .card-scroll-container { max-height: 65vh; }
         }
 
         @media (max-width: 640px) {
             body { padding: 8px; }
-            header { padding: 10px 12px; }
-            header h1 { font-size: 16px; }
-            .live-clock-badge { font-size: 11.5px; padding: 4px 8px; }
-            .toolbar-settings { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; }
-            .setting-item { flex-direction: column; align-items: flex-start; gap: 2px; }
+            header { padding: 12px; }
+            header h1 { font-size: 18px; }
+            #broadcastTimerBadge, .live-clock-badge { font-size: 14.5px !important; padding: 6px 12px !important; }
+            .toolbar-settings { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+            .setting-item { flex-direction: column; align-items: flex-start; gap: 4px; }
             .setting-item select { width: 100%; }
-            .panel { padding: 12px; }
+            .panel { padding: 14px; }
             .interpreter-grid { grid-template-columns: 1fr; }
-            #customKoInput, #customTranslatedOutput { min-height: 90px; }
+            #customKoInput, #customTranslatedOutput { min-height: 100px; }
             .interpreter-actions { flex-direction: column; align-items: stretch; }
             .btn-group-row { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
-            .dual-card { grid-template-columns: 1fr; padding: 10px 12px; } 
-            .card-pane-original { border-right: none; padding-right: 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
+            .dual-card { grid-template-columns: 1fr; padding: 12px; } 
+            .card-pane-original { border-right: none; padding-right: 0; border-bottom: 1px solid #cbd5e1; padding-bottom: 12px; }
             .card-scroll-container { max-height: none; overflow-y: visible; }
         }
     </style>
@@ -308,13 +341,15 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>HTTPS 보안 환경 완벽 대응 브라우저 네이티브 음성 엔진 버전</p>
+                <p>시인성 강화 가독성 최적화 버전</p>
             </div>
         </div>
         <div class="header-status-group">
-            <div id="broadcastTimerBadge" style="display:none; font-family:monospace; font-size:12px; font-weight:700; background:#fef08a; color:#854d0e; padding:5px 10px; border-radius:6px; border:1px solid #facc15; align-items:center; gap:5px;">
-                <i class="fa-solid fa-stopwatch fa-spin text-amber-600"></i> 송출 소요시간: <span id="timerDisplay">00:00</span>
+            <!-- 🌟 크게 확대된 송출 소요시간 배지 -->
+            <div id="broadcastTimerBadge" style="display:none;">
+                <i class="fa-solid fa-stopwatch fa-spin"></i> 소요시간: <span id="timerDisplay">00:00</span>
             </div>
+            <!-- 🌟 크게 확대된 현재 시간 배지 -->
             <div class="live-clock-badge">
                 <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-12 00:00:00</span>
             </div>
@@ -372,44 +407,44 @@
 
             <div id="uploadStagingBox" class="upload-staging-box">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-size:12px; font-weight:700; color:#7e22ce;"><i class="fa-solid fa-eye"></i> 업로드 문서 임시 미리보기 중</span>
-                    <span id="stagingInfo" style="font-size:11px; color:#a855f7;">추출 문장: 0개</span>
+                    <span style="font-size:13px; font-weight:800; color:#7e22ce;"><i class="fa-solid fa-eye"></i> 업로드 문서 임시 미리보기 중</span>
+                    <span id="stagingInfo" style="font-size:12px; color:#a855f7; font-weight:700;">추출 문장: 0개</span>
                 </div>
                 <div>
-                    <label style="font-size:11px; font-weight:600; color:#4b5563; display:block; margin-bottom:2px;">저장할 탭 제목 (파일명 자동 적용됨):</label>
+                    <label style="font-size:12px; font-weight:700; color:#374151; display:block; margin-bottom:3px;">저장할 탭 제목 (파일명 자동 적용됨):</label>
                     <input type="text" id="documentTitleInput" placeholder="예: 업로드 문서 제목">
                 </div>
-                <div style="display:flex; gap:6px; margin-top:4px;">
-                    <button onclick="saveStagedDocument()" class="btn btn-purple" style="flex:1; padding:6px; font-size:12px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 영구 저장</button>
-                    <button onclick="cancelStaging()" class="btn btn-danger" style="padding:6px 10px; font-size:12px;"><i class="fa-solid fa-xmark"></i> 닫기</button>
+                <div style="display:flex; gap:8px; margin-top:4px;">
+                    <button onclick="saveStagedDocument()" class="btn btn-purple" style="flex:1; padding:8px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 영구 저장</button>
+                    <button onclick="cancelStaging()" class="btn btn-danger" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-xmark"></i> 닫기</button>
                 </div>
             </div>
 
             <div class="custom-input-box">
-                <label style="font-size:13px; font-weight:700; color:#2563eb; margin-bottom:6px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <label style="font-size:14.5px; font-weight:800; color:#2563eb; margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                     <span><i class="fa-solid fa-wand-magic-sparkles"></i> 실시간 AI 즉석 입력 통역기</span>
-                    <span style="font-size:10.5px; font-weight:500; color:var(--text-muted);">(HTTPS 보안 환경 내장 음성 엔진 적용)</span>
+                    <span style="font-size:12px; font-weight:600; color:var(--text-muted);">(100여 개국 다국어 지원)</span>
                 </label>
                 
                 <div class="interpreter-grid">
                     <div class="interpreter-pane">
-                        <span style="font-size:11.5px; font-weight:600; color:var(--text-muted);">한국어 입력 원문</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--text-main);">한국어 입력 원문</span>
                         <textarea id="customKoInput" placeholder="한국어 원문을 입력하세요..."></textarea>
                     </div>
                     <div class="interpreter-pane">
-                        <span style="font-size:11.5px; font-weight:600; color:var(--text-muted);">선택 언어 실시간 번역 결과</span>
+                        <span style="font-size:13px; font-weight:700; color:var(--text-main);">선택 언어 실시간 번역 결과</span>
                         <div id="customTranslatedOutput">(번역 결과 대기 중...)</div>
                     </div>
                 </div>
 
                 <div class="interpreter-actions">
                     <div class="btn-group-row">
-                        <button onclick="clearCustomInput()" class="btn btn-secondary" style="padding:6px 10px; font-size:11.5px;"><i class="fa-solid fa-eraser"></i> 내용 삭제</button>
-                        <button onclick="refreshCustomInterpreter()" class="btn btn-secondary" style="padding:6px 10px; font-size:11.5px;"><i class="fa-solid fa-rotate"></i> 새로고침</button>
+                        <button onclick="clearCustomInput()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-eraser"></i> 내용 삭제</button>
+                        <button onclick="refreshCustomInterpreter()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-rotate"></i> 새로고침</button>
                     </div>
                     <div class="btn-group-row">
-                        <button onclick="saveCustomInterpreterAsTab()" class="btn btn-emerald" style="padding:6px 10px; font-size:11.5px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 저장</button>
-                        <button onclick="playCustomSpeech()" class="btn" style="padding:6px 12px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 즉시 송출</button>
+                        <button onclick="saveCustomInterpreterAsTab()" class="btn btn-emerald" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 저장</button>
+                        <button onclick="playCustomSpeech()" class="btn" style="padding:8px 14px; font-size:13px;"><i class="fa-solid fa-volume-high"></i> 즉시 송출</button>
                     </div>
                 </div>
             </div>
@@ -421,16 +456,16 @@
                 <span id="rightPanelCounterBadge" class="large-counter-badge">대기 중...</span>
             </h2>
 
-            <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px; margin-bottom: 8px; flex-shrink: 0;">
-                <div style="margin-bottom: 6px; font-size: 11.5px; font-weight: 700; color: var(--text-main); display: flex; justify-content: space-between; align-items: center;">
+            <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; flex-shrink: 0;">
+                <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center;">
                     <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 (연속 자동 방송 제어)</span>
                 </div>
-                <div class="playback-controls" style="margin-bottom: 0; display:flex; gap:6px; flex-wrap: wrap;">
-                    <button onclick="masterPlay()" class="btn" style="flex:1; padding:8px; font-size:12px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
-                    <button onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:8px; font-size:12px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
-                    <button onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:8px; font-size:12px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
-                    <button onclick="resetUploadedContent()" class="btn btn-secondary" style="padding:8px 10px; font-size:12px;" title="업로드된 임시 문서 및 현재 업로드 목록 초기화"><i class="fa-solid fa-file-excel"></i> 업로드 초기화</button>
-                    <button onclick="resetAllData()" class="btn btn-dark-danger" style="padding:8px 10px; font-size:12px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
+                <div class="playback-controls" style="margin-bottom: 0; display:flex; gap:8px; flex-wrap: wrap;">
+                    <button onclick="masterPlay()" class="btn" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
+                    <button onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
+                    <button onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
+                    <button onclick="resetUploadedContent()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="업로드된 임시 문서 및 현재 업로드 목록 초기화"><i class="fa-solid fa-file-excel"></i> 업로드 초기화</button>
+                    <button onclick="resetAllData()" class="btn btn-dark-danger" style="padding:10px 12px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
                 </div>
             </div>
 
@@ -438,7 +473,7 @@
         </div>
     </div>
 
-    <div id="toast" class="toast"><i class="fa-solid fa-circle-info text-blue-500"></i> <span id="toastMsg">알림 메시지</span></div>
+    <div id="toast" class="toast"><i class="fa-solid fa-circle-info text-blue-400"></i> <span id="toastMsg">알림 메시지</span></div>
 
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
@@ -485,21 +520,115 @@
         }
 
         const rawLanguageList = [
-            { code: "en", name: "미국 / 영국 (English)" },
-            { code: "ja", name: "일본 (Japan)" },
+            { code: "af", name: "남아프리카공화국 (Afrikaans)" },
+            { code: "sq", name: "알바니아 (Albanian)" },
+            { code: "am", name: "에티오피아 (Amharic)" },
+            { code: "ar", name: "아랍에미리트 / 사우디 (Arabic)" },
+            { code: "hy", name: "아르메니아 (Armenian)" },
+            { code: "az", name: "아제르바이잔 (Azerbaijani)" },
+            { code: "eu", name: "스페인/프랑스 (Basque)" },
+            { code: "be", name: "벨라루스 (Belarusian)" },
+            { code: "bn", name: "방글라데시 (Bengali)" },
+            { code: "bs", name: "보스니아 (Bosnian)" },
+            { code: "bg", name: "불가리아 (Bulgarian)" },
+            { code: "ca", name: "스페인 (Catalan)" },
+            { code: "ceb", name: "필리핀 (Cebuano)" },
+            { code: "ny", name: "말라위 (Chichewa)" },
             { code: "zh-CN", name: "중국 (China - 간체)" },
-            { code: "zh-TW", name: "대만 / 중국 (Taiwan - 번체)" },
-            { code: "vi", name: "베트남 (Vietnam)" },
-            { code: "th", name: "태국 (Thailand)" },
-            { code: "ru", name: "러시아 (Russia)" },
-            { code: "de", name: "독일 (Germany)" },
-            { code: "fr", name: "프랑스 (France)" },
-            { code: "es", name: "스페인 (Spain)" },
-            { code: "it", name: "이탈리아 (Italy)" },
-            { code: "id", name: "인도네시아 (Indonesia)" },
-            { code: "hi", name: "인도 (India - Hindi)" },
-            { code: "ar", name: "아랍에미리트 (UAE / Arabic)" },
-            { code: "ko", name: "대한민국 (Korea - 원문)" }
+            { code: "zh-TW", name: "대만 (Taiwan - 번체)" },
+            { code: "zh-HK", name: "홍콩 (Hong Kong - 광동어)" },
+            { code: "co", name: "프랑스 (Corsican)" },
+            { code: "hr", name: "크로아티아 (Croatian)" },
+            { code: "cs", name: "체코 (Czech)" },
+            { code: "da", name: "덴마크 (Danish)" },
+            { code: "nl", name: "네덜란드 (Dutch)" },
+            { code: "en", name: "미국 / 영국 (English)" },
+            { code: "eo", name: "에스페란토 (Esperanto)" },
+            { code: "et", name: "에스토니아 (Estonian)" },
+            { code: "fi", name: "핀란드 (Finnish)" },
+            { code: "fr", name: "프랑스 (French)" },
+            { code: "fy", name: "네덜란드 (Frisian)" },
+            { code: "gl", name: "스페인 (Galician)" },
+            { code: "ka", name: "조지아 (Georgian)" },
+            { code: "de", name: "독일 (German)" },
+            { code: "el", name: "그리스 (Greek)" },
+            { code: "gu", name: "인도 (Gujarati)" },
+            { code: "ht", name: "아이티 (Haitian Creole)" },
+            { code: "ha", name: "나이지리아 (Hausa)" },
+            { code: "haw", name: "미국 하와이 (Hawaiian)" },
+            { code: "he", name: "이스라엘 (Hebrew)" },
+            { code: "hi", name: "인도 (Hindi)" },
+            { code: "hmn", name: "라오스/중국 (Hmong)" },
+            { code: "hu", name: "헝가리 (Hungarian)" },
+            { code: "is", name: "아이슬란드 (Icelandic)" },
+            { code: "ig", name: "나이지리아 (Igbo)" },
+            { code: "id", name: "인도네시아 (Indonesian)" },
+            { code: "ga", name: "아일랜드 (Irish)" },
+            { code: "it", name: "이탈리아 (Italian)" },
+            { code: "ja", name: "일본 (Japanese)" },
+            { code: "jv", name: "인도네시아 자바 (Javanese)" },
+            { code: "kn", name: "인도 (Kannada)" },
+            { code: "kk", name: "카자흐스탄 (Kazakh)" },
+            { code: "km", name: "캄보디아 (Khmer)" },
+            { code: "rw", name: "르완다 (Kinyarwanda)" },
+            { code: "ko", name: "대한민국 (Korean - 원문)" },
+            { code: "ku", name: "쿠르드 (Kurdish)" },
+            { code: "ky", name: "키르기스스탄 (Kyrgyz)" },
+            { code: "lo", name: "라오스 (Lao)" },
+            { code: "la", name: "바티칸 (Latin)" },
+            { code: "lv", name: "라트비아 (Latvian)" },
+            { code: "lt", name: "리투아니아 (Lithuanian)" },
+            { code: "lb", name: "룩셈부르크 (Luxembourgish)" },
+            { code: "mk", name: "북마케도니아 (Macedonian)" },
+            { code: "mg", name: "마다가스카르 (Malagasy)" },
+            { code: "ms", name: "말레이시아 (Malay)" },
+            { code: "ml", name: "인도 (Malayalam)" },
+            { code: "mt", name: "몰타 (Maltese)" },
+            { code: "mi", name: "뉴질랜드 (Maori)" },
+            { code: "mr", name: "인도 (Marathi)" },
+            { code: "mn", name: "몽골 (Mongolian)" },
+            { code: "my", name: "미얀마 (Myanmar)" },
+            { code: "ne", name: "네팔 (Nepali)" },
+            { code: "no", name: "노르웨이 (Norwegian)" },
+            { code: "or", name: "인도 (Odia)" },
+            { code: "ps", name: "아프가니스탄 (Pashto)" },
+            { code: "fa", name: "이란 (Persian)" },
+            { code: "pl", name: "폴란드 (Polish)" },
+            { code: "pt", name: "포르투갈 / 브라질 (Portuguese)" },
+            { code: "pa", name: "인도/파키스탄 (Punjabi)" },
+            { code: "ro", name: "루마니아 (Romanian)" },
+            { code: "ru", name: "러시아 (Russian)" },
+            { code: "sm", name: "사모아 (Samoan)" },
+            { code: "gd", name: "영국 스코틀랜드 (Scots Gaelic)" },
+            { code: "sr", name: "세르비아 (Serbian)" },
+            { code: "st", name: "레소토 (Sesotho)" },
+            { code: "sn", name: "짐바브웨 (Shona)" },
+            { code: "sd", name: "파키스탄 (Sindhi)" },
+            { code: "si", name: "스리랑카 (Sinhala)" },
+            { code: "sk", name: "슬로바키아 (Slovak)" },
+            { code: "sl", name: "슬로베니아 (Slovenian)" },
+            { code: "so", name: "소말리아 (Somali)" },
+            { code: "es", name: "스페인 / 중남미 (Spanish)" },
+            { code: "su", name: "인도네시아 순다 (Sundanese)" },
+            { code: "sw", name: "동아프리카 (Swahili)" },
+            { code: "sv", name: "스웨덴 (Swedish)" },
+            { code: "tg", name: "타지키스탄 (Tajik)" },
+            { code: "ta", name: "인도/스리랑카 (Tamil)" },
+            { code: "tt", name: "타타르스탄 (Tatar)" },
+            { code: "te", name: "인도 (Telugu)" },
+            { code: "th", name: "태국 (Thai)" },
+            { code: "tr", name: "튀르키예 (Turkish)" },
+            { code: "tk", name: "투르크메니스탄 (Turkmen)" },
+            { code: "uk", name: "우크라이나 (Ukrainian)" },
+            { code: "ur", name: "파키스탄 (Urdu)" },
+            { code: "ug", name: "위구르 (Uyghur)" },
+            { code: "uz", name: "우즈베키스탄 (Uzbek)" },
+            { code: "vi", name: "베트남 (Vietnamese)" },
+            { code: "cy", name: "영국 웨일스 (Welsh)" },
+            { code: "xh", name: "남아프리카공화국 (Xhosa)" },
+            { code: "yi", name: "이디시어 (Yiddish)" },
+            { code: "yo", name: "나이지리아 (Yoruba)" },
+            { code: "zu", name: "남아프리카공화국 (Zulu)" }
         ];
 
         let guideData = [];
@@ -517,8 +646,8 @@
         const toastMsg = document.getElementById('toastMsg');
 
         function loadData() {
-            const savedData = localStorage.getItem('kim_simin_guide_master_v41');
-            const savedCats = localStorage.getItem('kim_simin_categories_v41');
+            const savedData = localStorage.getItem('kim_simin_guide_master_v44');
+            const savedCats = localStorage.getItem('kim_simin_categories_v44');
             if (savedData) {
                 try { guideData = JSON.parse(savedData); } catch (e) { guideData = []; }
             } else {
@@ -530,8 +659,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('kim_simin_guide_master_v41', JSON.stringify(guideData));
-            localStorage.setItem('kim_simin_categories_v41', JSON.stringify(savedCustomCategories));
+            localStorage.setItem('kim_simin_guide_master_v44', JSON.stringify(guideData));
+            localStorage.setItem('kim_simin_categories_v44', JSON.stringify(savedCustomCategories));
         }
 
         function resetUploadedContent() {
@@ -579,8 +708,8 @@
 
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭과 즉석 통역 메모 등 전체 데이터를 완전히 초기화하시겠습니까?")) {
-                localStorage.removeItem('kim_simin_guide_master_v41');
-                localStorage.removeItem('kim_simin_categories_v41');
+                localStorage.removeItem('kim_simin_guide_master_v44');
+                localStorage.removeItem('kim_simin_categories_v44');
                 guideData = [];
                 savedCustomCategories = [];
                 stagedItems = null;
@@ -630,6 +759,14 @@
             renderDynamicTabs();
             filterCategory('all');
             document.getElementById('customKoInput').addEventListener('input', updateCustomTranslation);
+
+            document.body.addEventListener('click', function unlockAudio() {
+                if ('speechSynthesis' in window) {
+                    const dummy = new SpeechSynthesisUtterance('');
+                    window.speechSynthesis.speak(dummy);
+                }
+                document.body.removeEventListener('click', unlockAudio);
+            }, { once: true });
         }
 
         function handleGeneralFileUpload(event) {
@@ -796,13 +933,13 @@
 
             if (totalCount === 0) {
                 rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 항목 없음 (0개)`;
-                splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:13px;"><i class="fa-solid fa-file-circle-exclamation text-2xl text-blue-400 mb-2"></i><br>선택된 탭에 등록된 항목이 없습니다.<br>상단에서 파일을 업로드하거나 즉석 통역을 저장해 보세요!</div>`;
+                splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-file-circle-exclamation text-3xl text-blue-400 mb-2"></i><br>선택된 탭에 등록된 항목이 없습니다.<br>상단에서 파일을 업로드하거나 즉석 통역을 저장해 보세요!</div>`;
                 updateCounterDisplay(0, 0);
                 return;
             }
 
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-sky-600"></i> 번역 동기화 중... (0 / ${totalCount}개)`;
-            splitContainer.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:12.5px;"><i class="fa-solid fa-spinner fa-spin text-lg"></i> AI 번역 동기화 중... (총 ${totalCount}개)</div>`;
+            splitContainer.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13.5px; font-weight:600;"><i class="fa-solid fa-spinner fa-spin text-xl"></i> AI 번역 동기화 중... (총 ${totalCount}개)</div>`;
 
             splitContainer.innerHTML = '';
 
@@ -821,32 +958,32 @@
                     <div class="card-pane card-pane-original">
                         <div>
                             <div class="card-header">
-                                <span class="text-slate-800 font-bold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText)" title="클릭하여 제목 직접 수정 가능">${item.titleKo}</span>
-                                <span style="font-family:monospace; background:#f1f5f9; padding:1px 5px; border-radius:3px; font-size:10px; color:#475569; flex-shrink:0;">#${i + 1} / ${totalCount}</span>
+                                <span class="text-slate-900 font-extrabold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText)" title="클릭하여 제목 직접 수정 가능">${item.titleKo}</span>
+                                <span style="font-family:monospace; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:11.5px; color:#334155; font-weight:700; flex-shrink:0;">#${i + 1} / ${totalCount}</span>
                             </div>
                             <p class="card-text" contenteditable="true" onblur="updateItemText(${item.id}, 'content', this.innerText)" title="클릭하여 본문 내용 직접 수정 가능">${item.contentKo}</p>
                         </div>
                         <div class="card-footer">
-                            <span style="color:var(--accent); font-weight:600;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 가능)</span>
-                            <div style="display:flex; gap:4px;">
-                                <button onclick="speakSingleText('${escapeHtml(item.contentKo)}', 'ko', ${i})" class="btn btn-secondary" style="padding:4px 8px; font-size:10.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
-                                <button onclick="deleteItem(${item.id})" class="btn btn-danger" style="padding:4px 6px; font-size:10.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i></button>
+                            <span style="color:var(--accent); font-weight:700;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 가능)</span>
+                            <div style="display:flex; gap:6px;">
+                                <button onclick="speakSingleText('${escapeHtml(item.contentKo)}', 'ko', ${i})" class="btn btn-secondary" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
+                                <button onclick="deleteItem(${item.id})" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="card-pane">
                         <div>
                             <div class="card-header">
-                                <span style="color:#2563eb;" class="font-bold">${translatedTitle}</span>
-                                <span style="background:#eff6ff; color:#1d4ed8; padding:1px 5px; border-radius:3px; font-size:9.5px; text-transform:uppercase; font-weight:700; flex-shrink:0;">${targetLang}</span>
+                                <span style="color:#2563eb;" class="font-extrabold">${translatedTitle}</span>
+                                <span style="background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:11px; text-transform:uppercase; font-weight:800; flex-shrink:0;">${targetLang}</span>
                             </div>
-                            <p class="card-text translated-text-content" data-text="${escapeHtml(translatedContent)}" style="color:#1e293b;">${translatedContent}</p>
+                            <p class="card-text translated-text-content" data-text="${escapeHtml(translatedContent)}" style="color:#0f172a;">${translatedContent}</p>
                         </div>
                         <div class="card-footer">
-                            <span style="color:#2563eb; font-weight:600;"><i class="fa-solid fa-earth-asia"></i> AI 번역 결과</span>
-                            <div style="display:flex; gap:4px;">
-                                <button onclick="speakSingleText('${escapeHtml(translatedContent)}', '${targetLang}', ${i})" class="btn" style="padding:4px 8px; font-size:10.5px;"><i class="fa-solid fa-play"></i> 번역 재생</button>
-                                <button onclick="masterStop()" class="btn btn-danger" style="padding:4px 6px; font-size:10.5px;"><i class="fa-solid fa-stop"></i> 중지</button>
+                            <span style="color:#2563eb; font-weight:700;"><i class="fa-solid fa-earth-asia"></i> AI 번역 결과</span>
+                            <div style="display:flex; gap:6px;">
+                                <button onclick="speakSingleText('${escapeHtml(translatedContent)}', '${targetLang}', ${i})" class="btn" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-play"></i> 번역 재생</button>
+                                <button onclick="masterStop()" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;"><i class="fa-solid fa-stop"></i> 중지</button>
                             </div>
                         </div>
                     </div>
@@ -902,10 +1039,9 @@
             document.querySelectorAll('.card-item').forEach(el => el.classList.remove('active-broadcasting'));
         }
 
-        // 🌟 브라우저 네이티브 음성 합성(SpeechSynthesis) 기반 단건 재생 함수
         function speakSingleText(text, lang, cardIndex = -1) {
             if (!text) return;
-            window.speechSynthesis.cancel(); // 진행 중인 음성 즉시 중단
+            window.speechSynthesis.cancel();
 
             startBroadcastTimer();
 
@@ -980,7 +1116,6 @@
             else { icon.className = "fa-solid fa-pause"; text.innerText = "일시정지"; }
         }
 
-        // 🌟 브라우저 내장 음성 합성 기반 순차 재생 큐 (HTTPS 완벽 호환, 건너뜀 없음)
         function playNextInQueue() {
             const total = translationQueue.length;
             if (!isPlayingQueue || queueIndex >= total) {
@@ -1009,7 +1144,7 @@
             currentUtterance.onend = function() {
                 if (isPlayingQueue && !isPausedQueue) {
                     queueIndex++;
-                    setTimeout(playNextInQueue, 300); // 문장 간 자연스러운 딜레이
+                    setTimeout(playNextInQueue, 300);
                 }
             };
 
@@ -1085,7 +1220,6 @@
             showToast(`'${customTitle}' 탭으로 영구 저장되었습니다!`);
         }
 
-        // 🌟 즉석 통역 [즉시 송출] 브라우저 내장 음성 연동
         function playCustomSpeech() {
             const translatedText = document.getElementById('customTranslatedOutput').innerText;
             if (!translatedText || translatedText.startsWith("(")) { showToast("송출할 텍스트를 입력해 주세요."); return; }
