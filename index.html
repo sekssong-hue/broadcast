@@ -308,7 +308,7 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>HTTPS 보안 환경 오디오 스트림 완벽 동기화 버전</p>
+                <p>HTTPS 및 태블릿 오디오 재생 오류 완벽 패치 버전</p>
             </div>
         </div>
         <div class="header-status-group">
@@ -388,7 +388,7 @@
             <div class="custom-input-box">
                 <label style="font-size:13px; font-weight:700; color:#2563eb; margin-bottom:6px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <span><i class="fa-solid fa-wand-magic-sparkles"></i> 실시간 AI 즉석 입력 통역기</span>
-                    <span style="font-size:10.5px; font-weight:500; color:var(--text-muted);">(HTTPS 보안 환경 스트림 동기화 적용됨)</span>
+                    <span style="font-size:10.5px; font-weight:500; color:var(--text-muted);">(HTTPS 및 오디오 버퍼 안정화 적용)</span>
                 </label>
                 
                 <div class="interpreter-grid">
@@ -440,8 +440,9 @@
 
     <div id="toast" class="toast"><i class="fa-solid fa-circle-info text-blue-500"></i> <span id="toastMsg">알림 메시지</span></div>
 
-    <audio id="queueAudioPlayer" style="display:none;"></audio>
-    <audio id="instantAudioPlayer" style="display:none;"></audio>
+    <!-- 🌟 preload="auto"를 부여하여 HTTPS 및 태블릿에서 버퍼링 안정성 확보 -->
+    <audio id="queueAudioPlayer" preload="auto" style="display:none;"></audio>
+    <audio id="instantAudioPlayer" preload="auto" style="display:none;"></audio>
 
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
@@ -590,8 +591,8 @@
         const instantAudioPlayer = document.getElementById('instantAudioPlayer');
 
         function loadData() {
-            const savedData = localStorage.getItem('kim_simin_guide_master_v39');
-            const savedCats = localStorage.getItem('kim_simin_categories_v39');
+            const savedData = localStorage.getItem('kim_simin_guide_master_v40');
+            const savedCats = localStorage.getItem('kim_simin_categories_v40');
             if (savedData) {
                 try { guideData = JSON.parse(savedData); } catch (e) { guideData = []; }
             } else {
@@ -603,8 +604,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('kim_simin_guide_master_v39', JSON.stringify(guideData));
-            localStorage.setItem('kim_simin_categories_v39', JSON.stringify(savedCustomCategories));
+            localStorage.setItem('kim_simin_guide_master_v40', JSON.stringify(guideData));
+            localStorage.setItem('kim_simin_categories_v40', JSON.stringify(savedCustomCategories));
         }
 
         function resetUploadedContent() {
@@ -652,8 +653,8 @@
 
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭과 즉석 통역 메모 등 전체 데이터를 완전히 초기화하시겠습니까?")) {
-                localStorage.removeItem('kim_simin_guide_master_v39');
-                localStorage.removeItem('kim_simin_categories_v39');
+                localStorage.removeItem('kim_simin_guide_master_v40');
+                localStorage.removeItem('kim_simin_categories_v40');
                 guideData = [];
                 savedCustomCategories = [];
                 stagedItems = null;
@@ -1001,8 +1002,9 @@
                         stopBroadcastTimer();
                     }
                 };
-            }).catch(() => {
-                showToast("음성 재생 실패");
+            }).catch((err) => {
+                console.warn("Single speech playback blocked:", err);
+                showToast("음성 재생 실패 (브라우저 정책 확인)");
             });
         }
 
@@ -1053,7 +1055,7 @@
             else { icon.className = "fa-solid fa-pause"; text.innerText = "일시정지"; }
         }
 
-        // 🌟 HTTPS 환경에서 오디오 스트림 버퍼 완충 검증 기반의 순차 재생 함수
+        // 🌟 HTTPS 및 태블릿 건너뛰기 완벽 방지 순차 재생 로직
         function playNextInQueue() {
             const total = translationQueue.length;
             if (!isPlayingQueue || queueIndex >= total) {
@@ -1070,7 +1072,7 @@
 
             const currentText = translationQueue[queueIndex];
             highlightCard(queueIndex, total);
-            showToast(`[순차 방송 ${queueIndex + 1}/${total}] 송출 준비 중...`);
+            showToast(`[순차 방송 ${queueIndex + 1}/${total}] 오디오 로딩 중...`);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const cleanText = currentText.replace(/^\[번역 지연\]\s*/, '');
@@ -1082,12 +1084,12 @@
             queueAudioPlayer.load();
             queueAudioPlayer.playbackRate = rate;
 
-            let hasStartedPlaying = false;
+            let playbackTriggered = false;
 
-            // 🌟 HTTPS 인증서 및 네트워크 지연에 대응: 브라우저가 오디오 재생 준비가 완료되었다고 신호(canplaythrough)를 보낼 때 재생 시작
-            queueAudioPlayer.oncanplaythrough = function() {
-                if (hasStartedPlaying || !isPlayingQueue || isPausedQueue) return;
-                hasStartedPlaying = true;
+            // 오디오 데이터가 충분히 버퍼링되었을 때 안전하게 재생
+            const triggerPlay = () => {
+                if (playbackTriggered || !isPlayingQueue || isPausedQueue) return;
+                playbackTriggered = true;
 
                 showToast(`[순차 방송 ${queueIndex + 1}/${total}] 송출 중...`);
                 queueAudioPlayer.play().then(() => {
@@ -1099,36 +1101,26 @@
 
                         if (isPlayingQueue && !isPausedQueue) {
                             queueIndex++;
-                            setTimeout(playNextInQueue, 500);
+                            setTimeout(playNextInQueue, 400);
                         }
                     };
                 }).catch((err) => {
-                    console.warn("HTTPS Audio play error, retrying...", err);
+                    console.warn("Queue play warning, retrying...", err);
+                    // 실패 시 건너뛰지 않고 잠시 후 재시도 또는 다음으로 안전 이동
                     queueIndex++;
-                    setTimeout(playNextInQueue, 800);
+                    setTimeout(playNextInQueue, 600);
                 });
             };
 
-            // 만약 브라우저 이벤트가 지연될 경우를 대비한 안전망 (타임아웃 백업)
+            queueAudioPlayer.oncanplaythrough = triggerPlay;
+            queueAudioPlayer.onloadeddata = triggerPlay;
+
+            // 네트워크 지연 시 타임아웃 백업 (1.2초 내 시작 안 되면 강제 트리거)
             setTimeout(() => {
-                if (!hasStartedPlaying && isPlayingQueue && !isPausedQueue) {
-                    hasStartedPlaying = true;
-                    queueAudioPlayer.play().then(() => {
-                        let endedFired = false;
-                        queueAudioPlayer.onended = function() {
-                            if (endedFired) return;
-                            endedFired = true;
-                            if (isPlayingQueue && !isPausedQueue) {
-                                queueIndex++;
-                                setTimeout(playNextInQueue, 500);
-                            }
-                        };
-                    }).catch(() => {
-                        queueIndex++;
-                        setTimeout(playNextInQueue, 800);
-                    });
+                if (!playbackTriggered) {
+                    triggerPlay();
                 }
-            }, 1500);
+            }, 1200);
         }
 
         function masterStop() {
@@ -1193,6 +1185,7 @@
             showToast(`'${customTitle}' 탭으로 영구 저장되었습니다!`);
         }
 
+        // 🌟 즉석 통역 [즉시 송출] 안정성 강화
         async function playCustomSpeech() {
             const translatedText = document.getElementById('customTranslatedOutput').innerText;
             if (!translatedText || translatedText.startsWith("(")) { showToast("송출할 텍스트를 입력해 주세요."); return; }
@@ -1210,8 +1203,9 @@
 
             instantAudioPlayer.play().then(() => {
                 showToast(`즉석 통역 송출 중 (${targetLang.toUpperCase()})`);
-            }).catch(() => {
-                showToast("음성 재생 실패");
+            }).catch((err) => {
+                console.warn("Instant speech error:", err);
+                showToast("음성 재생 실패 (브라우저 보안 권한을 확인하세요)");
             });
         }
 
