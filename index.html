@@ -308,7 +308,7 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>HTTPS 및 태블릿 오디오 재생 오류 완벽 패치 버전</p>
+                <p>HTTPS 보안 환경 완벽 대응 브라우저 네이티브 음성 엔진 버전</p>
             </div>
         </div>
         <div class="header-status-group">
@@ -388,7 +388,7 @@
             <div class="custom-input-box">
                 <label style="font-size:13px; font-weight:700; color:#2563eb; margin-bottom:6px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                     <span><i class="fa-solid fa-wand-magic-sparkles"></i> 실시간 AI 즉석 입력 통역기</span>
-                    <span style="font-size:10.5px; font-weight:500; color:var(--text-muted);">(HTTPS 및 오디오 버퍼 안정화 적용)</span>
+                    <span style="font-size:10.5px; font-weight:500; color:var(--text-muted);">(HTTPS 보안 환경 내장 음성 엔진 적용)</span>
                 </label>
                 
                 <div class="interpreter-grid">
@@ -440,10 +440,6 @@
 
     <div id="toast" class="toast"><i class="fa-solid fa-circle-info text-blue-500"></i> <span id="toastMsg">알림 메시지</span></div>
 
-    <!-- 🌟 preload="auto"를 부여하여 HTTPS 및 태블릿에서 버퍼링 안정성 확보 -->
-    <audio id="queueAudioPlayer" preload="auto" style="display:none;"></audio>
-    <audio id="instantAudioPlayer" preload="auto" style="display:none;"></audio>
-
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
@@ -489,87 +485,20 @@
         }
 
         const rawLanguageList = [
-            { code: "ga", name: "가나 (Ghana / 아일랜드어계)" },
-            { code: "el", name: "그리스 (Greece)" },
-            { code: "nl", name: "네덜란드 (Netherlands)" },
-            { code: "ne", name: "네팔 (Nepal)" },
-            { code: "no", name: "노르웨이 (Norway)" },
-            { code: "da", name: "덴마크 (Denmark)" },
-            { code: "de", name: "독일 (Germany)" },
-            { code: "la", name: "라틴아메리카 / 바티칸 (Latin)" },
-            { code: "lv", name: "라트비아 (Latvia)" },
-            { code: "ru", name: "러시아 (Russia)" },
-            { code: "ro", name: "루마니아 (Romania)" },
-            { code: "lb", name: "룩셈부르크 (Luxembourg)" },
-            { code: "lt", name: "리투아니아 (Lithuania)" },
-            { code: "mg", name: "마다가스카르 (Madagascar)" },
-            { code: "mi", name: "마셜제도 / 뉴질랜드 (Maori)" },
-            { code: "mk", name: "북마케도니아 (Macedonia)" },
-            { code: "ms", name: "말레이시아 (Malaysia)" },
-            { code: "mt", name: "몰타 (Malta)" },
-            { code: "mn", name: "몽골 (Mongolia)" },
-            { code: "my", name: "미얀마 (Myanmar)" },
             { code: "en", name: "미국 / 영국 (English)" },
-            { code: "vi", name: "베트남 (Vietnam)" },
-            { code: "be", name: "벨라루스 (Belarus)" },
-            { code: "bn", name: "방글라데시 (Bangladesh)" },
-            { code: "bo", name: "티베트 / 부탄 (Tibetan)" },
-            { code: "bg", name: "불가리아 (Bulgaria)" },
-            { code: "bs", name: "보스니아 (Bosnia)" },
-            { code: "br", name: "브라질 / 포르투갈 (Portuguese)" },
-            { code: "sr", name: "세르비아 (Serbia)" },
-            { code: "sa", name: "사우디아라비아 / 아랍권 (Arabic)" },
-            { code: "sv", name: "스웨덴 (Sweden)" },
-            { code: "es", name: "스페인 (Spain)" },
-            { code: "sk", name: "슬로바키아 (Slovakia)" },
-            { code: "sl", name: "슬로베니아 (Slovenia)" },
-            { code: "sy", name: "시리아 / 중동 (Syrian Arabic)" },
-            { code: "si", name: "스리랑카 (Sri Lanka)" },
-            { code: "sw", name: "케냐 / 탄자니아 (Swahili)" },
-            { code: "sg", name: "싱가포르 (Singapore - 영어/중국어)" },
-            { code: "ar", name: "아랍에미리트 (UAE / Arabic)" },
-            { code: "is", name: "아이슬란드 (Iceland)" },
-            { code: "ie", name: "아일랜드 (Ireland)" },
-            { code: "az", name: "아제르바이잔 (Azerbaijan)" },
-            { code: "af", name: "남아프리카공화국 (South Africa - Afrikaans)" },
-            { code: "sq", name: "알바니아 (Albania)" },
-            { code: "am", name: "에티오피아 (Ethiopia)" },
-            { code: "et", name: "에스토니아 (Estonia)" },
-            { code: "hy", name: "아르메니아 (Armenia)" },
-            { code: "eo", name: "에스페란토 (Esperanto)" },
-            { code: "uk", name: "우크라이나 (Ukraine)" },
-            { code: "uz", name: "우즈베키스탄 (Uzbekistan)" },
-            { code: "ur", name: "파키스탄 / 인도 (Urdu)" },
-            { code: "it", name: "이탈리아 (Italy)" },
-            { code: "id", name: "인도네시아 (Indonesia)" },
-            { code: "hi", name: "인도 (India - Hindi)" },
             { code: "ja", name: "일본 (Japan)" },
             { code: "zh-CN", name: "중국 (China - 간체)" },
             { code: "zh-TW", name: "대만 / 중국 (Taiwan - 번체)" },
-            { code: "zh-HK", name: "홍콩 (Hong Kong - 광동어/번체)" },
-            { code: "ka", name: "조지아 (Georgia)" },
-            { code: "cs", name: "체코 (Czech Republic)" },
-            { code: "kz", name: "카자흐스탄 (Kazakhstan)" },
-            { code: "km", name: "캄보디아 (Cambodia)" },
-            { code: "ca", name: "안도라 / 스페인 (Catalan)" },
-            { code: "ku", name: "쿠르드 (Kurdish)" },
-            { code: "ky", name: "키르기스스탄 (Kyrgyzstan)" },
-            { code: "hr", name: "크로아티아 (Croatia)" },
-            { code: "ta", name: "스리랑카 / 인도 (Tamil)" },
+            { code: "vi", name: "베트남 (Vietnam)" },
             { code: "th", name: "태국 (Thailand)" },
-            { code: "tr", name: "튀르키예 (Turkey)" },
-            { code: "tk", name: "투르크메니스탄 (Turkmenistan)" },
-            { code: "tl", name: "필리핀 (Philippines - Tagalog)" },
-            { code: "fa", name: "이란 (Iran - Persian)" },
-            { code: "ps", name: "아프가니스탄 (Pashto)" },
-            { code: "pl", name: "폴란드 (Poland)" },
-            { code: "pt", name: "포르투갈 (Portugal)" },
-            { code: "pa", name: "인도 / 파키스탄 (Punjabi)" },
+            { code: "ru", name: "러시아 (Russia)" },
+            { code: "de", name: "독일 (Germany)" },
             { code: "fr", name: "프랑스 (France)" },
-            { code: "fi", name: "핀란드 (Finland)" },
-            { code: "fil", name: "필리핀 (Philippines)" },
-            { code: "hu", name: "헝가리 (Hungary)" },
-            { code: "he", name: "이스라엘 (Israel - Hebrew)" },
+            { code: "es", name: "스페인 (Spain)" },
+            { code: "it", name: "이탈리아 (Italy)" },
+            { code: "id", name: "인도네시아 (Indonesia)" },
+            { code: "hi", name: "인도 (India - Hindi)" },
+            { code: "ar", name: "아랍에미리트 (UAE / Arabic)" },
             { code: "ko", name: "대한민국 (Korea - 원문)" }
         ];
 
@@ -586,13 +515,10 @@
         const rightPanelCounterBadge = document.getElementById('rightPanelCounterBadge');
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toastMsg');
-        
-        const queueAudioPlayer = document.getElementById('queueAudioPlayer');
-        const instantAudioPlayer = document.getElementById('instantAudioPlayer');
 
         function loadData() {
-            const savedData = localStorage.getItem('kim_simin_guide_master_v40');
-            const savedCats = localStorage.getItem('kim_simin_categories_v40');
+            const savedData = localStorage.getItem('kim_simin_guide_master_v41');
+            const savedCats = localStorage.getItem('kim_simin_categories_v41');
             if (savedData) {
                 try { guideData = JSON.parse(savedData); } catch (e) { guideData = []; }
             } else {
@@ -604,8 +530,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('kim_simin_guide_master_v40', JSON.stringify(guideData));
-            localStorage.setItem('kim_simin_categories_v40', JSON.stringify(savedCustomCategories));
+            localStorage.setItem('kim_simin_guide_master_v41', JSON.stringify(guideData));
+            localStorage.setItem('kim_simin_categories_v41', JSON.stringify(savedCustomCategories));
         }
 
         function resetUploadedContent() {
@@ -653,8 +579,8 @@
 
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭과 즉석 통역 메모 등 전체 데이터를 완전히 초기화하시겠습니까?")) {
-                localStorage.removeItem('kim_simin_guide_master_v40');
-                localStorage.removeItem('kim_simin_categories_v40');
+                localStorage.removeItem('kim_simin_guide_master_v41');
+                localStorage.removeItem('kim_simin_categories_v41');
                 guideData = [];
                 savedCustomCategories = [];
                 stagedItems = null;
@@ -976,10 +902,10 @@
             document.querySelectorAll('.card-item').forEach(el => el.classList.remove('active-broadcasting'));
         }
 
+        // 🌟 브라우저 네이티브 음성 합성(SpeechSynthesis) 기반 단건 재생 함수
         function speakSingleText(text, lang, cardIndex = -1) {
             if (!text) return;
-            instantAudioPlayer.pause();
-            instantAudioPlayer.currentTime = 0;
+            window.speechSynthesis.cancel(); // 진행 중인 음성 즉시 중단
 
             startBroadcastTimer();
 
@@ -988,30 +914,32 @@
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const cleanText = text.replace(/^\[번역 지연\]\s*/, '');
-            const ttsUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${lang}&client=tw-ob&tk=` + Date.now();
+            
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = lang;
+            utterance.rate = rate;
 
-            instantAudioPlayer.src = ttsUrl;
-            instantAudioPlayer.load();
-            instantAudioPlayer.playbackRate = rate;
+            utterance.onend = () => {
+                if (cardIndex >= 0 && !isPlayingQueue) {
+                    clearHighlight();
+                    stopBroadcastTimer();
+                }
+            };
 
-            instantAudioPlayer.play().then(() => {
-                showToast(`개별 음성 재생 중 (${lang.toUpperCase()})`);
-                instantAudioPlayer.onended = () => {
-                    if (cardIndex >= 0 && !isPlayingQueue) {
-                        clearHighlight();
-                        stopBroadcastTimer();
-                    }
-                };
-            }).catch((err) => {
-                console.warn("Single speech playback blocked:", err);
-                showToast("음성 재생 실패 (브라우저 정책 확인)");
-            });
+            utterance.onerror = (err) => {
+                console.warn("Speech synthesis error:", err);
+                showToast("음성 재생 실패");
+            };
+
+            window.speechSynthesis.speak(utterance);
+            showToast(`음성 재생 중 (${lang.toUpperCase()})`);
         }
 
         let isPlayingQueue = false;
         let isPausedQueue = false;
         let queueIndex = 0;
         let translationQueue = [];
+        let currentUtterance = null;
 
         async function masterPlay() {
             const elements = document.querySelectorAll('.translated-text-content');
@@ -1033,17 +961,14 @@
 
             if (!isPausedQueue) {
                 isPausedQueue = true;
-                if (!queueAudioPlayer.paused) queueAudioPlayer.pause();
+                window.speechSynthesis.pause();
                 if (broadcastTimerInterval) clearInterval(broadcastTimerInterval);
                 showToast("순차 재생이 일시정지되었습니다.");
             } else {
                 isPausedQueue = false;
                 startBroadcastTimer();
-                queueAudioPlayer.play().then(() => {
-                    showToast("재생을 재개합니다.");
-                }).catch(() => {
-                    playNextInQueue();
-                });
+                window.speechSynthesis.resume();
+                showToast("재생을 재개합니다.");
             }
             updatePauseResumeUI();
         }
@@ -1055,7 +980,7 @@
             else { icon.className = "fa-solid fa-pause"; text.innerText = "일시정지"; }
         }
 
-        // 🌟 HTTPS 및 태블릿 건너뛰기 완벽 방지 순차 재생 로직
+        // 🌟 브라우저 내장 음성 합성 기반 순차 재생 큐 (HTTPS 완벽 호환, 건너뜀 없음)
         function playNextInQueue() {
             const total = translationQueue.length;
             if (!isPlayingQueue || queueIndex >= total) {
@@ -1072,63 +997,38 @@
 
             const currentText = translationQueue[queueIndex];
             highlightCard(queueIndex, total);
-            showToast(`[순차 방송 ${queueIndex + 1}/${total}] 오디오 로딩 중...`);
+            showToast(`[순차 방송 ${queueIndex + 1}/${total}] 송출 중...`);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const cleanText = currentText.replace(/^\[번역 지연\]\s*/, '');
-            const ttsUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${targetLang}&client=tw-ob&tk=` + (Date.now() + queueIndex);
+            
+            currentUtterance = new SpeechSynthesisUtterance(cleanText);
+            currentUtterance.lang = targetLang;
+            currentUtterance.rate = rate;
 
-            queueAudioPlayer.pause();
-            queueAudioPlayer.currentTime = 0;
-            queueAudioPlayer.src = ttsUrl;
-            queueAudioPlayer.load();
-            queueAudioPlayer.playbackRate = rate;
-
-            let playbackTriggered = false;
-
-            // 오디오 데이터가 충분히 버퍼링되었을 때 안전하게 재생
-            const triggerPlay = () => {
-                if (playbackTriggered || !isPlayingQueue || isPausedQueue) return;
-                playbackTriggered = true;
-
-                showToast(`[순차 방송 ${queueIndex + 1}/${total}] 송출 중...`);
-                queueAudioPlayer.play().then(() => {
-                    let endedFired = false;
-                    
-                    queueAudioPlayer.onended = function() {
-                        if (endedFired) return;
-                        endedFired = true;
-
-                        if (isPlayingQueue && !isPausedQueue) {
-                            queueIndex++;
-                            setTimeout(playNextInQueue, 400);
-                        }
-                    };
-                }).catch((err) => {
-                    console.warn("Queue play warning, retrying...", err);
-                    // 실패 시 건너뛰지 않고 잠시 후 재시도 또는 다음으로 안전 이동
+            currentUtterance.onend = function() {
+                if (isPlayingQueue && !isPausedQueue) {
                     queueIndex++;
-                    setTimeout(playNextInQueue, 600);
-                });
+                    setTimeout(playNextInQueue, 300); // 문장 간 자연스러운 딜레이
+                }
             };
 
-            queueAudioPlayer.oncanplaythrough = triggerPlay;
-            queueAudioPlayer.onloadeddata = triggerPlay;
-
-            // 네트워크 지연 시 타임아웃 백업 (1.2초 내 시작 안 되면 강제 트리거)
-            setTimeout(() => {
-                if (!playbackTriggered) {
-                    triggerPlay();
+            currentUtterance.onerror = function(err) {
+                console.warn("Queue speech error, moving to next...", err);
+                if (isPlayingQueue && !isPausedQueue) {
+                    queueIndex++;
+                    setTimeout(playNextInQueue, 500);
                 }
-            }, 1200);
+            };
+
+            window.speechSynthesis.speak(currentUtterance);
         }
 
         function masterStop() {
             isPlayingQueue = false;
             isPausedQueue = false;
             updatePauseResumeUI();
-            queueAudioPlayer.pause(); queueAudioPlayer.currentTime = 0;
-            instantAudioPlayer.pause(); instantAudioPlayer.currentTime = 0;
+            window.speechSynthesis.cancel();
             clearHighlight();
             stopBroadcastTimer();
             showToast("방송이 중지되었습니다.");
@@ -1185,28 +1085,26 @@
             showToast(`'${customTitle}' 탭으로 영구 저장되었습니다!`);
         }
 
-        // 🌟 즉석 통역 [즉시 송출] 안정성 강화
-        async function playCustomSpeech() {
+        // 🌟 즉석 통역 [즉시 송출] 브라우저 내장 음성 연동
+        function playCustomSpeech() {
             const translatedText = document.getElementById('customTranslatedOutput').innerText;
             if (!translatedText || translatedText.startsWith("(")) { showToast("송출할 텍스트를 입력해 주세요."); return; }
             
-            instantAudioPlayer.pause();
-            instantAudioPlayer.currentTime = 0;
+            window.speechSynthesis.cancel();
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const cleanText = translatedText.replace(/^\[번역 지연\]\s*/, '');
-            const ttsUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${targetLang}&client=tw-ob&tk=` + Date.now();
+            
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = targetLang;
+            utterance.rate = rate;
 
-            instantAudioPlayer.src = ttsUrl;
-            instantAudioPlayer.load();
-            instantAudioPlayer.playbackRate = rate;
+            utterance.onerror = () => {
+                showToast("음성 송출 실패");
+            };
 
-            instantAudioPlayer.play().then(() => {
-                showToast(`즉석 통역 송출 중 (${targetLang.toUpperCase()})`);
-            }).catch((err) => {
-                console.warn("Instant speech error:", err);
-                showToast("음성 재생 실패 (브라우저 보안 권한을 확인하세요)");
-            });
+            window.speechSynthesis.speak(utterance);
+            showToast(`즉석 통역 송출 중 (${targetLang.toUpperCase()})`);
         }
 
         function showToast(msg) {
