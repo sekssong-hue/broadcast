@@ -35,7 +35,7 @@
             flex-direction: column; 
             align-items: center; 
             padding: 10px 14px; 
-            font-size: 15px; /* 전체 기본 글자 크기 상향 */
+            font-size: 15px;
         }
         
         header { 
@@ -58,7 +58,7 @@
         header p { font-size: 13px; color: var(--text-muted); font-weight: 600; text-align: left; }
         .header-status-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
         
-        /* 🌟 송출 소요시간 배지 크기 및 폰트 대폭 확대 */
+        /* 송출 소요시간 배지 (항상 표시) */
         #broadcastTimerBadge {
             font-family: monospace; 
             font-size: 17px !important; 
@@ -68,13 +68,14 @@
             padding: 8px 16px !important; 
             border-radius: 8px !important; 
             border: 2px solid #facc15 !important; 
-            display: flex; 
+            display: flex !important; 
             align-items: center; 
             gap: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            white-space: nowrap;
         }
 
-        /* 🌟 현재 시간 배지 크기 및 폰트 대폭 확대 */
+        /* 현재 시간 배지 */
         .live-clock-badge { 
             font-family: monospace; 
             font-size: 17px !important; 
@@ -279,7 +280,6 @@
         .card-pane-original { border-right: 1px solid #cbd5e1; padding-right: 14px; }
         
         .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
-        /* 🌟 본문 카드 글자 크기 대폭 상향 (15px) */
         .card-text { font-size: 15px !important; font-weight: 600 !important; color: #1e293b; line-height: 1.5; outline: none; word-break: keep-all; overflow-wrap: break-word; }
         [contenteditable="true"]:focus { background: #eff6ff; border-radius: 6px; padding: 3px 6px; outline: 2px solid var(--primary); }
 
@@ -345,13 +345,13 @@
             </div>
         </div>
         <div class="header-status-group">
-            <!-- 🌟 크게 확대된 송출 소요시간 배지 -->
-            <div id="broadcastTimerBadge" style="display:none;">
-                <i class="fa-solid fa-stopwatch fa-spin"></i> 소요시간: <span id="timerDisplay">00:00</span>
+            <!-- 상시 표시되는 송출 소요시간 배지 -->
+            <div id="broadcastTimerBadge">
+                <i class="fa-solid fa-stopwatch" id="timerIcon"></i> 소요시간: <span id="timerDisplay">00:00</span>
             </div>
-            <!-- 🌟 크게 확대된 현재 시간 배지 -->
+            <!-- 현재 시간 배지 -->
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-12 00:00:00</span>
+                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-15 00:00:00</span>
             </div>
         </div>
     </header>
@@ -464,7 +464,7 @@
                     <button onclick="masterPlay()" class="btn" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
                     <button onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
                     <button onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
-                    <button onclick="resetUploadedContent()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="업로드된 임시 문서 및 현재 업로드 목록 초기화"><i class="fa-solid fa-file-excel"></i> 업로드 초기화</button>
+                    <button onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="업로드 및 즉석 통역으로 생성한 탭 및 항목 초기화"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
                     <button onclick="resetAllData()" class="btn btn-dark-danger" style="padding:10px 12px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
                 </div>
             </div>
@@ -497,11 +497,14 @@
         let broadcastTimerInterval = null;
         let broadcastSeconds = 0;
 
-        function startBroadcastTimer() {
-            if (broadcastTimerInterval) return;
-            broadcastSeconds = 0;
-            document.getElementById('broadcastTimerBadge').style.display = 'flex';
-            document.getElementById('timerDisplay').innerText = "00:00";
+        function startBroadcastTimer(reset = true) {
+            if (broadcastTimerInterval) clearInterval(broadcastTimerInterval);
+            if (reset) {
+                broadcastSeconds = 0;
+                document.getElementById('timerDisplay').innerText = "00:00";
+            }
+            const timerIcon = document.getElementById('timerIcon');
+            if (timerIcon) timerIcon.classList.add('fa-spin');
 
             broadcastTimerInterval = setInterval(() => {
                 broadcastSeconds++;
@@ -511,12 +514,18 @@
             }, 1000);
         }
 
-        function stopBroadcastTimer() {
+        function pauseBroadcastTimer() {
             if (broadcastTimerInterval) {
                 clearInterval(broadcastTimerInterval);
                 broadcastTimerInterval = null;
             }
-            document.getElementById('broadcastTimerBadge').style.display = 'none';
+            const timerIcon = document.getElementById('timerIcon');
+            if (timerIcon) timerIcon.classList.remove('fa-spin');
+        }
+
+        function stopBroadcastTimer() {
+            pauseBroadcastTimer();
+            // 배지는 계속 보이도록 유지 (display: none 제거)
         }
 
         const rawLanguageList = [
@@ -663,46 +672,43 @@
             localStorage.setItem('kim_simin_categories_v44', JSON.stringify(savedCustomCategories));
         }
 
-        function resetUploadedContent() {
+        // 생성한 항목 초기화 (업로드 임시 미리보기 또는 사용자가 생성한 탭/항목 정리)
+        function resetGeneratedItems() {
             if (stagedItems && stagedItems.length > 0) {
-                if (confirm("현재 업로드 중인 임시 문서 내용을 지우시겠습니까?")) {
+                if (confirm("현재 미리보기 중인 생성 항목을 초기화하시겠습니까?")) {
                     cancelStaging();
                     masterStop();
-                    showToast("업로드된 임시 내용이 초기화되었습니다.");
+                    showToast("임시 생성 항목이 초기화되었습니다.");
                 }
                 return;
             }
 
-            if (currentCategory.startsWith('custom_') && !currentCategory.startsWith('custom_int_')) {
-                if (confirm("현재 선택된 업로드 문서 탭의 내용을 초기화하시겠습니까?")) {
+            if (currentCategory.startsWith('custom_')) {
+                if (confirm("현재 선택된 생성 탭의 항목을 초기화하시겠습니까?")) {
                     guideData = guideData.filter(item => item.category !== currentCategory);
                     savedCustomCategories = savedCustomCategories.filter(cat => cat.id !== currentCategory);
                     saveData();
                     masterStop();
                     renderDynamicTabs();
                     filterCategory('all');
-                    showToast("선택된 업로드 문서 내용이 초기화되었습니다.");
+                    showToast("선택된 생성 항목이 초기화되었습니다.");
                 }
                 return;
             }
 
-            const hasUploadedTabs = savedCustomCategories.some(cat => cat.id.startsWith('custom_') && !cat.id.startsWith('custom_int_'));
-            if (hasUploadedTabs) {
-                if (confirm("업로드하여 저장된 모든 문서 파일 탭을 지우시겠습니까? (즉석 통역 메모는 유지됩니다)")) {
-                    const uploadCatIds = savedCustomCategories
-                        .filter(cat => cat.id.startsWith('custom_') && !cat.id.startsWith('custom_int_'))
-                        .map(cat => cat.id);
-                    
-                    guideData = guideData.filter(item => !uploadCatIds.includes(item.category));
-                    savedCustomCategories = savedCustomCategories.filter(cat => !uploadCatIds.includes(cat.id));
+            if (savedCustomCategories.length > 0) {
+                if (confirm("업로드 및 즉석 통역으로 생성한 모든 탭과 항목을 초기화하시겠습니까?")) {
+                    const customCatIds = savedCustomCategories.map(cat => cat.id);
+                    guideData = guideData.filter(item => !customCatIds.includes(item.category));
+                    savedCustomCategories = [];
                     saveData();
                     masterStop();
                     renderDynamicTabs();
                     filterCategory('all');
-                    showToast("업로드된 모든 문서 내용이 초기화되었습니다.");
+                    showToast("생성한 모든 항목이 초기화되었습니다.");
                 }
             } else {
-                showToast("초기화할 업로드 문서 내용이 없습니다.");
+                showToast("초기화할 생성된 항목이 없습니다.");
             }
         }
 
@@ -718,6 +724,8 @@
                 document.getElementById('fileInput').value = '';
                 saveData();
                 masterStop();
+                broadcastSeconds = 0;
+                document.getElementById('timerDisplay').innerText = "00:00";
                 renderDynamicTabs();
                 filterCategory('all');
                 showToast("모든 데이터가 완전히 초기화되었습니다.");
@@ -1043,7 +1051,7 @@
             if (!text) return;
             window.speechSynthesis.cancel();
 
-            startBroadcastTimer();
+            startBroadcastTimer(true);
 
             const total = document.querySelectorAll('.card-item').length;
             if (cardIndex >= 0 && !isPlayingQueue) highlightCard(cardIndex, total);
@@ -1064,6 +1072,7 @@
 
             utterance.onerror = (err) => {
                 console.warn("Speech synthesis error:", err);
+                stopBroadcastTimer();
                 showToast("음성 재생 실패");
             };
 
@@ -1088,7 +1097,7 @@
             isPausedQueue = false;
             updatePauseResumeUI();
             queueIndex = 0;
-            startBroadcastTimer();
+            startBroadcastTimer(true);
             playNextInQueue();
         }
 
@@ -1098,11 +1107,11 @@
             if (!isPausedQueue) {
                 isPausedQueue = true;
                 window.speechSynthesis.pause();
-                if (broadcastTimerInterval) clearInterval(broadcastTimerInterval);
+                pauseBroadcastTimer();
                 showToast("순차 재생이 일시정지되었습니다.");
             } else {
                 isPausedQueue = false;
-                startBroadcastTimer();
+                startBroadcastTimer(false);
                 window.speechSynthesis.resume();
                 showToast("재생을 재개합니다.");
             }
@@ -1225,6 +1234,7 @@
             if (!translatedText || translatedText.startsWith("(")) { showToast("송출할 텍스트를 입력해 주세요."); return; }
             
             window.speechSynthesis.cancel();
+            startBroadcastTimer(true);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const cleanText = translatedText.replace(/^\[번역 지연\]\s*/, '');
@@ -1233,7 +1243,12 @@
             utterance.lang = targetLang;
             utterance.rate = rate;
 
+            utterance.onend = () => {
+                stopBroadcastTimer();
+            };
+
             utterance.onerror = () => {
+                stopBroadcastTimer();
                 showToast("음성 송출 실패");
             };
 
