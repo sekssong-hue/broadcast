@@ -24,95 +24,96 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, sans-serif; }
-        
-        body { 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            height: 100vh; 
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            height: 100vh;
             height: 100dvh;
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            padding: 10px 14px; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 14px;
             font-size: 15px;
         }
-        
-        header { 
-            margin-bottom: 8px; 
-            width: 100%; 
-            max-width: 1480px; 
-            flex-shrink: 0; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+
+        header {
+            margin-bottom: 8px;
+            width: 100%;
+            max-width: 1480px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             gap: 12px;
-            background: var(--panel-bg); 
-            padding: 12px 20px; 
-            border-radius: var(--radius-md); 
-            border: 1px solid var(--border-color); 
-            box-shadow: var(--shadow-md); 
+            background: var(--panel-bg);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
         }
         .header-title-area { display: flex; align-items: center; gap: 10px; }
         header h1 { font-size: 21px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
         header p { font-size: 13px; color: var(--text-muted); font-weight: 600; text-align: left; }
         .header-status-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-        
+
         #broadcastTimerBadge {
-            font-family: monospace; 
-            font-size: 14.5px !important; 
-            font-weight: 800 !important; 
-            background: #fef08a !important; 
-            color: #78350f !important; 
-            padding: 6px 12px !important; 
-            border-radius: 8px !important; 
-            border: 1.5px solid #facc15 !important; 
-            display: inline-flex !important; 
-            align-items: center; 
+            font-family: monospace;
+            font-size: 14.5px !important;
+            font-weight: 800 !important;
+            background: #fef08a !important;
+            color: #78350f !important;
+            padding: 6px 12px !important;
+            border-radius: 8px !important;
+            border: 1.5px solid #facc15 !important;
+            display: inline-flex !important;
+            align-items: center;
             gap: 6px;
             white-space: nowrap;
         }
 
-        .live-clock-badge { 
-            font-family: monospace; 
-            font-size: 17px !important; 
-            font-weight: 800 !important; 
-            background: #0f172a !important; 
-            color: #38bdf8 !important; 
-            padding: 8px 16px !important; 
-            border-radius: 8px !important; 
-            border: 2px solid #334155 !important; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            white-space: nowrap; 
+        .live-clock-badge {
+            font-family: monospace;
+            font-size: 17px !important;
+            font-weight: 800 !important;
+            background: #0f172a !important;
+            color: #38bdf8 !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            border: 2px solid #334155 !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        .top-toolbar { 
-            width: 100%; 
-            max-width: 1480px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 10px; 
-            margin-bottom: 8px; 
-            flex-shrink: 0; 
-            background: var(--panel-bg); 
-            padding: 10px 16px; 
-            border-radius: var(--radius-md); 
-            border: 1px solid var(--border-color); 
-            box-shadow: var(--shadow-md); 
+        .top-toolbar {
+            width: 100%;
+            max-width: 1480px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            background: var(--panel-bg);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            position: relative;
         }
-        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 65%; padding-bottom: 2px; }
-        .toolbar-settings { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-        .setting-item { display: flex; align-items: center; gap: 6px; }
+        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 56%; padding-bottom: 2px; }
+        .toolbar-settings { display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+        .setting-item { display: flex; align-items: center; gap: 6px; position: relative; }
         .setting-label { font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
-        
+
         .cat-btn { padding: 8px 14px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
         .cat-btn:hover { background: #f1f5f9; color: var(--text-main); }
         .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-        
+
         .custom-tab-btn { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
         .custom-tab-btn.active { background: #9333ea; color: #ffffff; border-color: #9333ea; }
         .tab-del-btn { opacity: 0.8; font-size: 13px; margin-left: 6px; padding: 0 5px; border-radius: 4px; }
@@ -129,8 +130,116 @@
             cursor: pointer;
         }
 
+        .multi-lang-popover {
+            display: none;
+            position: absolute;
+            top: 44px;
+            right: 0;
+            width: 370px;
+            max-height: 460px;
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            padding: 12px;
+            z-index: 60;
+        }
+        .multi-lang-popover.open { display: block; }
+        .relay-search-input {
+            width: 100%;
+            padding: 6px 10px !important;
+            font-size: 12.5px !important;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+        }
+        .relay-order-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .relay-order-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            margin-top: 4px;
+            font-size: 12.5px;
+            font-weight: 700;
+        }
+        .order-move-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            color: #0f172a;
+        }
+        .order-move-btn:hover:not(:disabled) { background: #dbeafe; }
+        .order-move-btn:disabled { opacity: 0.35; cursor: default; }
+        .multi-lang-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 6px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .multi-lang-item:hover { background: #f1f5f9; }
+
+        .relay-card-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+        }
+        .relay-card-block:last-child { margin-bottom: 0; }
+        .relay-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .relay-lang-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .copy-mini-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .copy-mini-btn:hover { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
+
         .workspace { display: flex; gap: 16px; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
-        
+
         .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
         .panel-translator { border-top: 6px solid var(--primary); }
         .panel-interpreter { border-top: 6px solid var(--accent); }
@@ -176,22 +285,22 @@
             flex-shrink: 0;
         }
 
-        .custom-input-box { 
-            background: #f8fafc; 
-            border: 1px solid var(--border-color); 
-            border-radius: var(--radius-md); 
-            padding: 16px; 
-            margin-top: 4px; 
-            flex: 1; 
+        .custom-input-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: 4px;
+            flex: 1;
             display: flex;
             flex-direction: column;
-            min-height: 0; 
+            min-height: 0;
         }
-        .interpreter-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 14px; 
-            flex: 1; 
+        .interpreter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            flex: 1;
             min-height: 0;
         }
         .interpreter-pane {
@@ -201,31 +310,31 @@
             min-height: 0;
             flex: 1;
         }
-        .interpreter-actions { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            gap: 10px; 
-            margin-top: 12px; 
-            padding-top: 10px; 
-            border-top: 1px solid #cbd5e1; 
-            flex-wrap: wrap; 
+        .interpreter-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid #cbd5e1;
+            flex-wrap: wrap;
             flex-shrink: 0;
         }
         .btn-group-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
-        textarea, input[type="text"] { 
-            width: 100%; 
-            background: #ffffff; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            color: #0f172a; 
-            padding: 12px 14px; 
-            font-size: 15px; 
+        textarea, input[type="text"] {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #0f172a;
+            padding: 12px 14px;
+            font-size: 15px;
             font-weight: 500;
         }
         #customKoInput {
-            resize: none; 
+            resize: none;
             flex: 1;
             min-height: 120px;
         }
@@ -235,17 +344,18 @@
             box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
         }
         #customTranslatedOutput {
-            background: #ffffff; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            padding: 12px 14px; 
-            font-size: 15px; 
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 14.5px;
             font-weight: 500;
-            color: #0f172a; 
+            color: #0f172a;
             flex: 1;
             min-height: 120px;
-            overflow-y: auto; 
+            overflow-y: auto;
             line-height: 1.5;
+            white-space: pre-line;
         }
 
         .card-scroll-container {
@@ -280,7 +390,7 @@
 
         .card-pane { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-width: 0; }
         .card-pane-original { border-right: 1px solid #cbd5e1; padding-right: 14px; }
-        
+
         .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
         .card-text { font-size: 15px !important; font-weight: 600 !important; color: #1e293b; line-height: 1.5; outline: none; word-break: keep-all; overflow-wrap: break-word; }
         [contenteditable="true"]:focus { background: #eff6ff; border-radius: 6px; padding: 3px 6px; outline: 2px solid var(--primary); }
@@ -330,14 +440,14 @@
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; box-shadow: 0 8px 20px rgba(0,0,0,0.3); opacity: 0; transition: 0.3s; pointer-events: none; z-index: 100; max-width: 90vw; text-align: center; }
         .toast.show { opacity: 1; }
 
-        @media (max-width: 1024px) { 
-            body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; } 
-            header { flex-direction: column; align-items: flex-start; gap: 10px; } 
+        @media (max-width: 1024px) {
+            body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; }
+            header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .header-status-group { width: 100%; justify-content: space-between; }
             .top-toolbar { flex-direction: column; align-items: stretch; }
             .toolbar-group { max-width: 100%; }
             .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
-            .workspace { flex-direction: column; height: auto; } 
+            .workspace { flex-direction: column; height: auto; }
             .panel { height: auto; flex: none; }
             #customKoInput, #customTranslatedOutput { min-height: 110px; }
             .card-scroll-container { max-height: 65vh; }
@@ -349,15 +459,16 @@
             header h1 { font-size: 18px; }
             .live-clock-badge { font-size: 14.5px !important; padding: 6px 12px !important; }
             #broadcastTimerBadge, .large-counter-badge { font-size: 13px !important; padding: 5px 10px !important; }
-            .toolbar-settings { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+            .toolbar-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
             .setting-item { flex-direction: column; align-items: flex-start; gap: 4px; }
             .setting-item select { width: 100%; }
+            .multi-lang-popover { width: calc(100vw - 32px); right: auto; left: 0; }
             .panel { padding: 14px; }
             .interpreter-grid { grid-template-columns: 1fr; }
             #customKoInput, #customTranslatedOutput { min-height: 100px; }
             .interpreter-actions { flex-direction: column; align-items: stretch; }
             .btn-group-row { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
-            .dual-card { grid-template-columns: 1fr; padding: 12px; } 
+            .dual-card { grid-template-columns: 1fr; padding: 12px; }
             .card-pane-original { border-right: none; padding-right: 0; border-bottom: 1px solid #cbd5e1; padding-bottom: 12px; }
             .card-scroll-container { max-height: none; overflow-y: visible; }
         }
@@ -369,12 +480,12 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>시인성 강화 가독성 최적화 버전</p>
+                <p>시인성 강화 가독성 최적화 버전 · 자연스러운 문장 연속 송출</p>
             </div>
         </div>
         <div class="header-status-group">
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-15 00:00:00</span>
+                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-25 (수) 00:00:00</span>
             </div>
         </div>
     </header>
@@ -382,12 +493,12 @@
     <!-- 상단 탭 툴바 -->
     <div class="top-toolbar">
         <div class="toolbar-group" id="categoryNav">
-            <button onclick="filterCategory('all')" data-category="all" class="cat-btn active"><i class="fa-solid fa-list"></i> 전체 보기</button>
-            <button onclick="filterCategory('safety')" data-category="safety" class="cat-btn"><i class="fa-solid fa-life-ring text-amber-500"></i> 안전·구명조끼</button>
-            <button onclick="filterCategory('history')" data-category="history" class="cat-btn"><i class="fa-solid fa-landmark text-emerald-600"></i> 진주성·역사</button>
-            <button onclick="filterCategory('tour')" data-category="tour" class="cat-btn"><i class="fa-solid fa-water text-sky-500"></i> 남강 코스</button>
-            <button onclick="filterCategory('emergency')" data-category="emergency" class="cat-btn"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> 비상 탈출</button>
-            
+            <button type="button" onclick="filterCategory('all')" data-category="all" class="cat-btn active"><i class="fa-solid fa-list"></i> 전체 보기</button>
+            <button type="button" onclick="filterCategory('safety')" data-category="safety" class="cat-btn"><i class="fa-solid fa-life-ring text-amber-500"></i> 안전·구명조끼</button>
+            <button type="button" onclick="filterCategory('history')" data-category="history" class="cat-btn"><i class="fa-solid fa-landmark text-emerald-600"></i> 진주성·역사</button>
+            <button type="button" onclick="filterCategory('tour')" data-category="tour" class="cat-btn"><i class="fa-solid fa-water text-sky-500"></i> 남강 코스</button>
+            <button type="button" onclick="filterCategory('emergency')" data-category="emergency" class="cat-btn"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> 비상 탈출</button>
+
             <div id="dynamicTabContainer" class="flex items-center gap-1"></div>
         </div>
 
@@ -411,6 +522,28 @@
                 <span class="setting-label">타겟 언어:</span>
                 <select id="targetLangSelect"></select>
             </div>
+            <div class="setting-item">
+                <button type="button" id="multiLangBtn" onclick="toggleMultiLangPopover()" class="cat-btn" title="여러 나라 손님용 릴레이 언어 선택 및 순서 변경">
+                    <i class="fa-solid fa-earth-asia text-blue-600"></i> <span id="multiLangBtnLabel">릴레이: 꺼짐</span>
+                </button>
+                <div id="multiLangPopover" class="multi-lang-popover">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #e2e8f0;">
+                        <span style="font-size:12.5px; font-weight:800; color:#0f172a;">다국적 릴레이 언어 & 순서 (가나다순)</span>
+                        <button type="button" onclick="clearRelayLangs()" style="font-size:11.5px; color:#dc2626; font-weight:700; background:none; border:none; cursor:pointer;">해제</button>
+                    </div>
+                    <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
+                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN'])">영·일·중</button>
+                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','vi','th','id'])">영·베·태·인니</button>
+                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN','vi','th'])">5개국</button>
+                    </div>
+                    <div class="relay-order-box">
+                        <div style="font-size:11.5px; font-weight:800; color:#1e40af; margin-bottom:4px;">선택된 송출 순서 (▲/▼ 이동)</div>
+                        <div id="relayOrderList"><span style="font-size:11.5px; color:#64748b;">선택된 언어가 없습니다.</span></div>
+                    </div>
+                    <input type="text" id="relayLangSearch" class="relay-search-input" placeholder="나라 또는 언어 검색 (예: 베트남, 일본, 영어)..." oninput="filterRelayLangList(this.value)">
+                    <div id="multiLangCheckboxList"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -419,12 +552,12 @@
         <div class="panel panel-translator">
             <h2>
                 <span><i class="fa-solid fa-folder-open text-blue-600"></i> 문서 업로드 및 즉석 통역</span>
-                <span id="headerCounterBadge" class="large-counter-badge">총 항목: 0개 (대기 중)</span>
+                <span id="headerCounterBadge" class="large-counter-badge">총 항목: 0개</span>
             </h2>
 
             <div class="upload-zone" onclick="document.getElementById('fileInput').click()" title="파일을 업로드하면 새로운 독립 탭으로 추가 영구 저장할 수 있습니다">
                 <p><i class="fa-solid fa-cloud-arrow-up"></i> 텍스트(.txt, .csv) 또는 PDF 파일(.pdf) 업로드</p>
-                <span>[다중 저장 지원] 업로드 시 새 탭으로 추가하거나 기존 탭에 문장을 누적할 수 있습니다.</span>
+                <span>[다중 저장 지원] 업로드 시 새 탭으로 추가할 수 있으며, 원문은 클릭해 바로 수정할 수 있습니다.</span>
                 <input type="file" id="fileInput" accept=".txt,.csv,.pdf" style="display:none;" onchange="handleGeneralFileUpload(event)">
             </div>
 
@@ -438,8 +571,8 @@
                     <input type="text" id="documentTitleInput" placeholder="예: 업로드 문서 제목">
                 </div>
                 <div style="display:flex; gap:8px; margin-top:4px;">
-                    <button onclick="saveStagedDocument()" class="btn btn-purple" style="flex:1; padding:8px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 영구 저장</button>
-                    <button onclick="cancelStaging()" class="btn btn-danger" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-xmark"></i> 닫기</button>
+                    <button type="button" onclick="saveStagedDocument()" class="btn btn-purple" style="flex:1; padding:8px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 영구 저장</button>
+                    <button type="button" onclick="cancelStaging()" class="btn btn-danger" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-xmark"></i> 닫기</button>
                 </div>
             </div>
 
@@ -448,7 +581,7 @@
                     <span><i class="fa-solid fa-wand-magic-sparkles"></i> 실시간 AI 즉석 입력 통역기</span>
                     <span style="font-size:12px; font-weight:600; color:var(--text-muted);">(음성 말하기 & 100여 개국 다국어 지원)</span>
                 </label>
-                
+
                 <div class="interpreter-grid">
                     <div class="interpreter-pane">
                         <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -467,12 +600,12 @@
 
                 <div class="interpreter-actions">
                     <div class="btn-group-row">
-                        <button onclick="clearCustomInput()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-eraser"></i> 내용 삭제</button>
-                        <button onclick="refreshCustomInterpreter()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-rotate"></i> 새로고침</button>
+                        <button type="button" onclick="clearCustomInput()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-eraser"></i> 내용 삭제</button>
+                        <button type="button" onclick="refreshCustomInterpreter()" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-rotate"></i> 새로고침</button>
                     </div>
                     <div class="btn-group-row">
-                        <button onclick="saveCustomInterpreterAsTab()" class="btn btn-emerald" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 저장</button>
-                        <button onclick="playCustomSpeech()" class="btn" style="padding:8px 14px; font-size:13px;"><i class="fa-solid fa-volume-high"></i> 즉시 송출</button>
+                        <button type="button" onclick="saveCustomInterpreterAsTab()" class="btn btn-emerald" style="padding:8px 12px; font-size:13px;"><i class="fa-solid fa-floppy-disk"></i> 새 탭으로 저장</button>
+                        <button type="button" onclick="playCustomSpeech()" class="btn" style="padding:8px 14px; font-size:13px;"><i class="fa-solid fa-volume-high"></i> 즉시 송출</button>
                     </div>
                 </div>
             </div>
@@ -490,15 +623,16 @@
             </h2>
 
             <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; flex-shrink: 0;">
-                <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center;">
+                <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 (연속 자동 방송 제어)</span>
+                    <span id="liveBroadcastLangTag" style="font-size:12px; color:#1d4ed8; font-weight:800;"></span>
                 </div>
                 <div class="playback-controls" style="margin-bottom: 0; display:flex; gap:8px; flex-wrap: wrap;">
-                    <button onclick="masterPlay()" class="btn" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
-                    <button onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
-                    <button onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
-                    <button onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
-                    <button onclick="resetAllData()" class="btn btn-dark-danger" style="padding:10px 12px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
+                    <button type="button" onclick="masterPlay()" class="btn" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
+                    <button type="button" onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
+                    <button type="button" onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
+                    <button type="button" onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
+                    <button type="button" onclick="resetAllData()" class="btn btn-dark-danger" style="padding:10px 12px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
                 </div>
             </div>
 
@@ -510,6 +644,39 @@
 
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+        const STORAGE_KEYS = {
+            DATA: 'kim_simin_guide_master_v46',
+            CATS: 'kim_simin_categories_v46',
+            RELAY: 'kim_simin_relay_langs_v46'
+        };
+
+        const DEFAULT_SEED_DATA = [
+            {
+                id: 1001,
+                category: 'safety',
+                titleKo: '승선 안전 및 구명조끼 안내',
+                contentKo: '승객 여러분께서는 운항 중 갑판 난간을 꼭 잡아주시고, 구명조끼 보관 위치와 착용 방법을 미리 확인해 주시기 바랍니다.'
+            },
+            {
+                id: 1002,
+                category: 'history',
+                titleKo: '진주성과 촉석루 소개',
+                contentKo: '강변 언덕 위에 자리한 진주성은 임진왜란 진주대첩의 역사를 간직하고 있으며, 남강과 어우러진 촉석루의 풍경이 아름답습니다.'
+            },
+            {
+                id: 1003,
+                category: 'tour',
+                titleKo: '물빛나루쉼터 ~ 경남문화예술회관 코스',
+                contentKo: '지금 김시민호는 물빛나루쉼터를 출발해 남강 수변을 따라 경남문화예술회관 방면으로 순항하고 있습니다.'
+            },
+            {
+                id: 1004,
+                category: 'emergency',
+                titleKo: '비상 상황 행동 요령',
+                contentKo: '비상 상황 발생 시 당황하지 마시고 승무원과 안내 방송의 지시에 따라 구명조끼를 착용한 뒤 지정된 집결 위치로 이동해 주십시오.'
+            }
+        ];
 
         function updateLiveClock() {
             const now = new Date();
@@ -561,80 +728,76 @@
         }
 
         // ==========================================
-        // 실시간 음성 인식 (STT - 모바일/태블릿/노트북 지원)
+        // 실시간 음성 인식 (STT)
         // ==========================================
         let recognition = null;
         let isRecognizing = false;
-        let finalSpeechTranscript = '';
+        let committedSpeechText = '';
         let translateDebounceTimer = null;
 
         function scheduleLiveTranslation() {
             if (translateDebounceTimer) clearTimeout(translateDebounceTimer);
             translateDebounceTimer = setTimeout(() => {
                 updateCustomTranslation();
-            }, 300);
+            }, 280);
         }
 
         function initSpeechRecognition() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                return null;
-            }
+            if (!SpeechRecognition) return null;
 
             const rec = new SpeechRecognition();
             rec.lang = 'ko-KR';
-            rec.continuous = true;       // 끊김 없이 연속으로 말하기 지원
-            rec.interimResults = true;   // 말하는 도중 실시간으로 타이핑 표시
+            rec.continuous = true;
+            rec.interimResults = true;
 
             rec.onstart = function() {
                 isRecognizing = true;
-                finalSpeechTranscript = document.getElementById('customKoInput').value;
-                if (finalSpeechTranscript && !finalSpeechTranscript.endsWith(' ') && !finalSpeechTranscript.endsWith('\n')) {
-                    finalSpeechTranscript += ' ';
-                }
-                const btn = document.getElementById('voiceInputBtn');
-                const text = document.getElementById('voiceInputText');
-                const inputEl = document.getElementById('customKoInput');
-                
-                btn.classList.add('recording');
-                text.innerText = '듣는 중 (중지)';
-                inputEl.classList.add('listening-active');
+                const currentVal = document.getElementById('customKoInput').value;
+                committedSpeechText = currentVal ? (currentVal.trim() + ' ') : '';
+                document.getElementById('voiceInputBtn').classList.add('recording');
+                document.getElementById('voiceInputText').innerText = '듣는 중 (중지)';
+                document.getElementById('customKoInput').classList.add('listening-active');
                 showToast("음성 인식이 시작되었습니다. 말씀해 주세요.");
             };
 
             rec.onresult = function(event) {
-                let interimTranscript = '';
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    const transcript = event.results[i][0].transcript;
+                let sessionFinal = '';
+                let sessionInterim = '';
+
+                for (let i = 0; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript.trim();
+                    if (!transcript) continue;
                     if (event.results[i].isFinal) {
-                        finalSpeechTranscript += transcript + ' ';
+                        sessionFinal += transcript + ' ';
                     } else {
-                        interimTranscript += transcript;
+                        sessionInterim += transcript + ' ';
                     }
                 }
 
                 const inputEl = document.getElementById('customKoInput');
-                inputEl.value = (finalSpeechTranscript + interimTranscript).trimStart();
+                inputEl.value = (committedSpeechText + sessionFinal + sessionInterim).trim();
                 inputEl.scrollTop = inputEl.scrollHeight;
-
-                // 타이핑됨과 동시에 실시간 번역 트리거
                 scheduleLiveTranslation();
             };
 
             rec.onerror = function(event) {
-                console.warn("Speech recognition error:", event.error);
-                if (event.error === 'not-allowed') {
-                    showToast("마이크 권한이 차단되었습니다. 브라우저 설정에서 마이크를 허용해 주세요.");
+                if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+                    isRecognizing = false;
                     stopVoiceRecognitionUI();
-                } else if (event.error === 'no-speech') {
-                    // 무음 상태일 때는 자동 재시작 유도
-                } else {
+                    showToast("마이크 권한이 차단되었습니다. 브라우저 설정에서 마이크를 허용해 주세요.");
+                } else if (event.error === 'network') {
+                    isRecognizing = false;
+                    stopVoiceRecognitionUI();
+                    showToast("네트워크 오류로 음성 인식이 중단되었습니다.");
+                } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
                     showToast(`음성 인식 알림: ${event.error}`);
                 }
             };
 
             rec.onend = function() {
-                // 사용자가 직접 중지하지 않았는데 모바일/브라우저 정책으로 끊긴 경우 자동 재연결
+                const inputEl = document.getElementById('customKoInput');
+                if (inputEl) committedSpeechText = inputEl.value ? (inputEl.value.trim() + ' ') : '';
                 if (isRecognizing) {
                     try {
                         rec.start();
@@ -670,15 +833,15 @@
 
             if (isRecognizing) {
                 isRecognizing = false;
-                recognition.stop();
+                try { recognition.stop(); } catch (e) {}
                 stopVoiceRecognitionUI();
                 updateCustomTranslation();
                 showToast("음성 인식이 종료되었습니다.");
             } else {
-                // 음성 입력 시 기존 TTS 송출 중이면 중지하여 하울링 방지
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                }
+                masterStop(true);
+                committedSpeechText = document.getElementById('customKoInput').value
+                    ? (document.getElementById('customKoInput').value.trim() + ' ')
+                    : '';
                 try {
                     recognition.start();
                 } catch (e) {
@@ -799,11 +962,22 @@
             { code: "zu", name: "남아프리카공화국 (Zulu)" }
         ];
 
+        // ㄱㄴㄷㄹ(가나다라) 순으로 미리 정렬된 언어 목록
+        const sortedLanguageList = [...rawLanguageList].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+
         let guideData = [];
         let savedCustomCategories = [];
         let stagedItems = null;
         let targetLang = 'en';
+        let relayLangs = [];
         let currentCategory = 'all';
+        let translationCache = {};
+        let playbackToken = 0;
+        let activeFallbackTimer = null;
+        let keepAliveInterval = null;
+        let cachedVoices = [];
+        let isPlayingQueue = false;
+        let isPausedQueue = false;
 
         const targetLangSelect = document.getElementById('targetLangSelect');
         const speechRateSelect = document.getElementById('speechRateSelect');
@@ -813,27 +987,282 @@
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toastMsg');
 
-        function loadData() {
-            const savedData = localStorage.getItem('kim_simin_guide_master_v45');
-            const savedCats = localStorage.getItem('kim_simin_categories_v45');
-            if (savedData) {
-                try { guideData = JSON.parse(savedData); } catch (e) { guideData = []; }
-            } else {
-                guideData = [];
+        function refreshSystemVoices() {
+            if (!('speechSynthesis' in window)) return;
+            const list = window.speechSynthesis.getVoices();
+            if (list && list.length > 0) {
+                cachedVoices = list;
             }
-            if (savedCats) {
-                try { savedCustomCategories = JSON.parse(savedCats); } catch (e) { savedCustomCategories = []; }
+        }
+
+        function mapSpeechLangTag(langCode) {
+            const raw = String(langCode || 'en').trim();
+            const lower = raw.toLowerCase();
+            const map = {
+                'en': 'en-US',
+                'ja': 'ja-JP',
+                'zh-cn': 'zh-CN',
+                'zh-tw': 'zh-TW',
+                'zh-hk': 'zh-HK',
+                'vi': 'vi-VN',
+                'th': 'th-TH',
+                'id': 'id-ID',
+                'ko': 'ko-KR',
+                'fr': 'fr-FR',
+                'de': 'de-DE',
+                'es': 'es-ES',
+                'ru': 'ru-RU',
+                'ar': 'ar-SA',
+                'hi': 'hi-IN',
+                'pt': 'pt-PT',
+                'it': 'it-IT',
+                'ms': 'ms-MY',
+                'fil': 'fil-PH'
+            };
+            return map[lower] || raw;
+        }
+
+        function pickNaturalVoice(langCode) {
+            if (!cachedVoices.length) refreshSystemVoices();
+            if (!cachedVoices.length) return null;
+
+            const speechTag = mapSpeechLangTag(langCode);
+            const norm = speechTag.toLowerCase();
+            const base = norm.split('-')[0];
+
+            let matched = cachedVoices.filter(v => v.lang.toLowerCase() === norm);
+            if (!matched.length) {
+                matched = cachedVoices.filter(v => v.lang.toLowerCase().startsWith(norm + '-'));
+            }
+            if (!matched.length) {
+                matched = cachedVoices.filter(v => {
+                    const vLang = v.lang.toLowerCase();
+                    return vLang === base || vLang.startsWith(base + '-');
+                });
+            }
+            if (!matched.length) return null;
+
+            const preferredKeywords = [
+                'natural', 'neural', 'online', 'wavenet', 'premium', 'enhanced', 'studio',
+                'sunhi', 'yuna', 'heami', 'ji-min', 'jimin', 'seoyeon', 'sora',
+                'nanami', 'ayumi', 'haruka', 'xiaoxiao', 'xiaoyi', 'hsiaochen',
+                'aria', 'jenny', 'sara', 'ava', 'emma', 'samantha', 'hoaimy', 'achara', 'gadis',
+                'female', 'woman'
+            ];
+            const avoidKeywords = ['espeak', 'robot', 'compact', 'male', 'guy', 'injoon', 'hyunsu', 'keita', 'yunxi'];
+
+            let bestVoice = matched[0];
+            let bestScore = -999;
+
+            matched.forEach(v => {
+                const nameLower = v.name.toLowerCase();
+                const vLangLower = v.lang.toLowerCase();
+                let score = 0;
+
+                if (vLangLower === norm) score += 25;
+                else if (vLangLower.startsWith(base + '-')) score += 12;
+
+                preferredKeywords.forEach((kw, idx) => {
+                    if (nameLower.includes(kw)) {
+                        score += idx < 7 ? 35 : 22;
+                    }
+                });
+                avoidKeywords.forEach(kw => {
+                    if (nameLower.includes(kw)) score -= 25;
+                });
+
+                if (v.localService === false) score += 8;
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestVoice = v;
+                }
+            });
+
+            return bestVoice;
+        }
+
+        function getNaturalVoiceTuning(langCode, userRate) {
+            const base = String(langCode || 'en').toLowerCase().split('-')[0];
+            if (base === 'ko') {
+                return { rate: Math.max(0.75, Math.min(2.0, userRate * 0.96)), pitch: 1.03 };
+            }
+            if (base === 'ja' || base === 'zh' || base === 'vi' || base === 'th') {
+                return { rate: Math.max(0.75, Math.min(2.0, userRate * 0.94)), pitch: 1.02 };
+            }
+            return { rate: Math.max(0.75, Math.min(2.0, userRate * 0.96)), pitch: 1.02 };
+        }
+
+        function getLangLabel(code) {
+            const found = sortedLanguageList.find(l => l.code === code);
+            return found ? found.name : code;
+        }
+
+        function loadData() {
+            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v45');
+            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v45');
+            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v45');
+
+            if (savedData !== null) {
+                try {
+                    const parsed = JSON.parse(savedData);
+                    guideData = Array.isArray(parsed) ? parsed : [...DEFAULT_SEED_DATA];
+                } catch (e) {
+                    guideData = [...DEFAULT_SEED_DATA];
+                }
+            } else {
+                guideData = [...DEFAULT_SEED_DATA];
+            }
+
+            if (savedCats !== null) {
+                try {
+                    const parsedCats = JSON.parse(savedCats);
+                    savedCustomCategories = Array.isArray(parsedCats) ? parsedCats : [];
+                } catch (e) {
+                    savedCustomCategories = [];
+                }
+            }
+
+            if (savedRelay !== null) {
+                try {
+                    const parsedRelay = JSON.parse(savedRelay);
+                    relayLangs = Array.isArray(parsedRelay) ? parsedRelay : [];
+                } catch (e) {
+                    relayLangs = [];
+                }
             }
         }
 
         function saveData() {
-            localStorage.setItem('kim_simin_guide_master_v45', JSON.stringify(guideData));
-            localStorage.setItem('kim_simin_categories_v45', JSON.stringify(savedCustomCategories));
+            localStorage.setItem(STORAGE_KEYS.DATA, JSON.stringify(guideData));
+            localStorage.setItem(STORAGE_KEYS.CATS, JSON.stringify(savedCustomCategories));
+            localStorage.setItem(STORAGE_KEYS.RELAY, JSON.stringify(relayLangs));
         }
 
-        // 새 탭으로 영구 저장된 데이터는 유지하고 우측 패널 화면만 비움
+        function getBroadcastLangList() {
+            if (relayLangs.length > 0) {
+                return [...relayLangs];
+            }
+            return [targetLang];
+        }
+
+        function updateRelayButtonLabel() {
+            const labelEl = document.getElementById('multiLangBtnLabel');
+            const tagEl = document.getElementById('liveBroadcastLangTag');
+            if (relayLangs.length > 0) {
+                labelEl.innerText = `릴레이 (${relayLangs.length}개)`;
+                if (tagEl) tagEl.innerText = `릴레이 순서: ${relayLangs.join(' → ')}`;
+            } else {
+                labelEl.innerText = `릴레이: 꺼짐`;
+                if (tagEl) tagEl.innerText = `선택 언어: ${targetLang}`;
+            }
+        }
+
+        function toggleMultiLangPopover() {
+            const pop = document.getElementById('multiLangPopover');
+            pop.classList.toggle('open');
+            if (pop.classList.contains('open')) {
+                const searchInput = document.getElementById('relayLangSearch');
+                if (searchInput) {
+                    searchInput.value = '';
+                    filterRelayLangList('');
+                }
+            }
+        }
+
+        function filterRelayLangList(keyword) {
+            const q = String(keyword || '').trim().toLowerCase();
+            const items = document.querySelectorAll('#multiLangCheckboxList .multi-lang-item');
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = (!q || text.includes(q)) ? 'flex' : 'none';
+            });
+        }
+
+        function moveRelayLang(index, delta) {
+            const newIndex = index + delta;
+            if (newIndex < 0 || newIndex >= relayLangs.length) return;
+            masterStop(true);
+            const copy = [...relayLangs];
+            const [moved] = copy.splice(index, 1);
+            copy.splice(newIndex, 0, moved);
+            relayLangs = copy;
+            saveData();
+            renderMultiLangUI();
+            updateCustomTranslation();
+            if (currentCategory !== 'cleared') renderDualPanes();
+        }
+
+        function renderRelayOrderList() {
+            const orderBox = document.getElementById('relayOrderList');
+            if (!relayLangs.length) {
+                orderBox.innerHTML = `<span style="font-size:11.5px; color:#64748b;">선택된 언어가 없습니다. (단일 타겟 언어 사용)</span>`;
+                return;
+            }
+            orderBox.innerHTML = relayLangs.map((code, idx) => `
+                <div class="relay-order-row">
+                    <span>${idx + 1}. ${escapeHtml(getLangLabel(code))}</span>
+                    <div style="display:flex; gap:3px;">
+                        <button type="button" class="order-move-btn" onclick="moveRelayLang(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="위로">▲</button>
+                        <button type="button" class="order-move-btn" onclick="moveRelayLang(${idx}, 1)" ${idx === relayLangs.length - 1 ? 'disabled' : ''} title="아래로">▼</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderMultiLangUI() {
+            renderRelayOrderList();
+            const box = document.getElementById('multiLangCheckboxList');
+            const currentSearch = (document.getElementById('relayLangSearch')?.value || '').trim().toLowerCase();
+            box.innerHTML = '';
+
+            sortedLanguageList.forEach(item => {
+                const row = document.createElement('label');
+                row.className = 'multi-lang-item';
+                const checked = relayLangs.includes(item.code);
+                row.innerHTML = `<input type="checkbox" ${checked ? 'checked' : ''}> <span>${escapeHtml(item.name)}</span>`;
+                if (currentSearch && !item.name.toLowerCase().includes(currentSearch)) {
+                    row.style.display = 'none';
+                }
+                row.querySelector('input').addEventListener('change', (e) => {
+                    masterStop(true);
+                    if (e.target.checked) {
+                        if (!relayLangs.includes(item.code)) relayLangs.push(item.code);
+                    } else {
+                        relayLangs = relayLangs.filter(c => c !== item.code);
+                    }
+                    saveData();
+                    renderMultiLangUI();
+                    updateCustomTranslation();
+                    if (currentCategory !== 'cleared') renderDualPanes();
+                });
+                box.appendChild(row);
+            });
+            updateRelayButtonLabel();
+        }
+
+        function setRelayPreset(codes) {
+            masterStop(true);
+            relayLangs = [...codes];
+            saveData();
+            renderMultiLangUI();
+            updateCustomTranslation();
+            if (currentCategory !== 'cleared') renderDualPanes();
+            showToast(`릴레이 순서 설정: ${relayLangs.join(' → ')}`);
+        }
+
+        function clearRelayLangs() {
+            masterStop(true);
+            relayLangs = [];
+            saveData();
+            renderMultiLangUI();
+            updateCustomTranslation();
+            if (currentCategory !== 'cleared') renderDualPanes();
+            showToast("릴레이 다중 언어를 해제했습니다.");
+        }
+
         function resetGeneratedItems() {
-            masterStop();
+            masterStop(true);
 
             if (stagedItems && stagedItems.length > 0) {
                 stagedItems = null;
@@ -845,7 +1274,7 @@
             splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-broom text-3xl text-slate-400 mb-2"></i><br>우측 패널 표시 항목이 비워졌습니다.<br>저장된 탭을 클릭하면 언제든 다시 불러올 수 있습니다.</div>`;
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-info text-slate-500"></i> 화면 비워짐 (0개)`;
             updateCounterDisplay(0, 0);
-            
+
             document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             currentCategory = 'cleared';
 
@@ -853,27 +1282,38 @@
         }
 
         function resetAllData() {
-            if (confirm("⚠️ 주의: 앱의 모든 데이터(새 탭 저장 항목 포함 전체)를 완전히 초기화하시겠습니까?")) {
+            if (confirm("⚠️ 주의: 저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?")) {
+                localStorage.removeItem(STORAGE_KEYS.DATA);
+                localStorage.removeItem(STORAGE_KEYS.CATS);
+                localStorage.removeItem(STORAGE_KEYS.RELAY);
                 localStorage.removeItem('kim_simin_guide_master_v45');
                 localStorage.removeItem('kim_simin_categories_v45');
-                guideData = [];
+                localStorage.removeItem('kim_simin_relay_langs_v45');
+
+                guideData = [...DEFAULT_SEED_DATA];
                 savedCustomCategories = [];
+                relayLangs = [];
+                translationCache = {};
                 stagedItems = null;
+
                 document.getElementById('uploadStagingBox').style.display = 'none';
                 document.getElementById('documentTitleInput').value = '';
                 document.getElementById('fileInput').value = '';
                 saveData();
-                masterStop();
+                masterStop(true);
                 broadcastSeconds = 0;
                 document.getElementById('timerDisplay').innerText = "00:00";
+                renderMultiLangUI();
                 renderDynamicTabs();
+                updateCustomTranslation();
                 filterCategory('all');
-                showToast("모든 데이터가 완전히 초기화되었습니다.");
+                showToast("모든 데이터가 기본 상태로 초기화되었습니다.");
             }
         }
 
         function deleteItem(id) {
             if (confirm("이 항목을 삭제하시겠습니까?")) {
+                masterStop(true);
                 guideData = guideData.filter(item => item.id !== id);
                 saveData();
                 renderDualPanes();
@@ -883,19 +1323,22 @@
 
         function initLanguageSelector() {
             targetLangSelect.innerHTML = '';
-            rawLanguageList.sort((a, b) => a.name.localeCompare(b.name, 'ko'));
-            
-            rawLanguageList.forEach(item => {
+
+            sortedLanguageList.forEach(item => {
                 const opt = document.createElement('option');
                 opt.value = item.code;
                 opt.textContent = item.name;
                 if (item.code === 'en') opt.selected = true;
                 targetLangSelect.appendChild(opt);
             });
+            targetLang = targetLangSelect.value || 'en';
+            renderMultiLangUI();
         }
 
         targetLangSelect.addEventListener('change', (e) => {
+            masterStop(true);
             targetLang = e.target.value;
+            updateRelayButtonLabel();
             if (currentCategory !== 'cleared') {
                 renderDualPanes();
             }
@@ -904,22 +1347,38 @@
         });
 
         function initApp() {
+            refreshSystemVoices();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = refreshSystemVoices;
+            }
+
             initLanguageSelector();
             loadData();
+            renderMultiLangUI();
             renderDynamicTabs();
             filterCategory('all');
-            
+
             const koInput = document.getElementById('customKoInput');
             koInput.addEventListener('input', () => {
                 if (isRecognizing) {
-                    finalSpeechTranscript = koInput.value;
+                    committedSpeechText = koInput.value;
                 }
                 scheduleLiveTranslation();
             });
 
+            document.addEventListener('click', (e) => {
+                const pop = document.getElementById('multiLangPopover');
+                const btn = document.getElementById('multiLangBtn');
+                if (pop && btn && !pop.contains(e.target) && !btn.contains(e.target)) {
+                    pop.classList.remove('open');
+                }
+            });
+
             document.body.addEventListener('click', function unlockAudio() {
+                refreshSystemVoices();
                 if ('speechSynthesis' in window) {
-                    const dummy = new SpeechSynthesisUtterance('');
+                    const dummy = new SpeechSynthesisUtterance(' ');
+                    dummy.volume = 0;
                     window.speechSynthesis.speak(dummy);
                 }
                 document.body.removeEventListener('click', unlockAudio);
@@ -941,8 +1400,8 @@
                 reader.onload = function(e) {
                     const typedarray = new Uint8Array(e.target.result);
                     pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
-                        let maxPages = pdf.numPages;
-                        let countPromises = [];
+                        const maxPages = pdf.numPages;
+                        const countPromises = [];
                         for (let j = 1; j <= maxPages; j++) {
                             countPromises.push(pdf.getPage(j).then(page => {
                                 return page.getTextContent().then(textContent => textContent.items.map(s => s.str).join(' '));
@@ -960,18 +1419,17 @@
 
         function processTextContent(textContent, filename) {
             if (!textContent.trim()) { showToast("파일 내용이 비어 있습니다."); return; }
-            
-            const lines = textContent.split(/\r?\n/).filter(line => line.trim().length > 0);
+
+            masterStop(true);
+            const lines = textContent.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
             const tempCatId = 'staged_' + Date.now();
+            const baseSeed = Date.now();
 
             stagedItems = lines.map((line, index) => ({
-                id: Date.now() + index,
+                id: baseSeed + index,
                 category: tempCatId,
-                icon: "fa-file-lines",
-                color: "text-purple-600",
-                bgColor: "bg-purple-100",
                 titleKo: `[${filename}] #${index + 1}`,
-                contentKo: line.trim()
+                contentKo: line
             }));
 
             const cleanTitle = filename.substring(0, filename.lastIndexOf('.')) || filename;
@@ -993,19 +1451,22 @@
             const customTitle = document.getElementById('documentTitleInput').value.trim() || "새 문서";
             const newCatId = 'custom_' + Date.now();
 
-            stagedItems.forEach(item => {
+            stagedItems.forEach((item, idx) => {
                 item.category = newCatId;
-                item.titleKo = `[${customTitle}]`;
+                item.titleKo = `[${customTitle}] #${idx + 1}`;
             });
 
             guideData = [...guideData, ...stagedItems];
             savedCustomCategories.push({ id: newCatId, name: customTitle });
             saveData();
-            
-            cancelStaging();
+
+            stagedItems = null;
+            document.getElementById('uploadStagingBox').style.display = 'none';
+            document.getElementById('documentTitleInput').value = '';
+            document.getElementById('fileInput').value = '';
+
             renderDynamicTabs();
             filterCategory(newCatId);
-
             showToast(`'${customTitle}' 문서가 새로운 탭으로 영구 저장되었습니다!`);
         }
 
@@ -1023,14 +1484,15 @@
 
             savedCustomCategories.forEach(cat => {
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = 'cat-btn custom-tab-btn';
                 if (currentCategory === cat.id) btn.classList.add('active');
                 btn.setAttribute('data-category', cat.id);
                 btn.onclick = () => filterCategory(cat.id);
-                
+
                 btn.innerHTML = `
-                    <i class="fa-solid fa-file-invoice"></i> ${cat.name}
-                    <span class="tab-del-btn" onclick="removeCustomTab(event, '${cat.id}')" title="탭 및 해당 내용 전체 삭제">×</span>
+                    <i class="fa-solid fa-file-invoice"></i> ${escapeHtml(cat.name)}
+                    <span class="tab-del-btn" onclick="removeCustomTab(event, '${escapeAttr(cat.id)}')" title="탭 및 해당 내용 전체 삭제">×</span>
                 `;
                 container.appendChild(btn);
             });
@@ -1039,6 +1501,7 @@
         function removeCustomTab(event, categoryId) {
             event.stopPropagation();
             if (confirm("이 문서 탭과 포함된 모든 항목을 삭제하시겠습니까?")) {
+                masterStop(true);
                 savedCustomCategories = savedCustomCategories.filter(cat => cat.id !== categoryId);
                 guideData = guideData.filter(item => item.category !== categoryId);
                 saveData();
@@ -1048,31 +1511,210 @@
             }
         }
 
-        function updateItemText(id, field, value) {
+        async function updateItemText(id, field, value, cardEl = null) {
+            const cleaned = (value || '').trim();
             const item = guideData.find(i => i.id === id);
-            if (!item) return;
-            if (field === 'title') item.titleKo = value.trim();
-            else if (field === 'content') item.contentKo = value.trim();
+            if (!item) {
+                if (stagedItems) {
+                    const stItem = stagedItems.find(i => i.id === id);
+                    if (stItem) {
+                        if (field === 'title') stItem.titleKo = cleaned;
+                        else if (field === 'content') stItem.contentKo = cleaned;
+                    }
+                }
+                return;
+            }
+
+            if (field === 'title') {
+                item.titleKo = cleaned;
+            } else if (field === 'content') {
+                item.contentKo = cleaned;
+            }
             saveData();
+
+            if (cardEl && field === 'content') {
+                const displayLangs = getBroadcastLangList();
+                const relayContainer = cardEl.querySelector('.translated-relay-container');
+                const origListenBtn = cardEl.querySelector('.orig-listen-btn');
+                if (origListenBtn) {
+                    origListenBtn.setAttribute('data-orig-text', item.contentKo);
+                }
+                if (relayContainer) {
+                    const blocks = await Promise.all(displayLangs.map(async (langCode, idx) => {
+                        const trText = langCode === 'ko' ? item.contentKo : await fetchGoogleTranslation(item.contentKo, langCode);
+                        return buildRelayBlockHtml(langCode, idx, trText);
+                    }));
+                    relayContainer.innerHTML = blocks.join('');
+                }
+            }
             showToast("수정 사항이 저장되었습니다.");
         }
 
-        async function fetchGoogleTranslation(text, tl) {
-            if (!text || !text.trim()) return "";
-            if (tl === 'ko') return text;
-            
+        function buildRelayBlockHtml(langCode, idx, trText) {
+            return `
+                <div class="relay-card-block" data-lang="${escapeAttr(langCode)}" data-text="${escapeAttr(trText)}">
+                    <div class="relay-block-header">
+                        <span class="relay-lang-badge">${idx + 1}. ${escapeHtml(langCode.toUpperCase())}</span>
+                        <button type="button" class="copy-mini-btn" onclick="copyTextToClipboard(this.closest('.relay-card-block').getAttribute('data-text'))" title="번역문 복사">
+                            <i class="fa-regular fa-copy"></i> 복사
+                        </button>
+                    </div>
+                    <div class="card-text" style="font-size:14px !important; color:#0f172a;">${escapeHtml(trText)}</div>
+                </div>
+            `;
+        }
+
+        function copyTextToClipboard(text) {
+            const val = unescapeAttr(text || '');
+            if (!val) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(val).then(() => showToast("번역문이 복사되었습니다.")).catch(() => fallbackCopy(val));
+            } else {
+                fallbackCopy(val);
+            }
+        }
+
+        function fallbackCopy(val) {
+            const ta = document.createElement('textarea');
+            ta.value = val;
+            document.body.appendChild(ta);
+            ta.select();
             try {
-                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
+                document.execCommand('copy');
+                showToast("번역문이 복사되었습니다.");
+            } catch (e) {
+                showToast("복사에 실패했습니다.");
+            }
+            document.body.removeChild(ta);
+        }
+
+        async function fetchGoogleTranslation(text, tl) {
+            const clean = (text || '').trim();
+            if (!clean) return "";
+            if (tl === 'ko') return clean;
+
+            const cacheKey = `${tl}::${clean}`;
+            if (translationCache[cacheKey]) return translationCache[cacheKey];
+
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(clean)}`;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error("Network response was not ok");
                 const data = await res.json();
                 let translated = "";
-                if (data && data[0]) {
-                    data[0].forEach(item => { if (item[0]) translated += item[0]; });
+                if (data && Array.isArray(data[0])) {
+                    data[0].forEach(item => { if (item && item[0]) translated += item[0]; });
                 }
-                return translated || text;
+                const result = translated.trim() || clean;
+                translationCache[cacheKey] = result;
+                return result;
             } catch (e) {
-                return `[번역 지연] ${text}`;
+                return `[번역 지연] ${clean}`;
+            }
+        }
+
+        function splitForSmoothSpeech(text) {
+            const cleaned = String(text || '')
+                .replace(/^\[번역 지연\]\s*/, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+            if (!cleaned) return [];
+
+            const rawSentences = cleaned.match(/[^.!?。！？\n]+[.!?。！？\n]*|[^.!?。！？\n]+$/g);
+            const sentences = (rawSentences || [cleaned]).map(s => s.trim()).filter(Boolean);
+
+            const chunks = [];
+            for (const sent of sentences) {
+                if (sent.length <= 180) {
+                    chunks.push(sent);
+                } else {
+                    const parts = sent.split(/(?<=[,;，、；])\s+/);
+                    let buffer = '';
+                    for (const part of parts) {
+                        const candidate = buffer ? `${buffer} ${part}` : part;
+                        if (candidate.length <= 180) {
+                            buffer = candidate;
+                        } else {
+                            if (buffer) chunks.push(buffer.trim());
+                            buffer = part;
+                        }
+                    }
+                    if (buffer) chunks.push(buffer.trim());
+                }
+            }
+            return chunks.filter(Boolean);
+        }
+
+        function startKeepAliveLoop() {
+            stopKeepAliveLoop();
+            if (!('speechSynthesis' in window)) return;
+            keepAliveInterval = setInterval(() => {
+                if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+                    // 상태 유지
+                }
+            }, 10000);
+        }
+
+        function stopKeepAliveLoop() {
+            if (keepAliveInterval) {
+                clearInterval(keepAliveInterval);
+                keepAliveInterval = null;
+            }
+        }
+
+        function speakChunkOnce(chunk, lang, userRate, token) {
+            return new Promise((resolve) => {
+                if (token !== playbackToken) return resolve();
+                if (!chunk || !('speechSynthesis' in window)) return resolve();
+
+                let finished = false;
+                const done = () => {
+                    if (finished) return;
+                    finished = true;
+                    if (activeFallbackTimer) {
+                        clearTimeout(activeFallbackTimer);
+                        activeFallbackTimer = null;
+                    }
+                    resolve();
+                };
+
+                const speechTag = mapSpeechLangTag(lang);
+                const voice = pickNaturalVoice(lang);
+                const tuning = getNaturalVoiceTuning(lang, userRate);
+
+                const estimatedMs = (chunk.length * 160) / Math.max(0.5, tuning.rate) + 5000;
+                const safetyMs = Math.max(5000, Math.min(45000, estimatedMs));
+                activeFallbackTimer = setTimeout(done, safetyMs);
+
+                const utter = new SpeechSynthesisUtterance(chunk);
+                utter.lang = voice ? voice.lang : speechTag;
+                if (voice) utter.voice = voice;
+                utter.rate = tuning.rate;
+                utter.pitch = tuning.pitch;
+                utter.volume = 1.0;
+                utter.onend = done;
+                utter.onerror = done;
+
+                try {
+                    window.speechSynthesis.speak(utter);
+                } catch (e) {
+                    done();
+                }
+            });
+        }
+
+        async function speakPhraseSmoothly(text, lang, rate, token) {
+            const chunks = splitForSmoothSpeech(text);
+            for (let i = 0; i < chunks.length; i++) {
+                if (token !== playbackToken) break;
+                while (isPausedQueue && token === playbackToken) {
+                    await new Promise(r => setTimeout(r, 150));
+                }
+                if (token !== playbackToken) break;
+                await speakChunkOnce(chunks[i], lang, rate, token);
+                if (i < chunks.length - 1 && token === playbackToken) {
+                    await new Promise(r => setTimeout(r, 180));
+                }
             }
         }
 
@@ -1098,17 +1740,21 @@
             }
 
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-sky-600"></i> 번역 동기화 중... (0 / ${totalCount}개)`;
-            splitContainer.innerHTML = `<div style="text-align:center; padding:30px; color:var(--text-muted); font-size:13.5px; font-weight:600;"><i class="fa-solid fa-spinner fa-spin text-xl"></i> AI 번역 동기화 중... (총 ${totalCount}개)</div>`;
-
             splitContainer.innerHTML = '';
 
-            for (let i = 0; i < totalCount; i++) {
-                rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-arrows-rotate fa-spin text-sky-600"></i> 항목 로드 중: <b>${i + 1} / ${totalCount}개</b>`;
+            const displayLangs = getBroadcastLangList();
+            const primaryLang = displayLangs[0];
 
-                const item = filteredData[i];
-                const translatedContent = await fetchGoogleTranslation(item.contentKo, targetLang);
-                const translatedTitle = await fetchGoogleTranslation(item.titleKo, targetLang);
+            const preparedRows = await Promise.all(filteredData.map(async (item, i) => {
+                const translatedTitle = await fetchGoogleTranslation(item.titleKo, primaryLang);
+                const langBlocks = await Promise.all(displayLangs.map(async (langCode, idx) => {
+                    const trText = langCode === 'ko' ? item.contentKo : await fetchGoogleTranslation(item.contentKo, langCode);
+                    return buildRelayBlockHtml(langCode, idx, trText);
+                }));
+                return { item, index: i, translatedTitle, langBlocks };
+            }));
 
+            preparedRows.forEach(({ item, index: i, translatedTitle, langBlocks }) => {
                 const rowEl = document.createElement('div');
                 rowEl.className = 'dual-card card-item';
                 rowEl.setAttribute('data-index', i);
@@ -1117,38 +1763,38 @@
                     <div class="card-pane card-pane-original">
                         <div>
                             <div class="card-header">
-                                <span class="text-slate-900 font-extrabold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText)" title="클릭하여 제목 직접 수정 가능">${item.titleKo}</span>
+                                <span class="text-slate-900 font-extrabold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText, this.closest('.dual-card'))" title="클릭하여 제목 직접 수정 가능">${escapeHtml(item.titleKo)}</span>
                                 <span style="font-family:monospace; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:11.5px; color:#334155; font-weight:700; flex-shrink:0;">#${i + 1} / ${totalCount}</span>
                             </div>
-                            <p class="card-text" contenteditable="true" onblur="updateItemText(${item.id}, 'content', this.innerText)" title="클릭하여 본문 내용 직접 수정 가능">${item.contentKo}</p>
+                            <p class="card-text" contenteditable="true" onblur="updateItemText(${item.id}, 'content', this.innerText, this.closest('.dual-card'))" title="클릭하여 본문 내용 직접 수정 가능">${escapeHtml(item.contentKo)}</p>
                         </div>
                         <div class="card-footer">
                             <span style="color:var(--accent); font-weight:700;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 가능)</span>
                             <div style="display:flex; gap:6px;">
-                                <button onclick="speakSingleText('${escapeHtml(item.contentKo)}', 'ko', ${i})" class="btn btn-secondary" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
-                                <button onclick="deleteItem(${item.id})" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" class="btn btn-secondary orig-listen-btn" data-orig-text="${escapeAttr(item.contentKo)}" onclick="speakSingleText(this.getAttribute('data-orig-text'), 'ko', ${i})" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
+                                <button type="button" onclick="deleteItem(${item.id})" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="card-pane">
                         <div>
                             <div class="card-header">
-                                <span style="color:#2563eb;" class="font-extrabold">${translatedTitle}</span>
-                                <span style="background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:11px; text-transform:uppercase; font-weight:800; flex-shrink:0;">${targetLang}</span>
+                                <span style="color:#2563eb;" class="font-extrabold">${escapeHtml(translatedTitle)}</span>
+                                <span style="background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:800; flex-shrink:0;">${displayLangs.length}개 언어</span>
                             </div>
-                            <p class="card-text translated-text-content" data-text="${escapeHtml(translatedContent)}" style="color:#0f172a;">${translatedContent}</p>
+                            <div class="translated-relay-container">${langBlocks.join('')}</div>
                         </div>
                         <div class="card-footer">
-                            <span style="color:#2563eb; font-weight:700;"><i class="fa-solid fa-earth-asia"></i> AI 번역 결과</span>
+                            <span style="color:#2563eb; font-weight:700;"><i class="fa-solid fa-earth-asia"></i> 선택 언어 순차 송출</span>
                             <div style="display:flex; gap:6px;">
-                                <button onclick="speakSingleText('${escapeHtml(translatedContent)}', '${targetLang}', ${i})" class="btn" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-play"></i> 번역 재생</button>
-                                <button onclick="masterStop()" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;"><i class="fa-solid fa-stop"></i> 중지</button>
+                                <button type="button" onclick="playCardRelay(${i})" class="btn" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-play"></i> 번역 재생</button>
+                                <button type="button" onclick="masterStop()" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;"><i class="fa-solid fa-stop"></i> 중지</button>
                             </div>
                         </div>
                     </div>
                 `;
                 splitContainer.appendChild(rowEl);
-            }
+            });
 
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> 항목 준비됨: <b>${totalCount}개</b>`;
             updateCounterDisplay(totalCount, 0);
@@ -1163,6 +1809,7 @@
         }
 
         function filterCategory(cat) {
+            masterStop(true);
             currentCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-category') === cat) btn.classList.add('active');
@@ -1200,58 +1847,112 @@
             document.querySelectorAll('.card-item').forEach(el => el.classList.remove('active-broadcasting'));
         }
 
-        function speakSingleText(text, lang, cardIndex = -1) {
-            if (!text) return;
-            window.speechSynthesis.cancel();
-
+        async function speakSingleText(text, lang, cardIndex = -1) {
+            const phrase = unescapeAttr(text || '');
+            if (!phrase) return;
+            masterStop(true);
+            const myToken = ++playbackToken;
             startBroadcastTimer(true);
+            startKeepAliveLoop();
 
             const total = document.querySelectorAll('.card-item').length;
             if (cardIndex >= 0 && !isPlayingQueue) highlightCard(cardIndex, total);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
-            const cleanText = text.replace(/^\[번역 지연\]\s*/, '');
-            
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = lang;
-            utterance.rate = rate;
-
-            utterance.onend = () => {
-                if (cardIndex >= 0 && !isPlayingQueue) {
-                    clearHighlight();
-                    stopBroadcastTimer();
-                }
-            };
-
-            utterance.onerror = (err) => {
-                console.warn("Speech synthesis error:", err);
-                stopBroadcastTimer();
-                showToast("음성 재생 실패");
-            };
-
-            window.speechSynthesis.speak(utterance);
             showToast(`음성 재생 중 (${lang.toUpperCase()})`);
+            await speakPhraseSmoothly(phrase, lang, rate, myToken);
+
+            stopKeepAliveLoop();
+            if (myToken === playbackToken && cardIndex >= 0 && !isPlayingQueue) {
+                clearHighlight();
+                stopBroadcastTimer();
+            }
         }
 
-        let isPlayingQueue = false;
-        let isPausedQueue = false;
-        let queueIndex = 0;
-        let translationQueue = [];
-        let currentUtterance = null;
+        async function playCardRelay(cardIndex) {
+            const cardEl = document.querySelectorAll('.card-item')[cardIndex];
+            if (!cardEl) return;
+
+            masterStop(true);
+            const myToken = ++playbackToken;
+            const total = document.querySelectorAll('.card-item').length;
+            highlightCard(cardIndex, total);
+            startBroadcastTimer(true);
+            startKeepAliveLoop();
+
+            const rate = parseFloat(speechRateSelect.value) || 1.0;
+            const blocks = Array.from(cardEl.querySelectorAll('.relay-card-block'));
+
+            for (let i = 0; i < blocks.length; i++) {
+                if (myToken !== playbackToken) break;
+                const lang = blocks[i].getAttribute('data-lang') || targetLang;
+                const phrase = unescapeAttr(blocks[i].getAttribute('data-text') || '');
+                showToast(`송출 (${i + 1}/${blocks.length} · ${lang.toUpperCase()})`);
+                await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                if (i < blocks.length - 1 && myToken === playbackToken) {
+                    await new Promise(r => setTimeout(r, 220));
+                }
+            }
+
+            stopKeepAliveLoop();
+            if (myToken === playbackToken) {
+                clearHighlight();
+                stopBroadcastTimer();
+            }
+        }
 
         async function masterPlay() {
-            const elements = document.querySelectorAll('.translated-text-content');
-            if (elements.length === 0) { showToast("재생할 항목이 없습니다."); return; }
+            const cardEls = Array.from(document.querySelectorAll('.card-item'));
+            if (cardEls.length === 0) { showToast("재생할 항목이 없습니다."); return; }
 
-            translationQueue = [];
-            elements.forEach(el => translationQueue.push(el.getAttribute('data-text')));
-
+            masterStop(true);
+            const myToken = ++playbackToken;
             isPlayingQueue = true;
             isPausedQueue = false;
             updatePauseResumeUI();
-            queueIndex = 0;
             startBroadcastTimer(true);
-            playNextInQueue();
+            startKeepAliveLoop();
+
+            const rate = parseFloat(speechRateSelect.value) || 1.0;
+
+            for (let idx = 0; idx < cardEls.length; idx++) {
+                if (!isPlayingQueue || myToken !== playbackToken) break;
+                while (isPausedQueue && isPlayingQueue && myToken === playbackToken) {
+                    await new Promise(r => setTimeout(r, 150));
+                }
+                if (!isPlayingQueue || myToken !== playbackToken) break;
+
+                const el = cardEls[idx];
+                highlightCard(idx, cardEls.length);
+
+                const blocks = Array.from(el.querySelectorAll('.relay-card-block'));
+                for (let lIdx = 0; lIdx < blocks.length; lIdx++) {
+                    if (!isPlayingQueue || myToken !== playbackToken) break;
+                    while (isPausedQueue && isPlayingQueue && myToken === playbackToken) {
+                        await new Promise(r => setTimeout(r, 150));
+                    }
+                    if (!isPlayingQueue || myToken !== playbackToken) break;
+
+                    const lang = blocks[lIdx].getAttribute('data-lang') || targetLang;
+                    const phrase = unescapeAttr(blocks[lIdx].getAttribute('data-text') || '');
+
+                    showToast(`[순차 방송 ${idx + 1}/${cardEls.length} · ${lang.toUpperCase()}] 송출 중...`);
+                    await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                    if (lIdx < blocks.length - 1 && isPlayingQueue && myToken === playbackToken) {
+                        await new Promise(r => setTimeout(r, 220));
+                    }
+                }
+            }
+
+            stopKeepAliveLoop();
+            if (myToken === playbackToken) {
+                isPlayingQueue = false;
+                isPausedQueue = false;
+                updatePauseResumeUI();
+                clearHighlight();
+                stopBroadcastTimer();
+                showToast("전체 순차 방송이 완료되었습니다.");
+            }
         }
 
         function masterPauseResume() {
@@ -1259,13 +1960,13 @@
 
             if (!isPausedQueue) {
                 isPausedQueue = true;
-                window.speechSynthesis.pause();
+                if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
+                try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
                 pauseBroadcastTimer();
                 showToast("순차 재생이 일시정지되었습니다.");
             } else {
                 isPausedQueue = false;
                 startBroadcastTimer(false);
-                window.speechSynthesis.resume();
                 showToast("재생을 재개합니다.");
             }
             updatePauseResumeUI();
@@ -1274,73 +1975,44 @@
         function updatePauseResumeUI() {
             const icon = document.getElementById('pauseResumeIcon');
             const text = document.getElementById('pauseResumeText');
+            if (!icon || !text) return;
             if (isPausedQueue) { icon.className = "fa-solid fa-play"; text.innerText = "이어재생"; }
             else { icon.className = "fa-solid fa-pause"; text.innerText = "일시정지"; }
         }
 
-        function playNextInQueue() {
-            const total = translationQueue.length;
-            if (!isPlayingQueue || queueIndex >= total) {
-                isPlayingQueue = false;
-                isPausedQueue = false;
-                updatePauseResumeUI();
-                clearHighlight();
-                stopBroadcastTimer();
-                showToast("전체 순차 방송이 완료되었습니다.");
-                return;
-            }
-
-            if (isPausedQueue) return;
-
-            const currentText = translationQueue[queueIndex];
-            highlightCard(queueIndex, total);
-            showToast(`[순차 방송 ${queueIndex + 1}/${total}] 송출 중...`);
-
-            const rate = parseFloat(speechRateSelect.value) || 1.0;
-            const cleanText = currentText.replace(/^\[번역 지연\]\s*/, '');
-            
-            currentUtterance = new SpeechSynthesisUtterance(cleanText);
-            currentUtterance.lang = targetLang;
-            currentUtterance.rate = rate;
-
-            currentUtterance.onend = function() {
-                if (isPlayingQueue && !isPausedQueue) {
-                    queueIndex++;
-                    setTimeout(playNextInQueue, 300);
-                }
-            };
-
-            currentUtterance.onerror = function(err) {
-                console.warn("Queue speech error, moving to next...", err);
-                if (isPlayingQueue && !isPausedQueue) {
-                    queueIndex++;
-                    setTimeout(playNextInQueue, 500);
-                }
-            };
-
-            window.speechSynthesis.speak(currentUtterance);
-        }
-
-        function masterStop() {
+        function masterStop(silent = false) {
+            playbackToken++;
             isPlayingQueue = false;
             isPausedQueue = false;
+            stopKeepAliveLoop();
+            if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
             updatePauseResumeUI();
-            window.speechSynthesis.cancel();
+            try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
             clearHighlight();
             stopBroadcastTimer();
-            showToast("방송이 중지되었습니다.");
+            if (!silent) showToast("방송이 중지되었습니다.");
         }
 
         async function updateCustomTranslation() {
             const koText = document.getElementById('customKoInput').value.trim();
             const outputDiv = document.getElementById('customTranslatedOutput');
             if (!koText) { outputDiv.innerText = "(번역 결과 대기 중...)"; return; }
-            const translated = await fetchGoogleTranslation(koText, targetLang);
-            outputDiv.innerText = translated;
+
+            const langs = getBroadcastLangList();
+            if (langs.length > 1) {
+                const lines = await Promise.all(langs.map(async (lang, idx) => {
+                    const tr = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
+                    return `${idx + 1}. [${lang.toUpperCase()}] ${tr}`;
+                }));
+                outputDiv.innerText = lines.join('\n\n');
+            } else {
+                const translated = await fetchGoogleTranslation(koText, langs[0]);
+                outputDiv.innerText = translated;
+            }
         }
 
         function clearCustomInput() {
-            finalSpeechTranscript = '';
+            committedSpeechText = '';
             document.getElementById('customKoInput').value = '';
             document.getElementById('customTranslatedOutput').innerText = "(번역 결과 대기 중...)";
             showToast("통역기 내용이 삭제되었습니다.");
@@ -1367,9 +2039,6 @@
             const newItem = {
                 id: Date.now(),
                 category: newCatId,
-                icon: "fa-wand-magic-sparkles",
-                color: "text-purple-600",
-                bgColor: "bg-purple-100",
                 titleKo: `[${customTitle}]`,
                 contentKo: koText
             };
@@ -1377,44 +2046,45 @@
             guideData.push(newItem);
             savedCustomCategories.push({ id: newCatId, name: customTitle });
             saveData();
-            
+
             renderDynamicTabs();
             filterCategory(newCatId);
             showToast(`'${customTitle}' 탭으로 영구 저장되었습니다!`);
         }
 
-        function playCustomSpeech() {
-            const translatedText = document.getElementById('customTranslatedOutput').innerText;
-            if (!translatedText || translatedText.startsWith("(")) { showToast("송출할 텍스트를 입력해 주세요."); return; }
-            
-            // 음성 입력 중이라면 먼저 중지
+        async function playCustomSpeech() {
+            const koText = document.getElementById('customKoInput').value.trim();
+            if (!koText) { showToast("송출할 텍스트를 입력해 주세요."); return; }
+
             if (isRecognizing && recognition) {
                 isRecognizing = false;
-                recognition.stop();
+                try { recognition.stop(); } catch (e) {}
                 stopVoiceRecognitionUI();
             }
 
-            window.speechSynthesis.cancel();
+            masterStop(true);
+            const myToken = ++playbackToken;
             startBroadcastTimer(true);
+            startKeepAliveLoop();
 
+            const langs = getBroadcastLangList();
             const rate = parseFloat(speechRateSelect.value) || 1.0;
-            const cleanText = translatedText.replace(/^\[번역 지연\]\s*/, '');
-            
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = targetLang;
-            utterance.rate = rate;
 
-            utterance.onend = () => {
+            for (let i = 0; i < langs.length; i++) {
+                if (myToken !== playbackToken) break;
+                const lang = langs[i];
+                const phrase = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
+                showToast(`즉석 통역 송출 (${i + 1}/${langs.length} · ${lang.toUpperCase()})`);
+                await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                if (i < langs.length - 1 && myToken === playbackToken) {
+                    await new Promise(r => setTimeout(r, 220));
+                }
+            }
+
+            stopKeepAliveLoop();
+            if (myToken === playbackToken) {
                 stopBroadcastTimer();
-            };
-
-            utterance.onerror = () => {
-                stopBroadcastTimer();
-                showToast("음성 송출 실패");
-            };
-
-            window.speechSynthesis.speak(utterance);
-            showToast(`즉석 통역 송출 중 (${targetLang.toUpperCase()})`);
+            }
         }
 
         function showToast(msg) {
@@ -1425,7 +2095,27 @@
 
         function escapeHtml(str) {
             if (!str) return '';
-            return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeAttr(str) {
+            return escapeHtml(str).replace(/\r?\n/g, '&#10;');
+        }
+
+        function unescapeAttr(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&#10;/g, '\n')
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&amp;/g, '&');
         }
 
         window.onload = initApp;
