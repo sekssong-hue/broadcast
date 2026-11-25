@@ -48,23 +48,23 @@
             align-items: center;
             gap: 12px;
             background: var(--panel-bg);
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow-md);
         }
         .header-title-area { display: flex; align-items: center; gap: 10px; }
-        header h1 { font-size: 21px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
-        header p { font-size: 13px; color: var(--text-muted); font-weight: 600; text-align: left; }
-        .header-status-group { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        header h1 { font-size: 20px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        header p { font-size: 12.5px; color: var(--text-muted); font-weight: 600; text-align: left; }
+        .header-status-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
         #broadcastTimerBadge {
             font-family: monospace;
-            font-size: 14.5px !important;
+            font-size: 13.5px !important;
             font-weight: 800 !important;
             background: #fef08a !important;
             color: #78350f !important;
-            padding: 6px 12px !important;
+            padding: 5px 11px !important;
             border-radius: 8px !important;
             border: 1.5px solid #facc15 !important;
             display: inline-flex !important;
@@ -75,11 +75,11 @@
 
         .live-clock-badge {
             font-family: monospace;
-            font-size: 17px !important;
+            font-size: 16px !important;
             font-weight: 800 !important;
             background: #0f172a !important;
             color: #38bdf8 !important;
-            padding: 8px 16px !important;
+            padding: 7px 14px !important;
             border-radius: 8px !important;
             border: 2px solid #334155 !important;
             display: flex;
@@ -93,9 +93,8 @@
             width: 100%;
             max-width: 1480px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 8px;
             flex-shrink: 0;
             background: var(--panel-bg);
@@ -105,12 +104,64 @@
             box-shadow: var(--shadow-md);
             position: relative;
         }
-        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 55%; padding-bottom: 2px; }
+        .toolbar-main-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 56%; padding-bottom: 2px; }
         .toolbar-settings { display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
         .setting-item { display: flex; align-items: center; gap: 6px; position: relative; }
-        .setting-label { font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
+        .setting-label { font-size: 13.5px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
 
-        .cat-btn { padding: 8px 14px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
+        .selected-relay-chips-bar {
+            display: none;
+            width: 100%;
+            padding-top: 8px;
+            border-top: 1px dashed #cbd5e1;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .selected-relay-chips-bar.has-items {
+            display: flex;
+        }
+        .relay-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: #1e3a8a;
+            border: 1px solid #93c5fd;
+            border-radius: 999px;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .relay-chip-remove {
+            background: #dbeafe;
+            color: #dc2626;
+            border: none;
+            border-radius: 50%;
+            width: 17px;
+            height: 17px;
+            font-size: 12px;
+            font-weight: 900;
+            line-height: 1;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .relay-chip-remove:hover {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        .cat-btn { padding: 7px 13px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
         .cat-btn:hover { background: #f1f5f9; color: var(--text-main); }
         .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
@@ -120,10 +171,10 @@
         .tab-del-btn:hover { background: rgba(239, 68, 68, 0.2); color: #ef4444; opacity: 1; }
 
         select {
-            padding: 8px 12px;
+            padding: 7px 11px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             background-color: #ffffff;
             color: #0f172a;
@@ -133,10 +184,10 @@
         .multi-lang-popover {
             display: none;
             position: absolute;
-            top: 44px;
+            top: 42px;
             right: 0;
-            width: 380px;
-            max-height: 470px;
+            width: 390px;
+            max-height: 480px;
             overflow-y: auto;
             background: #ffffff;
             border: 1px solid var(--border-color);
@@ -172,7 +223,7 @@
             border-radius: 6px;
             padding: 4px 8px;
             margin-top: 4px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 700;
         }
         .order-move-btn {
@@ -187,6 +238,17 @@
         }
         .order-move-btn:hover:not(:disabled) { background: #dbeafe; }
         .order-move-btn:disabled { opacity: 0.35; cursor: default; }
+        .order-remove-btn {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            color: #dc2626;
+        }
+        .order-remove-btn:hover { background: #ef4444; color: #ffffff; }
         .multi-lang-item {
             display: flex;
             align-items: center;
@@ -194,7 +256,7 @@
             gap: 8px;
             padding: 5px 6px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -207,7 +269,7 @@
             flex-shrink: 0;
         }
         .voice-ok { background: #dcfce7; color: #166534; }
-        .voice-none { background: #fee2e2; color: #991b1b; }
+        .voice-cloud { background: #e0f2fe; color: #0369a1; }
 
         /* 송출 상태 모니터 배너 (눈에 잘 띄는 위치) */
         .active-broadcast-monitor {
@@ -215,11 +277,11 @@
             color: #ffffff;
             border: 2px solid #3b82f6;
             border-radius: var(--radius-md);
-            padding: 10px 14px;
+            padding: 9px 14px;
             margin-bottom: 10px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
         }
@@ -252,11 +314,55 @@
         .monitor-country-pill.paused { background: #d97706; }
         .monitor-country-pill.idle { background: #475569; }
         .monitor-status-msg {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 700;
             color: #e2e8f0;
             line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
+
+        /* 번역 영역 접기/펼치기 스타일 */
+        .translated-relay-container.collapsed {
+            display: none;
+        }
+        .collapsed-summary-box {
+            display: none;
+            background: #f1f5f9;
+            border: 1px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            cursor: pointer;
+        }
+        .collapsed-summary-box:hover {
+            background: #e2e8f0;
+        }
+        .translated-relay-container.collapsed + .collapsed-summary-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .fold-toggle-btn {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            border-radius: 6px;
+            padding: 3px 8px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .fold-toggle-btn:hover { background: #bae6fd; }
 
         .relay-card-block {
             background: #f8fafc;
@@ -306,17 +412,17 @@
 
         .workspace { display: flex; gap: 16px; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
 
-        .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
+        .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
         .panel-translator { border-top: 6px solid var(--primary); }
         .panel-interpreter { border-top: 6px solid var(--accent); }
-        .panel h2 { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+        .panel h2 { font-size: 16.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
 
         .large-counter-badge {
-            font-size: 14px !important;
+            font-size: 13.5px !important;
             font-weight: 800 !important;
             background: #e0f2fe !important;
             color: #0369a1 !important;
-            padding: 6px 12px !important;
+            padding: 5px 11px !important;
             border-radius: 8px !important;
             border: 1px solid #bae6fd !important;
             display: inline-flex;
@@ -328,7 +434,7 @@
             border: 2px dashed #60a5fa;
             background-color: #eff6ff;
             border-radius: var(--radius-md);
-            padding: 12px 14px;
+            padding: 11px 14px;
             text-align: center;
             cursor: pointer;
             margin-bottom: 10px;
@@ -336,8 +442,8 @@
             flex-shrink: 0;
         }
         .upload-zone:hover { background-color: #dbeafe; border-color: var(--primary); }
-        .upload-zone p { font-size: 14.5px; color: #1e40af; font-weight: 800; }
-        .upload-zone span { font-size: 12px; color: var(--text-muted); display: block; margin-top: 3px; font-weight: 600; }
+        .upload-zone p { font-size: 14px; color: #1e40af; font-weight: 800; }
+        .upload-zone span { font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 2px; font-weight: 600; }
 
         .upload-staging-box {
             background: #faf5ff;
@@ -457,7 +563,7 @@
         .card-pane { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-width: 0; }
         .card-pane-original { border-right: 1px solid #cbd5e1; padding-right: 14px; }
 
-        .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; flex-wrap: wrap; }
         .card-text { font-size: 15px !important; font-weight: 600 !important; color: #1e293b; line-height: 1.5; outline: none; word-break: keep-all; overflow-wrap: break-word; }
         [contenteditable="true"]:focus { background: #eff6ff; border-radius: 6px; padding: 3px 6px; outline: 2px solid var(--primary); }
 
@@ -507,7 +613,7 @@
             body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; }
             header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .header-status-group { width: 100%; justify-content: space-between; }
-            .top-toolbar { flex-direction: column; align-items: stretch; }
+            .toolbar-main-row { flex-direction: column; align-items: stretch; }
             .toolbar-group { max-width: 100%; }
             .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
             .workspace { flex-direction: column; height: auto; }
@@ -543,7 +649,7 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>시인성 강화 가독성 최적화 버전 · 실시간 국가별 송출 모니터링</p>
+                <p>100여 개국 전 언어 음성 송출 지원 · 개별 언어 해제 · 번역 영역 접기/펼치기</p>
             </div>
         </div>
         <div class="header-status-group">
@@ -555,59 +661,64 @@
 
     <!-- 상단 탭 툴바 -->
     <div class="top-toolbar">
-        <div class="toolbar-group" id="categoryNav">
-            <button type="button" onclick="filterCategory('all')" data-category="all" class="cat-btn active"><i class="fa-solid fa-list"></i> 전체 보기</button>
-            <button type="button" onclick="filterCategory('safety')" data-category="safety" class="cat-btn"><i class="fa-solid fa-life-ring text-amber-500"></i> 안전·구명조끼</button>
-            <button type="button" onclick="filterCategory('history')" data-category="history" class="cat-btn"><i class="fa-solid fa-landmark text-emerald-600"></i> 진주성·역사</button>
-            <button type="button" onclick="filterCategory('tour')" data-category="tour" class="cat-btn"><i class="fa-solid fa-water text-sky-500"></i> 남강 코스</button>
-            <button type="button" onclick="filterCategory('emergency')" data-category="emergency" class="cat-btn"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> 비상 탈출</button>
+        <div class="toolbar-main-row">
+            <div class="toolbar-group" id="categoryNav">
+                <button type="button" onclick="filterCategory('all')" data-category="all" class="cat-btn active"><i class="fa-solid fa-list"></i> 전체 보기</button>
+                <button type="button" onclick="filterCategory('safety')" data-category="safety" class="cat-btn"><i class="fa-solid fa-life-ring text-amber-500"></i> 안전·구명조끼</button>
+                <button type="button" onclick="filterCategory('history')" data-category="history" class="cat-btn"><i class="fa-solid fa-landmark text-emerald-600"></i> 진주성·역사</button>
+                <button type="button" onclick="filterCategory('tour')" data-category="tour" class="cat-btn"><i class="fa-solid fa-water text-sky-500"></i> 남강 코스</button>
+                <button type="button" onclick="filterCategory('emergency')" data-category="emergency" class="cat-btn"><i class="fa-solid fa-triangle-exclamation text-rose-500"></i> 비상 탈출</button>
 
-            <div id="dynamicTabContainer" class="flex items-center gap-1"></div>
-        </div>
+                <div id="dynamicTabContainer" class="flex items-center gap-1"></div>
+            </div>
 
-        <div class="toolbar-settings">
-            <div class="setting-item">
-                <span class="setting-label">속도:</span>
-                <select id="speechRateSelect">
-                    <option value="0.8">0.8x (느리게)</option>
-                    <option value="0.9">0.9x</option>
-                    <option value="1.0" selected>1.0x (기본)</option>
-                    <option value="1.1">1.1x</option>
-                    <option value="1.2">1.2x</option>
-                    <option value="1.3">1.3x</option>
-                    <option value="1.4">1.4x</option>
-                    <option value="1.5">1.5x</option>
-                    <option value="1.7">1.7x</option>
-                    <option value="2.0">2.0x (2배속)</option>
-                </select>
-            </div>
-            <div class="setting-item">
-                <span class="setting-label">타겟 언어:</span>
-                <select id="targetLangSelect"></select>
-            </div>
-            <div class="setting-item">
-                <button type="button" id="multiLangBtn" onclick="toggleMultiLangPopover()" class="cat-btn" title="여러 나라 손님용 릴레이 언어 선택 및 순서 변경">
-                    <i class="fa-solid fa-earth-asia text-blue-600"></i> <span id="multiLangBtnLabel">릴레이: 꺼짐</span>
-                </button>
-                <div id="multiLangPopover" class="multi-lang-popover">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #e2e8f0;">
-                        <span style="font-size:12.5px; font-weight:800; color:#0f172a;">다국적 릴레이 언어 & 순서 (가나다순)</span>
-                        <button type="button" onclick="clearRelayLangs()" style="font-size:11.5px; color:#dc2626; font-weight:700; background:none; border:none; cursor:pointer;">해제</button>
+            <div class="toolbar-settings">
+                <div class="setting-item">
+                    <span class="setting-label">속도:</span>
+                    <select id="speechRateSelect">
+                        <option value="0.8">0.8x (느리게)</option>
+                        <option value="0.9">0.9x</option>
+                        <option value="1.0" selected>1.0x (기본)</option>
+                        <option value="1.1">1.1x</option>
+                        <option value="1.2">1.2x</option>
+                        <option value="1.3">1.3x</option>
+                        <option value="1.4">1.4x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="1.7">1.7x</option>
+                        <option value="2.0">2.0x (2배속)</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">타겟 언어:</span>
+                    <select id="targetLangSelect"></select>
+                </div>
+                <div class="setting-item">
+                    <button type="button" id="multiLangBtn" onclick="toggleMultiLangPopover()" class="cat-btn" title="여러 나라 손님용 릴레이 언어 선택, 순서 변경 및 개별 해제">
+                        <i class="fa-solid fa-earth-asia text-blue-600"></i> <span id="multiLangBtnLabel">릴레이: 꺼짐</span>
+                    </button>
+                    <div id="multiLangPopover" class="multi-lang-popover">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid #e2e8f0;">
+                            <span style="font-size:12.5px; font-weight:800; color:#0f172a;">다국적 릴레이 언어 & 순서 (가나다순)</span>
+                            <button type="button" onclick="clearRelayLangs()" style="font-size:11.5px; color:#dc2626; font-weight:700; background:none; border:none; cursor:pointer;">전체 해제</button>
+                        </div>
+                        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
+                            <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN'])">영·일·중</button>
+                            <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','vi','th','id'])">영·베·태·인니</button>
+                            <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN','vi','th'])">5개국</button>
+                        </div>
+                        <div class="relay-order-box">
+                            <div style="font-size:11.5px; font-weight:800; color:#1e40af; margin-bottom:4px;">선택된 송출 순서 (▲/▼ 이동 · × 개별 해제)</div>
+                            <div id="relayOrderList"><span style="font-size:11.5px; color:#64748b;">선택된 언어가 없습니다.</span></div>
+                        </div>
+                        <input type="text" id="relayLangSearch" class="relay-search-input" placeholder="나라 또는 언어 검색 (예: 베트남, 일본, 영어)..." oninput="filterRelayLangList(this.value)">
+                        <div id="multiLangCheckboxList"></div>
                     </div>
-                    <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
-                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN'])">영·일·중</button>
-                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','vi','th','id'])">영·베·태·인니</button>
-                        <button type="button" class="cat-btn" style="padding:4px 8px; font-size:11.5px;" onclick="setRelayPreset(['en','ja','zh-CN','vi','th'])">5개국</button>
-                    </div>
-                    <div class="relay-order-box">
-                        <div style="font-size:11.5px; font-weight:800; color:#1e40af; margin-bottom:4px;">선택된 송출 순서 (▲/▼ 이동)</div>
-                        <div id="relayOrderList"><span style="font-size:11.5px; color:#64748b;">선택된 언어가 없습니다.</span></div>
-                    </div>
-                    <input type="text" id="relayLangSearch" class="relay-search-input" placeholder="나라 또는 언어 검색 (예: 베트남, 일본, 영어)..." oninput="filterRelayLangList(this.value)">
-                    <div id="multiLangCheckboxList"></div>
                 </div>
             </div>
         </div>
+
+        <!-- 선택된 릴레이 언어 개별 해제 칩 바 -->
+        <div id="selectedRelayChipsBar" class="selected-relay-chips-bar"></div>
     </div>
 
     <!-- 메인 작업 공간 -->
@@ -642,7 +753,7 @@
             <div class="custom-input-box">
                 <label style="font-size:14.5px; font-weight:800; color:#2563eb; margin-bottom:8px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
                     <span><i class="fa-solid fa-wand-magic-sparkles"></i> 실시간 AI 즉석 입력 통역기</span>
-                    <span style="font-size:12px; font-weight:600; color:var(--text-muted);">(음성 말하기 & 100여 개국 다국어 지원)</span>
+                    <span style="font-size:12px; font-weight:600; color:var(--text-muted);">(음성 말하기 & 100여 개국 전 언어 음성 송출)</span>
                 </label>
 
                 <div class="interpreter-grid">
@@ -677,7 +788,10 @@
         <div class="panel panel-interpreter">
             <h2>
                 <span><i class="fa-solid fa-columns text-emerald-600"></i> 라이브 비교 및 브로드캐스트 제어</span>
-                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                    <button type="button" id="toggleAllTranslationsBtn" onclick="toggleAllTranslationsFold()" class="fold-toggle-btn" title="모든 카드의 번역 영역을 한 번에 접거나 펼칩니다">
+                        <i class="fa-solid fa-angles-up" id="toggleAllTranslationsIcon"></i> <span id="toggleAllTranslationsText">번역 전체 접기</span>
+                    </button>
                     <div id="broadcastTimerBadge">
                         <i class="fa-solid fa-stopwatch" id="timerIcon"></i> 소요시간: <span id="timerDisplay">00:00</span>
                     </div>
@@ -698,17 +812,17 @@
                 </div>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; flex-shrink: 0;">
+            <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 10px; flex-shrink: 0;">
                 <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 (연속 자동 방송 제어)</span>
                     <span id="liveBroadcastLangTag" style="font-size:12px; color:#1d4ed8; font-weight:800;"></span>
                 </div>
                 <div class="playback-controls" style="margin-bottom: 0; display:flex; gap:8px; flex-wrap: wrap;">
-                    <button type="button" onclick="masterPlay()" class="btn" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
-                    <button type="button" onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
-                    <button type="button" onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
-                    <button type="button" onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:10px 12px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
-                    <button type="button" onclick="resetAllData()" class="btn btn-dark-danger" style="padding:10px 12px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
+                    <button type="button" onclick="masterPlay()" class="btn" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
+                    <button type="button" onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
+                    <button type="button" onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
+                    <button type="button" onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:9px 11px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
+                    <button type="button" onclick="resetAllData()" class="btn btn-dark-danger" style="padding:9px 11px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
                 </div>
             </div>
 
@@ -720,9 +834,9 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v47',
-            CATS: 'kim_simin_categories_v47',
-            RELAY: 'kim_simin_relay_langs_v47'
+            DATA: 'kim_simin_guide_master_v48',
+            CATS: 'kim_simin_categories_v48',
+            RELAY: 'kim_simin_relay_langs_v48'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -801,9 +915,6 @@
             pauseBroadcastTimer();
         }
 
-        // ==========================================
-        // 실시간 송출 상태 모니터 배너 업데이트
-        // ==========================================
         function setMonitorBanner({ mode = 'idle', badgeText = '송출 대기 중', queueText = '', detailText = '' }) {
             const box = document.getElementById('activeBroadcastMonitor');
             const pill = document.getElementById('monitorCountryPill');
@@ -839,9 +950,6 @@
             });
         }
 
-        // ==========================================
-        // 실시간 음성 인식 (STT)
-        // ==========================================
         let recognition = null;
         let isRecognizing = false;
         let committedSpeechText = '';
@@ -1085,12 +1193,12 @@
         let translationCache = {};
         let playbackToken = 0;
         let activeFallbackTimer = null;
+        let activeCloudAudio = null;
         let cachedVoices = [];
         let isPlayingQueue = false;
         let isPausedQueue = false;
         let isSpeakingActive = false;
-
-        // 일시정지/이어재생용 정밀 스냅샷 상태
+        let isAllTranslationsFolded = false;
         let pauseSnapshot = null;
 
         const targetLangSelect = document.getElementById('targetLangSelect');
@@ -1098,6 +1206,16 @@
         const splitContainer = document.getElementById('splitContainer');
         const headerCounterBadge = document.getElementById('headerCounterBadge');
         const rightPanelCounterBadge = document.getElementById('rightPanelCounterBadge');
+
+        function stopCloudAudio() {
+            if (activeCloudAudio) {
+                try {
+                    activeCloudAudio.pause();
+                    activeCloudAudio.src = '';
+                } catch (e) {}
+                activeCloudAudio = null;
+            }
+        }
 
         function refreshSystemVoices() {
             if (!('speechSynthesis' in window)) return;
@@ -1169,7 +1287,6 @@
             const base = norm.split('-')[0];
             const mappedBase = mapped.split('-')[0];
 
-            // 중국어 간체/번체 구분 보조
             const list = [mapped, norm, mappedBase, base];
             if (base === 'zh') {
                 if (norm === 'zh-tw' || norm === 'zh-hk') {
@@ -1262,9 +1379,9 @@
         }
 
         function loadData() {
-            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v46') || localStorage.getItem('kim_simin_guide_master_v45');
-            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v46') || localStorage.getItem('kim_simin_categories_v45');
-            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v46') || localStorage.getItem('kim_simin_relay_langs_v45');
+            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v47') || localStorage.getItem('kim_simin_guide_master_v46');
+            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v47') || localStorage.getItem('kim_simin_categories_v46');
+            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v47') || localStorage.getItem('kim_simin_relay_langs_v46');
 
             if (savedData !== null) {
                 try {
@@ -1309,6 +1426,42 @@
             return [targetLang];
         }
 
+        function removeRelayLang(code) {
+            masterStop(true);
+            const removedLabel = getLangLabel(code);
+            relayLangs = relayLangs.filter(c => c !== code);
+            saveData();
+            renderMultiLangUI();
+            updateCustomTranslation();
+            if (currentCategory !== 'cleared') renderDualPanes();
+            showToast(`릴레이에서 '${removedLabel}' 언어가 해제되었습니다.`, {
+                mode: 'idle',
+                badgeText: relayLangs.length > 0 ? `릴레이 ${relayLangs.length}개국` : '단일 언어 모드'
+            });
+        }
+
+        function renderSelectedRelayChips() {
+            const bar = document.getElementById('selectedRelayChipsBar');
+            if (!bar) return;
+            if (!relayLangs.length) {
+                bar.classList.remove('has-items');
+                bar.innerHTML = '';
+                return;
+            }
+            bar.classList.add('has-items');
+            const chipsHtml = relayLangs.map((code, idx) => `
+                <span class="relay-chip">
+                    <span>${idx + 1}. ${escapeHtml(getLangLabel(code))}</span>
+                    <button type="button" class="relay-chip-remove" onclick="removeRelayLang('${escapeAttr(code)}')" title="이 언어만 해제">×</button>
+                </span>
+            `).join('');
+            bar.innerHTML = `
+                <span style="font-size:12px; font-weight:800; color:#1e3a8a;"><i class="fa-solid fa-layer-group"></i> 선택된 릴레이 언어:</span>
+                ${chipsHtml}
+                <button type="button" onclick="clearRelayLangs()" style="margin-left:auto; font-size:11.5px; font-weight:800; color:#dc2626; background:#fee2e2; border:1px solid #fca5a5; border-radius:6px; padding:2px 8px; cursor:pointer;">전체 해제</button>
+            `;
+        }
+
         function updateRelayButtonLabel() {
             const labelEl = document.getElementById('multiLangBtnLabel');
             const tagEl = document.getElementById('liveBroadcastLangTag');
@@ -1320,6 +1473,7 @@
                 labelEl.innerText = `릴레이: 꺼짐`;
                 if (tagEl) tagEl.innerText = `선택 언어: ${getLangLabel(targetLang)}`;
             }
+            renderSelectedRelayChips();
         }
 
         function toggleMultiLangPopover() {
@@ -1370,6 +1524,7 @@
                     <div style="display:flex; gap:3px;">
                         <button type="button" class="order-move-btn" onclick="moveRelayLang(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="위로">▲</button>
                         <button type="button" class="order-move-btn" onclick="moveRelayLang(${idx}, 1)" ${idx === relayLangs.length - 1 ? 'disabled' : ''} title="아래로">▼</button>
+                        <button type="button" class="order-remove-btn" onclick="removeRelayLang('${escapeAttr(code)}')" title="선택 해제">×</button>
                     </div>
                 </div>
             `).join('');
@@ -1383,7 +1538,7 @@
             box.innerHTML = '';
 
             sortedLanguageList.forEach(item => {
-                const hasVoice = isVoiceAvailableForLang(item.code);
+                const hasLocalVoice = isVoiceAvailableForLang(item.code);
                 const row = document.createElement('label');
                 row.className = 'multi-lang-item';
                 const checked = relayLangs.includes(item.code);
@@ -1392,7 +1547,7 @@
                         <input type="checkbox" ${checked ? 'checked' : ''}>
                         <span>${escapeHtml(item.name)}</span>
                     </span>
-                    <span class="voice-avail-badge ${hasVoice ? 'voice-ok' : 'voice-none'}">${hasVoice ? '음성지원' : '음성없음'}</span>
+                    <span class="voice-avail-badge ${hasLocalVoice ? 'voice-ok' : 'voice-cloud'}">${hasLocalVoice ? '기기음성' : '클라우드음성'}</span>
                 `;
                 if (currentSearch && !item.name.toLowerCase().includes(currentSearch)) {
                     row.style.display = 'none';
@@ -1432,7 +1587,47 @@
             renderMultiLangUI();
             updateCustomTranslation();
             if (currentCategory !== 'cleared') renderDualPanes();
-            showToast("릴레이 다중 언어를 해제했습니다. 단일 타겟 언어로 송출됩니다.", { mode: 'idle', badgeText: '단일 언어 모드' });
+            showToast("릴레이 다중 언어를 모두 해제했습니다. 단일 타겟 언어로 송출됩니다.", { mode: 'idle', badgeText: '단일 언어 모드' });
+        }
+
+        function toggleCardTranslationFold(btnEl) {
+            const pane = btnEl.closest('.card-pane');
+            if (!pane) return;
+            const container = pane.querySelector('.translated-relay-container');
+            if (!container) return;
+            const willFold = !container.classList.contains('collapsed');
+            setCardFoldState(pane, willFold);
+        }
+
+        function setCardFoldState(pane, folded) {
+            const container = pane.querySelector('.translated-relay-container');
+            const btn = pane.querySelector('.card-fold-btn');
+            if (!container || !btn) return;
+            if (folded) {
+                container.classList.add('collapsed');
+                btn.innerHTML = `<i class="fa-solid fa-chevron-down"></i> 펼치기`;
+            } else {
+                container.classList.remove('collapsed');
+                btn.innerHTML = `<i class="fa-solid fa-chevron-up"></i> 접기`;
+            }
+        }
+
+        function toggleAllTranslationsFold() {
+            isAllTranslationsFolded = !isAllTranslationsFolded;
+            const panes = document.querySelectorAll('#splitContainer .dual-card .card-pane:last-child');
+            panes.forEach(pane => setCardFoldState(pane, isAllTranslationsFolded));
+
+            const icon = document.getElementById('toggleAllTranslationsIcon');
+            const text = document.getElementById('toggleAllTranslationsText');
+            if (icon && text) {
+                if (isAllTranslationsFolded) {
+                    icon.className = 'fa-solid fa-angles-down';
+                    text.innerText = '번역 전체 펼치기';
+                } else {
+                    icon.className = 'fa-solid fa-angles-up';
+                    text.innerText = '번역 전체 접기';
+                }
+            }
         }
 
         function resetGeneratedItems() {
@@ -1458,12 +1653,12 @@
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?")) {
                 Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
+                localStorage.removeItem('kim_simin_guide_master_v47');
+                localStorage.removeItem('kim_simin_categories_v47');
+                localStorage.removeItem('kim_simin_relay_langs_v47');
                 localStorage.removeItem('kim_simin_guide_master_v46');
                 localStorage.removeItem('kim_simin_categories_v46');
                 localStorage.removeItem('kim_simin_relay_langs_v46');
-                localStorage.removeItem('kim_simin_guide_master_v45');
-                localStorage.removeItem('kim_simin_categories_v45');
-                localStorage.removeItem('kim_simin_relay_langs_v45');
 
                 guideData = [...DEFAULT_SEED_DATA];
                 savedCustomCategories = [];
@@ -1728,13 +1923,13 @@
 
         function buildRelayBlockHtml(langCode, idx, trText) {
             const label = getLangLabel(langCode);
-            const hasVoice = isVoiceAvailableForLang(langCode);
+            const hasLocalVoice = isVoiceAvailableForLang(langCode);
             return `
                 <div class="relay-card-block" data-lang="${escapeAttr(langCode)}" data-text="${escapeAttr(trText)}">
                     <div class="relay-block-header">
                         <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
                             <span class="relay-lang-badge">${idx + 1}. ${escapeHtml(label)} [${escapeHtml(langCode.toUpperCase())}]</span>
-                            <span class="voice-avail-badge ${hasVoice ? 'voice-ok' : 'voice-none'}">${hasVoice ? '음성지원' : '기기음성없음'}</span>
+                            <span class="voice-avail-badge ${hasLocalVoice ? 'voice-ok' : 'voice-cloud'}">${hasLocalVoice ? '기기음성' : '클라우드음성'}</span>
                         </div>
                         <button type="button" class="copy-mini-btn" onclick="copyTextToClipboard(this.closest('.relay-card-block').getAttribute('data-text'))" title="번역문 복사">
                             <i class="fa-regular fa-copy"></i> 복사
@@ -1806,14 +2001,14 @@
 
             const chunks = [];
             for (const sent of sentences) {
-                if (sent.length <= 180) {
+                if (sent.length <= 160) {
                     chunks.push(sent);
                 } else {
                     const parts = sent.split(/(?<=[,;，、；])\s+/);
                     let buffer = '';
                     for (const part of parts) {
                         const candidate = buffer ? `${buffer} ${part}` : part;
-                        if (candidate.length <= 180) {
+                        if (candidate.length <= 160) {
                             buffer = candidate;
                         } else {
                             if (buffer) chunks.push(buffer.trim());
@@ -1839,10 +2034,99 @@
             }
         }
 
-        function speakChunkOnce(chunk, lang, userRate, token) {
+        function speakViaCloudTts(chunk, lang, userRate, token) {
             return new Promise((resolve) => {
                 if (token !== playbackToken) return resolve('cancelled');
-                if (!chunk || !('speechSynthesis' in window)) return resolve('done');
+                stopCloudAudio();
+
+                const ttsLang = encodeURIComponent(lang);
+                const encodedText = encodeURIComponent(chunk.slice(0, 180));
+                const audioUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${ttsLang}&q=${encodedText}`;
+
+                const audio = new Audio();
+                activeCloudAudio = audio;
+                audio.preload = 'auto';
+                audio.playbackRate = Math.max(0.75, Math.min(2.0, userRate));
+
+                let finished = false;
+                const done = (status) => {
+                    if (finished) return;
+                    finished = true;
+                    if (activeFallbackTimer) {
+                        clearTimeout(activeFallbackTimer);
+                        activeFallbackTimer = null;
+                    }
+                    isSpeakingActive = false;
+                    resolve(status);
+                };
+
+                const safetyMs = Math.max(6000, Math.min(35000, (chunk.length * 180) / Math.max(0.5, userRate) + 5000));
+                activeFallbackTimer = setTimeout(() => {
+                    stopCloudAudio();
+                    done('done');
+                }, safetyMs);
+
+                audio.onended = () => done('done');
+                audio.onerror = () => {
+                    stopCloudAudio();
+                    if (isPausedQueue) done('paused');
+                    else done('cloud_failed');
+                };
+
+                isSpeakingActive = true;
+                audio.src = audioUrl;
+                audio.play().catch(() => {
+                    stopCloudAudio();
+                    if (isPausedQueue) done('paused');
+                    else done('cloud_failed');
+                });
+            });
+        }
+
+        function speakViaFallbackVoice(chunk, userRate, token) {
+            return new Promise((resolve) => {
+                if (token !== playbackToken || !('speechSynthesis' in window)) return resolve('done');
+                const fallbackVoice = pickNaturalVoice('en') || pickNaturalVoice('ko') || cachedVoices[0] || null;
+                const utter = new SpeechSynthesisUtterance(chunk);
+                if (fallbackVoice) {
+                    utter.voice = fallbackVoice;
+                    utter.lang = fallbackVoice.lang;
+                }
+                utter.rate = Math.max(0.75, Math.min(2.0, userRate * 0.95));
+                utter.onend = () => { isSpeakingActive = false; resolve('done'); };
+                utter.onerror = () => { isSpeakingActive = false; resolve(isPausedQueue ? 'paused' : 'done'); };
+                isSpeakingActive = true;
+                try {
+                    window.speechSynthesis.speak(utter);
+                } catch (e) {
+                    isSpeakingActive = false;
+                    resolve('done');
+                }
+            });
+        }
+
+        function speakChunkOnce(chunk, lang, userRate, token) {
+            return new Promise(async (resolve) => {
+                if (token !== playbackToken) return resolve('cancelled');
+                if (!chunk) return resolve('done');
+
+                const speechTag = mapSpeechLangTag(lang);
+                const voice = pickNaturalVoice(lang);
+                const tuning = getNaturalVoiceTuning(lang, userRate);
+
+                if (!voice) {
+                    const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
+                    if (cloudStatus === 'cloud_failed') {
+                        const fbStatus = await speakViaFallbackVoice(chunk, userRate, token);
+                        return resolve(fbStatus);
+                    }
+                    return resolve(cloudStatus);
+                }
+
+                if (!('speechSynthesis' in window)) {
+                    const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
+                    return resolve(cloudStatus);
+                }
 
                 let finished = false;
                 const done = (reason = 'done') => {
@@ -1856,21 +2140,6 @@
                     resolve(reason);
                 };
 
-                const speechTag = mapSpeechLangTag(lang);
-                const voice = pickNaturalVoice(lang);
-                const tuning = getNaturalVoiceTuning(lang, userRate);
-
-                if (!voice) {
-                    const langName = getLangLabel(lang);
-                    setMonitorBanner({
-                        mode: isPausedQueue ? 'paused' : 'live',
-                        badgeText: `음성 미지원 (${lang.toUpperCase()})`,
-                        queueText: langName,
-                        detailText: `'${langName}' TTS 음성이 기기에 설치되어 있지 않아 음성 송출을 건너뜁니다. (번역 텍스트는 화면에 표시됨)`
-                    });
-                    return resolve('unsupported');
-                }
-
                 const estimatedMs = (chunk.length * 170) / Math.max(0.5, tuning.rate) + 6000;
                 const safetyMs = Math.max(6000, Math.min(50000, estimatedMs));
                 activeFallbackTimer = setTimeout(() => done('done'), safetyMs);
@@ -1883,11 +2152,12 @@
                 utter.volume = 1.0;
 
                 utter.onend = () => done('done');
-                utter.onerror = (ev) => {
+                utter.onerror = async (ev) => {
                     if (isPausedQueue || ev.error === 'interrupted' || ev.error === 'canceled') {
                         done('paused');
                     } else {
-                        done('error');
+                        const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
+                        done(cloudStatus);
                     }
                 };
 
@@ -1895,7 +2165,8 @@
                 try {
                     window.speechSynthesis.speak(utter);
                 } catch (e) {
-                    done('error');
+                    const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
+                    done(cloudStatus);
                 }
             });
         }
@@ -1944,7 +2215,6 @@
                     if (typeof onPauseSnapshot === 'function') onPauseSnapshot(cIdx);
                     const ok = await waitWhilePaused(token, onResume);
                     if (!ok) return { status: 'cancelled', nextChunkIndex: cIdx };
-                    // 일시정지 해제 시 현재 끊긴 구절(cIdx)부터 다시 읽음
                     cIdx--;
                     continue;
                 }
@@ -1982,6 +2252,7 @@
 
             const displayLangs = getBroadcastLangList();
             const primaryLang = displayLangs[0];
+            const langNamesSummary = displayLangs.map(c => getLangLabel(c).split(' (')[0]).join(', ');
 
             const preparedRows = await Promise.all(filteredData.map(async (item, i) => {
                 const translatedTitle = await fetchGoogleTranslation(item.titleKo, primaryLang);
@@ -1996,6 +2267,11 @@
                 const rowEl = document.createElement('div');
                 rowEl.className = 'dual-card card-item';
                 rowEl.setAttribute('data-index', i);
+
+                const foldedClass = isAllTranslationsFolded ? 'collapsed' : '';
+                const foldBtnHtml = isAllTranslationsFolded
+                    ? `<i class="fa-solid fa-chevron-down"></i> 펼치기`
+                    : `<i class="fa-solid fa-chevron-up"></i> 접기`;
 
                 rowEl.innerHTML = `
                     <div class="card-pane card-pane-original">
@@ -2018,9 +2294,16 @@
                         <div>
                             <div class="card-header">
                                 <span style="color:#2563eb;" class="font-extrabold">${escapeHtml(translatedTitle)}</span>
-                                <span style="background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:800; flex-shrink:0;">${displayLangs.length}개 언어</span>
+                                <div style="display:flex; align-items:center; gap:5px; flex-shrink:0;">
+                                    <span style="background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:800;">${displayLangs.length}개 언어</span>
+                                    <button type="button" class="fold-toggle-btn card-fold-btn" onclick="toggleCardTranslationFold(this)" title="이 카드의 번역 영역 접기/펼치기">${foldBtnHtml}</button>
+                                </div>
                             </div>
-                            <div class="translated-relay-container">${langBlocks.join('')}</div>
+                            <div class="translated-relay-container ${foldedClass}">${langBlocks.join('')}</div>
+                            <div class="collapsed-summary-box" onclick="toggleCardTranslationFold(this)">
+                                <span><i class="fa-solid fa-language text-blue-600"></i> ${displayLangs.length}개 언어 번역 접힘 (${escapeHtml(langNamesSummary)})</span>
+                                <span style="color:#2563eb;">클릭하여 펼치기 ▼</span>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <span style="color:#2563eb; font-weight:700;"><i class="fa-solid fa-earth-asia"></i> 선택 언어 순차 송출</span>
@@ -2310,6 +2593,7 @@
                     };
                 }
                 if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
+                stopCloudAudio();
                 try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
                 pauseBroadcastTimer();
                 updatePauseResumeUI();
@@ -2346,6 +2630,7 @@
             isSpeakingActive = false;
             pauseSnapshot = null;
             if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
+            stopCloudAudio();
             updatePauseResumeUI();
             try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
             clearHighlight();
