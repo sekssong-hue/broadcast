@@ -38,6 +38,11 @@
             font-size: 15px;
         }
 
+        body.resizing-panels {
+            cursor: col-resize !important;
+            user-select: none !important;
+        }
+
         header {
             margin-bottom: 8px;
             width: 100%;
@@ -271,7 +276,6 @@
         .voice-ok { background: #dcfce7; color: #166534; }
         .voice-cloud { background: #e0f2fe; color: #0369a1; }
 
-        /* 송출 상태 모니터 배너 (눈에 잘 띄는 위치) */
         .active-broadcast-monitor {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #ffffff;
@@ -324,7 +328,6 @@
             overflow: hidden;
         }
 
-        /* 번역 영역 접기/펼치기 스타일 */
         .translated-relay-container.collapsed {
             display: none;
         }
@@ -410,12 +413,94 @@
         }
         .copy-mini-btn:hover { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
 
-        .workspace { display: flex; gap: 16px; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
+        .workspace { display: flex; gap: 0; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
 
-        .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
+        .panel { flex: 1 1 50%; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; overflow: hidden; }
         .panel-translator { border-top: 6px solid var(--primary); }
         .panel-interpreter { border-top: 6px solid var(--accent); }
-        .panel h2 { font-size: 16.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+
+        .panel-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+            font-size: 16.5px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .panel-title-group { display: inline-flex; align-items: center; gap: 8px; }
+        .panel-header-actions { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+        .panel-collapse-btn {
+            background: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #94a3b8;
+            border-radius: 7px;
+            padding: 4px 9px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            transition: 0.15s;
+        }
+        .panel-collapse-btn:hover { background: #e2e8f0; }
+
+        .panel-splitter {
+            width: 14px;
+            flex: 0 0 14px;
+            cursor: col-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            touch-action: none;
+        }
+        .panel-splitter::before {
+            content: '';
+            width: 4px;
+            height: 54px;
+            border-radius: 999px;
+            background: #94a3b8;
+            transition: background-color 0.15s, height 0.15s;
+        }
+        .panel-splitter:hover::before,
+        body.resizing-panels .panel-splitter::before {
+            background: var(--primary);
+            height: 84px;
+        }
+
+        .panel.panel-collapsed {
+            padding: 12px 10px;
+            align-items: center;
+        }
+        .panel.panel-collapsed > :not(.panel-header-bar) {
+            display: none !important;
+        }
+        .panel.panel-collapsed .panel-header-bar {
+            flex-direction: column;
+            height: 100%;
+            margin-bottom: 0;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 12px;
+        }
+        .panel.panel-collapsed .panel-header-actions {
+            flex-direction: column;
+        }
+        .panel.panel-collapsed .panel-header-actions > :not(.panel-collapse-btn) {
+            display: none !important;
+        }
+        .panel.panel-collapsed .panel-title-group {
+            writing-mode: vertical-rl;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
 
         .large-counter-badge {
             font-size: 13.5px !important;
@@ -616,8 +701,22 @@
             .toolbar-main-row { flex-direction: column; align-items: stretch; }
             .toolbar-group { max-width: 100%; }
             .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
-            .workspace { flex-direction: column; height: auto; }
-            .panel { height: auto; flex: none; }
+            .workspace { flex-direction: column; height: auto; gap: 12px; }
+            .panel-splitter { display: none; }
+            .panel { height: auto; flex: none !important; width: 100% !important; }
+            .panel.panel-collapsed {
+                height: auto !important;
+                padding: 12px 16px;
+                align-items: stretch;
+            }
+            .panel.panel-collapsed .panel-header-bar {
+                flex-direction: row;
+                height: auto;
+                gap: 8px;
+            }
+            .panel.panel-collapsed .panel-title-group {
+                writing-mode: horizontal-tb;
+            }
             #customKoInput, #customTranslatedOutput { min-height: 110px; }
             .card-scroll-container { max-height: 65vh; }
         }
@@ -649,17 +748,16 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>100여 개국 전 언어 음성 송출 지원 · 개별 언어 해제 · 번역 영역 접기/펼치기</p>
+                <p>좌우 패널 너비 조절 · 좌/우 패널 접기/펴기 · 100여 개국 전 언어 음성 송출</p>
             </div>
         </div>
         <div class="header-status-group">
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-25 (수) 00:00:00</span>
+                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-25 (수) 20:48:00</span>
             </div>
         </div>
     </header>
 
-    <!-- 상단 탭 툴바 -->
     <div class="top-toolbar">
         <div class="toolbar-main-row">
             <div class="toolbar-group" id="categoryNav">
@@ -717,17 +815,20 @@
             </div>
         </div>
 
-        <!-- 선택된 릴레이 언어 개별 해제 칩 바 -->
         <div id="selectedRelayChipsBar" class="selected-relay-chips-bar"></div>
     </div>
 
-    <!-- 메인 작업 공간 -->
-    <div class="workspace">
-        <div class="panel panel-translator">
-            <h2>
-                <span><i class="fa-solid fa-folder-open text-blue-600"></i> 문서 업로드 및 즉석 통역</span>
-                <span id="headerCounterBadge" class="large-counter-badge">총 항목: 0개</span>
-            </h2>
+    <div class="workspace" id="workspaceArea">
+        <div class="panel panel-translator" id="leftPanel">
+            <div class="panel-header-bar">
+                <span class="panel-title-group"><i class="fa-solid fa-folder-open text-blue-600"></i> 문서 업로드 및 즉석 통역</span>
+                <div class="panel-header-actions">
+                    <span id="headerCounterBadge" class="large-counter-badge">총 항목: 0개</span>
+                    <button type="button" id="leftPanelToggleBtn" onclick="togglePanelCollapse('left')" class="panel-collapse-btn" title="왼쪽 패널 접기/펴기">
+                        <i class="fa-solid fa-chevron-left" id="leftPanelToggleIcon"></i> <span id="leftPanelToggleText">접기</span>
+                    </button>
+                </div>
+            </div>
 
             <div class="upload-zone" onclick="document.getElementById('fileInput').click()" title="파일을 업로드하면 새로운 독립 탭으로 추가 영구 저장할 수 있습니다">
                 <p><i class="fa-solid fa-cloud-arrow-up"></i> 텍스트(.txt, .csv) 또는 PDF 파일(.pdf) 업로드</p>
@@ -785,10 +886,12 @@
             </div>
         </div>
 
-        <div class="panel panel-interpreter">
-            <h2>
-                <span><i class="fa-solid fa-columns text-emerald-600"></i> 라이브 비교 및 브로드캐스트 제어</span>
-                <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+        <div class="panel-splitter" id="panelSplitter" title="드래그하여 좌/우 너비 조절 · 더블클릭 시 50:50 초기화"></div>
+
+        <div class="panel panel-interpreter" id="rightPanel">
+            <div class="panel-header-bar">
+                <span class="panel-title-group"><i class="fa-solid fa-columns text-emerald-600"></i> 라이브 비교 및 브로드캐스트 제어</span>
+                <div class="panel-header-actions">
                     <button type="button" id="toggleAllTranslationsBtn" onclick="toggleAllTranslationsFold()" class="fold-toggle-btn" title="모든 카드의 번역 영역을 한 번에 접거나 펼칩니다">
                         <i class="fa-solid fa-angles-up" id="toggleAllTranslationsIcon"></i> <span id="toggleAllTranslationsText">번역 전체 접기</span>
                     </button>
@@ -796,10 +899,12 @@
                         <i class="fa-solid fa-stopwatch" id="timerIcon"></i> 소요시간: <span id="timerDisplay">00:00</span>
                     </div>
                     <span id="rightPanelCounterBadge" class="large-counter-badge">대기 중...</span>
+                    <button type="button" id="rightPanelToggleBtn" onclick="togglePanelCollapse('right')" class="panel-collapse-btn" title="오른쪽 패널 접기/펴기">
+                        <i class="fa-solid fa-chevron-right" id="rightPanelToggleIcon"></i> <span id="rightPanelToggleText">접기</span>
+                    </button>
                 </div>
-            </h2>
+            </div>
 
-            <!-- 눈에 잘 띄는 실시간 송출 국가/언어 모니터 배너 -->
             <div id="activeBroadcastMonitor" class="active-broadcast-monitor">
                 <div class="monitor-top-row">
                     <span id="monitorCountryPill" class="monitor-country-pill idle">
@@ -834,9 +939,9 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v48',
-            CATS: 'kim_simin_categories_v48',
-            RELAY: 'kim_simin_relay_langs_v48'
+            DATA: 'kim_simin_guide_master_v49',
+            CATS: 'kim_simin_categories_v49',
+            RELAY: 'kim_simin_relay_langs_v49'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -881,6 +986,129 @@
         }
         setInterval(updateLiveClock, 1000);
         updateLiveClock();
+
+        let leftRatio = 0.5;
+        let isLeftCollapsed = false;
+        let isRightCollapsed = false;
+
+        function applyPanelLayout() {
+            const leftPanel = document.getElementById('leftPanel');
+            const rightPanel = document.getElementById('rightPanel');
+            const leftIcon = document.getElementById('leftPanelToggleIcon');
+            const leftText = document.getElementById('leftPanelToggleText');
+            const rightIcon = document.getElementById('rightPanelToggleIcon');
+            const rightText = document.getElementById('rightPanelToggleText');
+            const splitter = document.getElementById('panelSplitter');
+
+            if (!leftPanel || !rightPanel) return;
+
+            if (window.innerWidth <= 1024) {
+                leftPanel.classList.toggle('panel-collapsed', isLeftCollapsed);
+                rightPanel.classList.toggle('panel-collapsed', isRightCollapsed);
+                leftPanel.style.flex = '';
+                rightPanel.style.flex = '';
+                leftIcon.className = isLeftCollapsed ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
+                leftText.innerText = isLeftCollapsed ? '펴기' : '접기';
+                rightIcon.className = isRightCollapsed ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
+                rightText.innerText = isRightCollapsed ? '펴기' : '접기';
+                return;
+            }
+
+            leftPanel.classList.toggle('panel-collapsed', isLeftCollapsed);
+            rightPanel.classList.toggle('panel-collapsed', isRightCollapsed);
+
+            if (isLeftCollapsed && isRightCollapsed) {
+                leftPanel.style.flex = '1 1 50%';
+                rightPanel.style.flex = '1 1 50%';
+                if (splitter) splitter.style.display = 'none';
+            } else if (isLeftCollapsed) {
+                leftPanel.style.flex = '0 0 64px';
+                rightPanel.style.flex = '1 1 auto';
+                if (splitter) splitter.style.display = 'none';
+            } else if (isRightCollapsed) {
+                leftPanel.style.flex = '1 1 auto';
+                rightPanel.style.flex = '0 0 64px';
+                if (splitter) splitter.style.display = 'none';
+            } else {
+                if (splitter) splitter.style.display = 'flex';
+                const clamped = Math.max(0.2, Math.min(0.8, leftRatio));
+                const leftPct = (clamped * 100).toFixed(2);
+                const rightPct = ((1 - clamped) * 100).toFixed(2);
+                leftPanel.style.flex = `0 0 calc(${leftPct}% - 7px)`;
+                rightPanel.style.flex = `0 0 calc(${rightPct}% - 7px)`;
+            }
+
+            leftIcon.className = isLeftCollapsed ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left';
+            leftText.innerText = isLeftCollapsed ? '펴기' : '접기';
+            rightIcon.className = isRightCollapsed ? 'fa-solid fa-chevron-left' : 'fa-solid fa-chevron-right';
+            rightText.innerText = isRightCollapsed ? '펴기' : '접기';
+        }
+
+        function togglePanelCollapse(side) {
+            if (side === 'left') {
+                if (isLeftCollapsed) {
+                    isLeftCollapsed = false;
+                } else {
+                    isLeftCollapsed = true;
+                    isRightCollapsed = false;
+                }
+            } else if (side === 'right') {
+                if (isRightCollapsed) {
+                    isRightCollapsed = false;
+                } else {
+                    isRightCollapsed = true;
+                    isLeftCollapsed = false;
+                }
+            }
+            applyPanelLayout();
+        }
+
+        function initPanelSplitter() {
+            const splitter = document.getElementById('panelSplitter');
+            const workspace = document.getElementById('workspaceArea');
+            if (!splitter || !workspace) return;
+
+            let isDragging = false;
+
+            const startDrag = (e) => {
+                if (window.innerWidth <= 1024 || isLeftCollapsed || isRightCollapsed) return;
+                isDragging = true;
+                document.body.classList.add('resizing-panels');
+                e.preventDefault();
+            };
+
+            const onDrag = (e) => {
+                if (!isDragging) return;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const rect = workspace.getBoundingClientRect();
+                if (rect.width <= 0) return;
+                const ratio = (clientX - rect.left) / rect.width;
+                leftRatio = Math.max(0.22, Math.min(0.78, ratio));
+                applyPanelLayout();
+            };
+
+            const stopDrag = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                document.body.classList.remove('resizing-panels');
+            };
+
+            splitter.addEventListener('mousedown', startDrag);
+            splitter.addEventListener('touchstart', startDrag, { passive: false });
+            window.addEventListener('mousemove', onDrag);
+            window.addEventListener('touchmove', onDrag, { passive: false });
+            window.addEventListener('mouseup', stopDrag);
+            window.addEventListener('touchend', stopDrag);
+
+            splitter.addEventListener('dblclick', () => {
+                leftRatio = 0.5;
+                isLeftCollapsed = false;
+                isRightCollapsed = false;
+                applyPanelLayout();
+            });
+
+            window.addEventListener('resize', applyPanelLayout);
+        }
 
         let broadcastTimerInterval = null;
         let broadcastSeconds = 0;
@@ -1379,9 +1607,9 @@
         }
 
         function loadData() {
-            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v47') || localStorage.getItem('kim_simin_guide_master_v46');
-            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v47') || localStorage.getItem('kim_simin_categories_v46');
-            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v47') || localStorage.getItem('kim_simin_relay_langs_v46');
+            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v48') || localStorage.getItem('kim_simin_guide_master_v47');
+            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v48') || localStorage.getItem('kim_simin_categories_v47');
+            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v48') || localStorage.getItem('kim_simin_relay_langs_v47');
 
             if (savedData !== null) {
                 try {
@@ -1653,12 +1881,9 @@
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?")) {
                 Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
-                localStorage.removeItem('kim_simin_guide_master_v47');
-                localStorage.removeItem('kim_simin_categories_v47');
-                localStorage.removeItem('kim_simin_relay_langs_v47');
-                localStorage.removeItem('kim_simin_guide_master_v46');
-                localStorage.removeItem('kim_simin_categories_v46');
-                localStorage.removeItem('kim_simin_relay_langs_v46');
+                localStorage.removeItem('kim_simin_guide_master_v48');
+                localStorage.removeItem('kim_simin_categories_v48');
+                localStorage.removeItem('kim_simin_relay_langs_v48');
 
                 guideData = [...DEFAULT_SEED_DATA];
                 savedCustomCategories = [];
@@ -1723,6 +1948,8 @@
                 window.speechSynthesis.onvoiceschanged = refreshSystemVoices;
             }
 
+            initPanelSplitter();
+            applyPanelLayout();
             initLanguageSelector();
             loadData();
             renderMultiLangUI();
