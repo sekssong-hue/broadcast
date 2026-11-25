@@ -105,7 +105,7 @@
             box-shadow: var(--shadow-md);
             position: relative;
         }
-        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 56%; padding-bottom: 2px; }
+        .toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; overflow-x: auto; max-width: 55%; padding-bottom: 2px; }
         .toolbar-settings { display: flex; align-items: center; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
         .setting-item { display: flex; align-items: center; gap: 6px; position: relative; }
         .setting-label { font-size: 14px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
@@ -135,8 +135,8 @@
             position: absolute;
             top: 44px;
             right: 0;
-            width: 370px;
-            max-height: 460px;
+            width: 380px;
+            max-height: 470px;
             overflow-y: auto;
             background: #ffffff;
             border: 1px solid var(--border-color);
@@ -190,6 +190,7 @@
         .multi-lang-item {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 8px;
             padding: 5px 6px;
             border-radius: 6px;
@@ -198,6 +199,64 @@
             cursor: pointer;
         }
         .multi-lang-item:hover { background: #f1f5f9; }
+        .voice-avail-badge {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 999px;
+            flex-shrink: 0;
+        }
+        .voice-ok { background: #dcfce7; color: #166534; }
+        .voice-none { background: #fee2e2; color: #991b1b; }
+
+        /* 송출 상태 모니터 배너 (눈에 잘 띄는 위치) */
+        .active-broadcast-monitor {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border: 2px solid #3b82f6;
+            border-radius: var(--radius-md);
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+        }
+        .active-broadcast-monitor.is-live {
+            border-color: #facc15;
+            box-shadow: 0 0 16px rgba(250, 204, 21, 0.28);
+        }
+        .active-broadcast-monitor.is-paused {
+            border-color: #f59e0b;
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+        }
+        .monitor-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .monitor-country-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+        .monitor-country-pill.paused { background: #d97706; }
+        .monitor-country-pill.idle { background: #475569; }
+        .monitor-status-msg {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #e2e8f0;
+            line-height: 1.35;
+        }
 
         .relay-card-block {
             background: #f8fafc;
@@ -205,22 +264,29 @@
             border-radius: 8px;
             padding: 8px 10px;
             margin-bottom: 8px;
+            transition: all 0.2s ease;
         }
         .relay-card-block:last-child { margin-bottom: 0; }
+        .relay-card-block.active-speaking-lang {
+            background: #eff6ff;
+            border: 2px solid #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
         .relay-block-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 6px;
             margin-bottom: 4px;
+            flex-wrap: wrap;
         }
         .relay-lang-badge {
             display: inline-block;
             background: #dbeafe;
             color: #1e40af;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 800;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
         }
         .copy-mini-btn {
@@ -243,10 +309,10 @@
         .panel { flex: 1; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; }
         .panel-translator { border-top: 6px solid var(--primary); }
         .panel-interpreter { border-top: 6px solid var(--accent); }
-        .panel h2 { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+        .panel h2 { font-size: 17px; font-weight: 800; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
 
         .large-counter-badge {
-            font-size: 14.5px !important;
+            font-size: 14px !important;
             font-weight: 800 !important;
             background: #e0f2fe !important;
             color: #0369a1 !important;
@@ -262,7 +328,7 @@
             border: 2px dashed #60a5fa;
             background-color: #eff6ff;
             border-radius: var(--radius-md);
-            padding: 14px;
+            padding: 12px 14px;
             text-align: center;
             cursor: pointer;
             margin-bottom: 10px;
@@ -289,8 +355,8 @@
             background: #f8fafc;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 16px;
-            margin-top: 4px;
+            padding: 14px 16px;
+            margin-top: 2px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -315,7 +381,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 10px;
-            margin-top: 12px;
+            margin-top: 10px;
             padding-top: 10px;
             border-top: 1px solid #cbd5e1;
             flex-wrap: wrap;
@@ -336,7 +402,7 @@
         #customKoInput {
             resize: none;
             flex: 1;
-            min-height: 120px;
+            min-height: 110px;
         }
         #customKoInput.listening-active {
             border: 2px solid #ef4444;
@@ -352,7 +418,7 @@
             font-weight: 500;
             color: #0f172a;
             flex: 1;
-            min-height: 120px;
+            min-height: 110px;
             overflow-y: auto;
             line-height: 1.5;
             white-space: pre-line;
@@ -437,9 +503,6 @@
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; box-shadow: 0 8px 20px rgba(0,0,0,0.3); opacity: 0; transition: 0.3s; pointer-events: none; z-index: 100; max-width: 90vw; text-align: center; }
-        .toast.show { opacity: 1; }
-
         @media (max-width: 1024px) {
             body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; }
             header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -480,7 +543,7 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>시인성 강화 가독성 최적화 버전 · 자연스러운 문장 연속 송출</p>
+                <p>시인성 강화 가독성 최적화 버전 · 실시간 국가별 송출 모니터링</p>
             </div>
         </div>
         <div class="header-status-group">
@@ -622,6 +685,19 @@
                 </div>
             </h2>
 
+            <!-- 눈에 잘 띄는 실시간 송출 국가/언어 모니터 배너 -->
+            <div id="activeBroadcastMonitor" class="active-broadcast-monitor">
+                <div class="monitor-top-row">
+                    <span id="monitorCountryPill" class="monitor-country-pill idle">
+                        <i class="fa-solid fa-tower-broadcast"></i> <span id="monitorCountryText">송출 대기 중</span>
+                    </span>
+                    <span id="monitorRelayQueueText" style="font-size:12px; font-weight:700; color:#93c5fd;"></span>
+                </div>
+                <div id="monitorStatusDetail" class="monitor-status-msg">
+                    재생 버튼을 누르면 현재 송출 중인 국가와 언어가 이곳에 실시간으로 표시됩니다.
+                </div>
+            </div>
+
             <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; margin-bottom: 10px; flex-shrink: 0;">
                 <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 (연속 자동 방송 제어)</span>
@@ -640,15 +716,13 @@
         </div>
     </div>
 
-    <div id="toast" class="toast"><i class="fa-solid fa-circle-info text-blue-400"></i> <span id="toastMsg">알림 메시지</span></div>
-
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v46',
-            CATS: 'kim_simin_categories_v46',
-            RELAY: 'kim_simin_relay_langs_v46'
+            DATA: 'kim_simin_guide_master_v47',
+            CATS: 'kim_simin_categories_v47',
+            RELAY: 'kim_simin_relay_langs_v47'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -728,6 +802,44 @@
         }
 
         // ==========================================
+        // 실시간 송출 상태 모니터 배너 업데이트
+        // ==========================================
+        function setMonitorBanner({ mode = 'idle', badgeText = '송출 대기 중', queueText = '', detailText = '' }) {
+            const box = document.getElementById('activeBroadcastMonitor');
+            const pill = document.getElementById('monitorCountryPill');
+            const countryText = document.getElementById('monitorCountryText');
+            const relayQueueText = document.getElementById('monitorRelayQueueText');
+            const statusDetail = document.getElementById('monitorStatusDetail');
+
+            if (!box || !pill || !countryText || !relayQueueText || !statusDetail) return;
+
+            box.classList.remove('is-live', 'is-paused');
+            pill.classList.remove('paused', 'idle');
+
+            if (mode === 'live') {
+                box.classList.add('is-live');
+            } else if (mode === 'paused') {
+                box.classList.add('is-paused');
+                pill.classList.add('paused');
+            } else {
+                pill.classList.add('idle');
+            }
+
+            countryText.innerText = badgeText;
+            relayQueueText.innerText = queueText;
+            statusDetail.innerText = detailText || '재생 버튼을 누르면 현재 송출 중인 국가와 언어가 이곳에 실시간으로 표시됩니다.';
+        }
+
+        function showToast(msg, extra = {}) {
+            setMonitorBanner({
+                mode: extra.mode || (isPausedQueue ? 'paused' : (isPlayingQueue || isSpeakingActive ? 'live' : 'idle')),
+                badgeText: extra.badgeText || (isPausedQueue ? '일시정지됨' : (isPlayingQueue || isSpeakingActive ? '송출 진행 중' : '안내 알림')),
+                queueText: extra.queueText || '',
+                detailText: msg
+            });
+        }
+
+        // ==========================================
         // 실시간 음성 인식 (STT)
         // ==========================================
         let recognition = null;
@@ -758,7 +870,7 @@
                 document.getElementById('voiceInputBtn').classList.add('recording');
                 document.getElementById('voiceInputText').innerText = '듣는 중 (중지)';
                 document.getElementById('customKoInput').classList.add('listening-active');
-                showToast("음성 인식이 시작되었습니다. 말씀해 주세요.");
+                showToast("음성 인식이 시작되었습니다. 말씀해 주세요.", { mode: 'live', badgeText: '마이크 듣는 중 (한국어)' });
             };
 
             rec.onresult = function(event) {
@@ -785,13 +897,13 @@
                 if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
                     isRecognizing = false;
                     stopVoiceRecognitionUI();
-                    showToast("마이크 권한이 차단되었습니다. 브라우저 설정에서 마이크를 허용해 주세요.");
+                    showToast("마이크 권한이 차단되었습니다. 브라우저 설정에서 마이크를 허용해 주세요.", { mode: 'paused', badgeText: '마이크 권한 필요' });
                 } else if (event.error === 'network') {
                     isRecognizing = false;
                     stopVoiceRecognitionUI();
-                    showToast("네트워크 오류로 음성 인식이 중단되었습니다.");
+                    showToast("네트워크 오류로 음성 인식이 중단되었습니다.", { mode: 'paused', badgeText: '음성 인식 오류' });
                 } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
-                    showToast(`음성 인식 알림: ${event.error}`);
+                    showToast(`음성 인식 알림: ${event.error}`, { mode: 'live', badgeText: '음성 인식 알림' });
                 }
             };
 
@@ -826,7 +938,7 @@
             if (!recognition) {
                 recognition = initSpeechRecognition();
                 if (!recognition) {
-                    showToast("이 브라우저는 실시간 음성 인식을 지원하지 않습니다. (Chrome, Safari, Edge 권장)");
+                    showToast("이 브라우저는 실시간 음성 인식을 지원하지 않습니다. (Chrome, Safari, Edge 권장)", { mode: 'idle', badgeText: '음성 미지원' });
                     return;
                 }
             }
@@ -836,7 +948,7 @@
                 try { recognition.stop(); } catch (e) {}
                 stopVoiceRecognitionUI();
                 updateCustomTranslation();
-                showToast("음성 인식이 종료되었습니다.");
+                showToast("음성 인식이 종료되었습니다.", { mode: 'idle', badgeText: '음성 입력 종료' });
             } else {
                 masterStop(true);
                 committedSpeechText = document.getElementById('customKoInput').value
@@ -962,7 +1074,6 @@
             { code: "zu", name: "남아프리카공화국 (Zulu)" }
         ];
 
-        // ㄱㄴㄷㄹ(가나다라) 순으로 미리 정렬된 언어 목록
         const sortedLanguageList = [...rawLanguageList].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
 
         let guideData = [];
@@ -974,30 +1085,36 @@
         let translationCache = {};
         let playbackToken = 0;
         let activeFallbackTimer = null;
-        let keepAliveInterval = null;
         let cachedVoices = [];
         let isPlayingQueue = false;
         let isPausedQueue = false;
+        let isSpeakingActive = false;
+
+        // 일시정지/이어재생용 정밀 스냅샷 상태
+        let pauseSnapshot = null;
 
         const targetLangSelect = document.getElementById('targetLangSelect');
         const speechRateSelect = document.getElementById('speechRateSelect');
         const splitContainer = document.getElementById('splitContainer');
         const headerCounterBadge = document.getElementById('headerCounterBadge');
         const rightPanelCounterBadge = document.getElementById('rightPanelCounterBadge');
-        const toast = document.getElementById('toast');
-        const toastMsg = document.getElementById('toastMsg');
 
         function refreshSystemVoices() {
             if (!('speechSynthesis' in window)) return;
             const list = window.speechSynthesis.getVoices();
             if (list && list.length > 0) {
                 cachedVoices = list;
+                renderMultiLangUI();
             }
+        }
+
+        function normalizeLangCode(code) {
+            return String(code || '').toLowerCase().replace(/_/g, '-').trim();
         }
 
         function mapSpeechLangTag(langCode) {
             const raw = String(langCode || 'en').trim();
-            const lower = raw.toLowerCase();
+            const lower = normalizeLangCode(raw);
             const map = {
                 'en': 'en-US',
                 'ja': 'ja-JP',
@@ -1017,29 +1134,71 @@
                 'pt': 'pt-PT',
                 'it': 'it-IT',
                 'ms': 'ms-MY',
-                'fil': 'fil-PH'
+                'fil': 'fil-PH',
+                'tr': 'tr-TR',
+                'pl': 'pl-PL',
+                'nl': 'nl-NL',
+                'sv': 'sv-SE',
+                'da': 'da-DK',
+                'fi': 'fi-FI',
+                'no': 'no-NO',
+                'cs': 'cs-CZ',
+                'el': 'el-GR',
+                'hu': 'hu-HU',
+                'ro': 'ro-RO',
+                'sk': 'sk-SK',
+                'uk': 'uk-UA',
+                'he': 'he-IL',
+                'bn': 'bn-BD',
+                'ta': 'ta-IN',
+                'te': 'te-IN',
+                'mr': 'mr-IN',
+                'kn': 'kn-IN',
+                'ml': 'ml-IN',
+                'gu': 'gu-IN',
+                'ur': 'ur-PK',
+                'fa': 'fa-IR',
+                'sw': 'sw-KE'
             };
             return map[lower] || raw;
+        }
+
+        function getCandidateLangPrefixes(langCode) {
+            const norm = normalizeLangCode(langCode);
+            const mapped = normalizeLangCode(mapSpeechLangTag(langCode));
+            const base = norm.split('-')[0];
+            const mappedBase = mapped.split('-')[0];
+
+            // 중국어 간체/번체 구분 보조
+            const list = [mapped, norm, mappedBase, base];
+            if (base === 'zh') {
+                if (norm === 'zh-tw' || norm === 'zh-hk') {
+                    list.push('zh-tw', 'zh-hk', 'yue', 'cmn-hant');
+                } else {
+                    list.push('zh-cn', 'cmn-hans', 'cmn');
+                }
+            }
+            return [...new Set(list.filter(Boolean))];
         }
 
         function pickNaturalVoice(langCode) {
             if (!cachedVoices.length) refreshSystemVoices();
             if (!cachedVoices.length) return null;
 
-            const speechTag = mapSpeechLangTag(langCode);
-            const norm = speechTag.toLowerCase();
-            const base = norm.split('-')[0];
+            const prefixes = getCandidateLangPrefixes(langCode);
+            let matched = [];
 
-            let matched = cachedVoices.filter(v => v.lang.toLowerCase() === norm);
-            if (!matched.length) {
-                matched = cachedVoices.filter(v => v.lang.toLowerCase().startsWith(norm + '-'));
-            }
-            if (!matched.length) {
-                matched = cachedVoices.filter(v => {
-                    const vLang = v.lang.toLowerCase();
-                    return vLang === base || vLang.startsWith(base + '-');
+            for (const p of prefixes) {
+                const found = cachedVoices.filter(v => {
+                    const vl = normalizeLangCode(v.lang);
+                    return vl === p || vl.startsWith(p + '-');
                 });
+                if (found.length > 0) {
+                    matched = found;
+                    break;
+                }
             }
+
             if (!matched.length) return null;
 
             const preferredKeywords = [
@@ -1056,11 +1215,11 @@
 
             matched.forEach(v => {
                 const nameLower = v.name.toLowerCase();
-                const vLangLower = v.lang.toLowerCase();
+                const vLangNorm = normalizeLangCode(v.lang);
                 let score = 0;
 
-                if (vLangLower === norm) score += 25;
-                else if (vLangLower.startsWith(base + '-')) score += 12;
+                if (prefixes[0] && vLangNorm === prefixes[0]) score += 25;
+                else if (prefixes[1] && vLangNorm === prefixes[1]) score += 20;
 
                 preferredKeywords.forEach((kw, idx) => {
                     if (nameLower.includes(kw)) {
@@ -1082,8 +1241,12 @@
             return bestVoice;
         }
 
+        function isVoiceAvailableForLang(langCode) {
+            return Boolean(pickNaturalVoice(langCode));
+        }
+
         function getNaturalVoiceTuning(langCode, userRate) {
-            const base = String(langCode || 'en').toLowerCase().split('-')[0];
+            const base = normalizeLangCode(langCode).split('-')[0];
             if (base === 'ko') {
                 return { rate: Math.max(0.75, Math.min(2.0, userRate * 0.96)), pitch: 1.03 };
             }
@@ -1099,9 +1262,9 @@
         }
 
         function loadData() {
-            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v45');
-            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v45');
-            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v45');
+            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v46') || localStorage.getItem('kim_simin_guide_master_v45');
+            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v46') || localStorage.getItem('kim_simin_categories_v45');
+            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v46') || localStorage.getItem('kim_simin_relay_langs_v45');
 
             if (savedData !== null) {
                 try {
@@ -1150,15 +1313,17 @@
             const labelEl = document.getElementById('multiLangBtnLabel');
             const tagEl = document.getElementById('liveBroadcastLangTag');
             if (relayLangs.length > 0) {
-                labelEl.innerText = `릴레이 (${relayLangs.length}개)`;
-                if (tagEl) tagEl.innerText = `릴레이 순서: ${relayLangs.join(' → ')}`;
+                const names = relayLangs.map((c, idx) => `${idx + 1}.${getLangLabel(c).split(' (')[0]}`).join(' → ');
+                labelEl.innerText = `릴레이 (${relayLangs.length}개국)`;
+                if (tagEl) tagEl.innerText = `릴레이 순서: ${names}`;
             } else {
                 labelEl.innerText = `릴레이: 꺼짐`;
-                if (tagEl) tagEl.innerText = `선택 언어: ${targetLang}`;
+                if (tagEl) tagEl.innerText = `선택 언어: ${getLangLabel(targetLang)}`;
             }
         }
 
         function toggleMultiLangPopover() {
+            refreshSystemVoices();
             const pop = document.getElementById('multiLangPopover');
             pop.classList.toggle('open');
             if (pop.classList.contains('open')) {
@@ -1213,14 +1378,22 @@
         function renderMultiLangUI() {
             renderRelayOrderList();
             const box = document.getElementById('multiLangCheckboxList');
+            if (!box) return;
             const currentSearch = (document.getElementById('relayLangSearch')?.value || '').trim().toLowerCase();
             box.innerHTML = '';
 
             sortedLanguageList.forEach(item => {
+                const hasVoice = isVoiceAvailableForLang(item.code);
                 const row = document.createElement('label');
                 row.className = 'multi-lang-item';
                 const checked = relayLangs.includes(item.code);
-                row.innerHTML = `<input type="checkbox" ${checked ? 'checked' : ''}> <span>${escapeHtml(item.name)}</span>`;
+                row.innerHTML = `
+                    <span style="display:flex; align-items:center; gap:8px; min-width:0;">
+                        <input type="checkbox" ${checked ? 'checked' : ''}>
+                        <span>${escapeHtml(item.name)}</span>
+                    </span>
+                    <span class="voice-avail-badge ${hasVoice ? 'voice-ok' : 'voice-none'}">${hasVoice ? '음성지원' : '음성없음'}</span>
+                `;
                 if (currentSearch && !item.name.toLowerCase().includes(currentSearch)) {
                     row.style.display = 'none';
                 }
@@ -1248,7 +1421,8 @@
             renderMultiLangUI();
             updateCustomTranslation();
             if (currentCategory !== 'cleared') renderDualPanes();
-            showToast(`릴레이 순서 설정: ${relayLangs.join(' → ')}`);
+            const labels = relayLangs.map(c => getLangLabel(c)).join(' → ');
+            showToast(`릴레이 순서 설정 완료: ${labels}`, { mode: 'idle', badgeText: `릴레이 ${relayLangs.length}개국 설정` });
         }
 
         function clearRelayLangs() {
@@ -1258,7 +1432,7 @@
             renderMultiLangUI();
             updateCustomTranslation();
             if (currentCategory !== 'cleared') renderDualPanes();
-            showToast("릴레이 다중 언어를 해제했습니다.");
+            showToast("릴레이 다중 언어를 해제했습니다. 단일 타겟 언어로 송출됩니다.", { mode: 'idle', badgeText: '단일 언어 모드' });
         }
 
         function resetGeneratedItems() {
@@ -1278,14 +1452,15 @@
             document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             currentCategory = 'cleared';
 
-            showToast("새 탭 저장 데이터는 유지하고 우측 패널 화면만 비웠습니다.");
+            showToast("새 탭 저장 데이터는 유지하고 우측 패널 화면만 비웠습니다.", { mode: 'idle', badgeText: '화면 비워짐' });
         }
 
         function resetAllData() {
             if (confirm("⚠️ 주의: 저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?")) {
-                localStorage.removeItem(STORAGE_KEYS.DATA);
-                localStorage.removeItem(STORAGE_KEYS.CATS);
-                localStorage.removeItem(STORAGE_KEYS.RELAY);
+                Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
+                localStorage.removeItem('kim_simin_guide_master_v46');
+                localStorage.removeItem('kim_simin_categories_v46');
+                localStorage.removeItem('kim_simin_relay_langs_v46');
                 localStorage.removeItem('kim_simin_guide_master_v45');
                 localStorage.removeItem('kim_simin_categories_v45');
                 localStorage.removeItem('kim_simin_relay_langs_v45');
@@ -1307,7 +1482,7 @@
                 renderDynamicTabs();
                 updateCustomTranslation();
                 filterCategory('all');
-                showToast("모든 데이터가 기본 상태로 초기화되었습니다.");
+                showToast("모든 데이터가 기본 상태로 초기화되었습니다.", { mode: 'idle', badgeText: '초기화 완료' });
             }
         }
 
@@ -1317,7 +1492,7 @@
                 guideData = guideData.filter(item => item.id !== id);
                 saveData();
                 renderDualPanes();
-                showToast("항목이 삭제되었습니다.");
+                showToast("항목이 삭제되었습니다.", { mode: 'idle', badgeText: '항목 삭제됨' });
             }
         }
 
@@ -1343,7 +1518,8 @@
                 renderDualPanes();
             }
             updateCustomTranslation();
-            showToast(`타겟 언어가 변경되었습니다: ${targetLangSelect.options[targetLangSelect.selectedIndex].text}`);
+            const label = targetLangSelect.options[targetLangSelect.selectedIndex].text;
+            showToast(`타겟 언어가 '${label}'(으)로 변경되었습니다.`, { mode: 'idle', badgeText: `타겟: ${label}` });
         });
 
         function initApp() {
@@ -1408,17 +1584,17 @@
                             }));
                         }
                         Promise.all(countPromises).then(texts => { processTextContent(texts.join('\n\n'), filename); });
-                    }).catch(() => { showToast("PDF 파일을 읽는 중 오류가 발생했습니다."); });
+                    }).catch(() => { showToast("PDF 파일을 읽는 중 오류가 발생했습니다.", { mode: 'paused', badgeText: 'PDF 오류' }); });
                 };
                 reader.readAsArrayBuffer(file);
             } else {
-                showToast(".txt, .csv, .pdf 파일만 업로드할 수 있습니다.");
+                showToast(".txt, .csv, .pdf 파일만 업로드할 수 있습니다.", { mode: 'idle', badgeText: '파일 형식 안내' });
             }
             event.target.value = '';
         }
 
         function processTextContent(textContent, filename) {
-            if (!textContent.trim()) { showToast("파일 내용이 비어 있습니다."); return; }
+            if (!textContent.trim()) { showToast("파일 내용이 비어 있습니다.", { mode: 'idle', badgeText: '빈 파일' }); return; }
 
             masterStop(true);
             const lines = textContent.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
@@ -1439,12 +1615,12 @@
 
             currentCategory = tempCatId;
             renderDualPanes();
-            showToast(`'${filename}' 파일이 미리 로드되었습니다.`);
+            showToast(`'${filename}' 파일(${lines.length}개 문장)이 미리 로드되었습니다.`, { mode: 'idle', badgeText: '문서 미리보기' });
         }
 
         function saveStagedDocument() {
             if (!stagedItems || stagedItems.length === 0) {
-                showToast("저장할 임시 문장이 없습니다.");
+                showToast("저장할 임시 문장이 없습니다.", { mode: 'idle', badgeText: '저장할 항목 없음' });
                 return;
             }
 
@@ -1467,7 +1643,7 @@
 
             renderDynamicTabs();
             filterCategory(newCatId);
-            showToast(`'${customTitle}' 문서가 새로운 탭으로 영구 저장되었습니다!`);
+            showToast(`'${customTitle}' 문서가 새로운 탭으로 영구 저장되었습니다.`, { mode: 'idle', badgeText: '탭 저장 완료' });
         }
 
         function cancelStaging() {
@@ -1507,7 +1683,7 @@
                 saveData();
                 renderDynamicTabs();
                 filterCategory('all');
-                showToast("문서 탭이 삭제되었습니다.");
+                showToast("문서 탭이 삭제되었습니다.", { mode: 'idle', badgeText: '탭 삭제 완료' });
             }
         }
 
@@ -1547,14 +1723,19 @@
                     relayContainer.innerHTML = blocks.join('');
                 }
             }
-            showToast("수정 사항이 저장되었습니다.");
+            showToast("수정 사항이 저장되고 번역이 갱신되었습니다.", { mode: 'idle', badgeText: '수정 저장됨' });
         }
 
         function buildRelayBlockHtml(langCode, idx, trText) {
+            const label = getLangLabel(langCode);
+            const hasVoice = isVoiceAvailableForLang(langCode);
             return `
                 <div class="relay-card-block" data-lang="${escapeAttr(langCode)}" data-text="${escapeAttr(trText)}">
                     <div class="relay-block-header">
-                        <span class="relay-lang-badge">${idx + 1}. ${escapeHtml(langCode.toUpperCase())}</span>
+                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                            <span class="relay-lang-badge">${idx + 1}. ${escapeHtml(label)} [${escapeHtml(langCode.toUpperCase())}]</span>
+                            <span class="voice-avail-badge ${hasVoice ? 'voice-ok' : 'voice-none'}">${hasVoice ? '음성지원' : '기기음성없음'}</span>
+                        </div>
                         <button type="button" class="copy-mini-btn" onclick="copyTextToClipboard(this.closest('.relay-card-block').getAttribute('data-text'))" title="번역문 복사">
                             <i class="fa-regular fa-copy"></i> 복사
                         </button>
@@ -1568,7 +1749,7 @@
             const val = unescapeAttr(text || '');
             if (!val) return;
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(val).then(() => showToast("번역문이 복사되었습니다.")).catch(() => fallbackCopy(val));
+                navigator.clipboard.writeText(val).then(() => showToast("번역문이 클립보드에 복사되었습니다.", { mode: 'idle', badgeText: '복사 완료' })).catch(() => fallbackCopy(val));
             } else {
                 fallbackCopy(val);
             }
@@ -1581,9 +1762,9 @@
             ta.select();
             try {
                 document.execCommand('copy');
-                showToast("번역문이 복사되었습니다.");
+                showToast("번역문이 클립보드에 복사되었습니다.", { mode: 'idle', badgeText: '복사 완료' });
             } catch (e) {
-                showToast("복사에 실패했습니다.");
+                showToast("복사에 실패했습니다.", { mode: 'idle', badgeText: '복사 실패' });
             }
             document.body.removeChild(ta);
         }
@@ -1645,77 +1826,134 @@
             return chunks.filter(Boolean);
         }
 
-        function startKeepAliveLoop() {
-            stopKeepAliveLoop();
-            if (!('speechSynthesis' in window)) return;
-            keepAliveInterval = setInterval(() => {
-                if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-                    // 상태 유지
-                }
-            }, 10000);
+        function clearActiveLangHighlights() {
+            document.querySelectorAll('.relay-card-block.active-speaking-lang').forEach(el => {
+                el.classList.remove('active-speaking-lang');
+            });
         }
 
-        function stopKeepAliveLoop() {
-            if (keepAliveInterval) {
-                clearInterval(keepAliveInterval);
-                keepAliveInterval = null;
+        function highlightSpeakingLangBlock(blockEl) {
+            clearActiveLangHighlights();
+            if (blockEl) {
+                blockEl.classList.add('active-speaking-lang');
             }
         }
 
         function speakChunkOnce(chunk, lang, userRate, token) {
             return new Promise((resolve) => {
-                if (token !== playbackToken) return resolve();
-                if (!chunk || !('speechSynthesis' in window)) return resolve();
+                if (token !== playbackToken) return resolve('cancelled');
+                if (!chunk || !('speechSynthesis' in window)) return resolve('done');
 
                 let finished = false;
-                const done = () => {
+                const done = (reason = 'done') => {
                     if (finished) return;
                     finished = true;
+                    isSpeakingActive = false;
                     if (activeFallbackTimer) {
                         clearTimeout(activeFallbackTimer);
                         activeFallbackTimer = null;
                     }
-                    resolve();
+                    resolve(reason);
                 };
 
                 const speechTag = mapSpeechLangTag(lang);
                 const voice = pickNaturalVoice(lang);
                 const tuning = getNaturalVoiceTuning(lang, userRate);
 
-                const estimatedMs = (chunk.length * 160) / Math.max(0.5, tuning.rate) + 5000;
-                const safetyMs = Math.max(5000, Math.min(45000, estimatedMs));
-                activeFallbackTimer = setTimeout(done, safetyMs);
+                if (!voice) {
+                    const langName = getLangLabel(lang);
+                    setMonitorBanner({
+                        mode: isPausedQueue ? 'paused' : 'live',
+                        badgeText: `음성 미지원 (${lang.toUpperCase()})`,
+                        queueText: langName,
+                        detailText: `'${langName}' TTS 음성이 기기에 설치되어 있지 않아 음성 송출을 건너뜁니다. (번역 텍스트는 화면에 표시됨)`
+                    });
+                    return resolve('unsupported');
+                }
+
+                const estimatedMs = (chunk.length * 170) / Math.max(0.5, tuning.rate) + 6000;
+                const safetyMs = Math.max(6000, Math.min(50000, estimatedMs));
+                activeFallbackTimer = setTimeout(() => done('done'), safetyMs);
 
                 const utter = new SpeechSynthesisUtterance(chunk);
-                utter.lang = voice ? voice.lang : speechTag;
-                if (voice) utter.voice = voice;
+                utter.lang = voice.lang || speechTag;
+                utter.voice = voice;
                 utter.rate = tuning.rate;
                 utter.pitch = tuning.pitch;
                 utter.volume = 1.0;
-                utter.onend = done;
-                utter.onerror = done;
 
+                utter.onend = () => done('done');
+                utter.onerror = (ev) => {
+                    if (isPausedQueue || ev.error === 'interrupted' || ev.error === 'canceled') {
+                        done('paused');
+                    } else {
+                        done('error');
+                    }
+                };
+
+                isSpeakingActive = true;
                 try {
                     window.speechSynthesis.speak(utter);
                 } catch (e) {
-                    done();
+                    done('error');
                 }
             });
         }
 
-        async function speakPhraseSmoothly(text, lang, rate, token) {
-            const chunks = splitForSmoothSpeech(text);
-            for (let i = 0; i < chunks.length; i++) {
-                if (token !== playbackToken) break;
-                while (isPausedQueue && token === playbackToken) {
-                    await new Promise(r => setTimeout(r, 150));
+        async function waitWhilePaused(token, onResumeCallback = null) {
+            if (!isPausedQueue) return true;
+            while (isPausedQueue && token === playbackToken) {
+                await new Promise(r => setTimeout(r, 120));
+            }
+            if (token !== playbackToken) return false;
+            if (typeof onResumeCallback === 'function') {
+                onResumeCallback();
+            }
+            return true;
+        }
+
+        async function speakChunksWithPauseResume({
+            chunks,
+            lang,
+            rate,
+            token,
+            startChunkIndex = 0,
+            onChunkStart = null,
+            onPauseSnapshot = null,
+            onResume = null
+        }) {
+            for (let cIdx = startChunkIndex; cIdx < chunks.length; cIdx++) {
+                if (token !== playbackToken) return { status: 'cancelled', nextChunkIndex: cIdx };
+
+                if (isPausedQueue) {
+                    if (typeof onPauseSnapshot === 'function') onPauseSnapshot(cIdx);
+                    const ok = await waitWhilePaused(token, onResume);
+                    if (!ok) return { status: 'cancelled', nextChunkIndex: cIdx };
                 }
-                if (token !== playbackToken) break;
-                await speakChunkOnce(chunks[i], lang, rate, token);
-                if (i < chunks.length - 1 && token === playbackToken) {
+
+                if (typeof onChunkStart === 'function') {
+                    onChunkStart(cIdx);
+                }
+
+                const result = await speakChunkOnce(chunks[cIdx], lang, rate, token);
+
+                if (token !== playbackToken) return { status: 'cancelled', nextChunkIndex: cIdx };
+
+                if (isPausedQueue || result === 'paused') {
+                    isPausedQueue = true;
+                    if (typeof onPauseSnapshot === 'function') onPauseSnapshot(cIdx);
+                    const ok = await waitWhilePaused(token, onResume);
+                    if (!ok) return { status: 'cancelled', nextChunkIndex: cIdx };
+                    // 일시정지 해제 시 현재 끊긴 구절(cIdx)부터 다시 읽음
+                    cIdx--;
+                    continue;
+                }
+
+                if (cIdx < chunks.length - 1 && token === playbackToken) {
                     await new Promise(r => setTimeout(r, 180));
                 }
             }
+            return { status: 'completed', nextChunkIndex: chunks.length };
         }
 
         async function renderDualPanes() {
@@ -1845,6 +2083,7 @@
             updateCounterDisplay(filteredData.length, 0);
 
             document.querySelectorAll('.card-item').forEach(el => el.classList.remove('active-broadcasting'));
+            clearActiveLangHighlights();
         }
 
         async function speakSingleText(text, lang, cardIndex = -1) {
@@ -1853,19 +2092,38 @@
             masterStop(true);
             const myToken = ++playbackToken;
             startBroadcastTimer(true);
-            startKeepAliveLoop();
 
             const total = document.querySelectorAll('.card-item').length;
             if (cardIndex >= 0 && !isPlayingQueue) highlightCard(cardIndex, total);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
-            showToast(`음성 재생 중 (${lang.toUpperCase()})`);
-            await speakPhraseSmoothly(phrase, lang, rate, myToken);
+            const langLabel = getLangLabel(lang);
+            const chunks = splitForSmoothSpeech(phrase);
 
-            stopKeepAliveLoop();
+            setMonitorBanner({
+                mode: 'live',
+                badgeText: `송출 중 · ${langLabel} [${lang.toUpperCase()}]`,
+                queueText: cardIndex >= 0 ? `카드 ${cardIndex + 1}/${total}` : '단일 송출',
+                detailText: phrase
+            });
+
+            await speakChunksWithPauseResume({
+                chunks,
+                lang,
+                rate,
+                token: myToken,
+                startChunkIndex: 0
+            });
+
             if (myToken === playbackToken && cardIndex >= 0 && !isPlayingQueue) {
                 clearHighlight();
                 stopBroadcastTimer();
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '송출 완료',
+                    queueText: '',
+                    detailText: `'${langLabel}' 송출이 완료되었습니다.`
+                });
             }
         }
 
@@ -1878,98 +2136,199 @@
             const total = document.querySelectorAll('.card-item').length;
             highlightCard(cardIndex, total);
             startBroadcastTimer(true);
-            startKeepAliveLoop();
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const blocks = Array.from(cardEl.querySelectorAll('.relay-card-block'));
+            const orderSummary = blocks.map((b, i) => `${i + 1}.${getLangLabel(b.getAttribute('data-lang') || targetLang).split(' (')[0]}`).join(' → ');
 
             for (let i = 0; i < blocks.length; i++) {
                 if (myToken !== playbackToken) break;
                 const lang = blocks[i].getAttribute('data-lang') || targetLang;
+                const langLabel = getLangLabel(lang);
                 const phrase = unescapeAttr(blocks[i].getAttribute('data-text') || '');
-                showToast(`송출 (${i + 1}/${blocks.length} · ${lang.toUpperCase()})`);
-                await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                const chunks = splitForSmoothSpeech(phrase);
+
+                highlightSpeakingLangBlock(blocks[i]);
+                setMonitorBanner({
+                    mode: 'live',
+                    badgeText: `릴레이 ${i + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
+                    queueText: `순서: ${orderSummary}`,
+                    detailText: phrase
+                });
+
+                await speakChunksWithPauseResume({
+                    chunks,
+                    lang,
+                    rate,
+                    token: myToken,
+                    startChunkIndex: 0
+                });
+
                 if (i < blocks.length - 1 && myToken === playbackToken) {
                     await new Promise(r => setTimeout(r, 220));
                 }
             }
 
-            stopKeepAliveLoop();
             if (myToken === playbackToken) {
                 clearHighlight();
                 stopBroadcastTimer();
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '카드 송출 완료',
+                    queueText: '',
+                    detailText: `선택된 언어(${blocks.length}개) 송출이 완료되었습니다.`
+                });
             }
         }
 
-        async function masterPlay() {
+        async function masterPlay(resumeFromSnapshot = null) {
             const cardEls = Array.from(document.querySelectorAll('.card-item'));
-            if (cardEls.length === 0) { showToast("재생할 항목이 없습니다."); return; }
+            if (cardEls.length === 0) {
+                showToast("재생할 항목이 없습니다.", { mode: 'idle', badgeText: '재생 항목 없음' });
+                return;
+            }
 
+            const isResuming = Boolean(resumeFromSnapshot);
             masterStop(true);
             const myToken = ++playbackToken;
             isPlayingQueue = true;
             isPausedQueue = false;
             updatePauseResumeUI();
-            startBroadcastTimer(true);
-            startKeepAliveLoop();
+            startBroadcastTimer(!isResuming);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
+            const startCardIdx = isResuming ? Math.min(resumeFromSnapshot.cardIndex, cardEls.length - 1) : 0;
 
-            for (let idx = 0; idx < cardEls.length; idx++) {
-                if (!isPlayingQueue || myToken !== playbackToken) break;
-                while (isPausedQueue && isPlayingQueue && myToken === playbackToken) {
-                    await new Promise(r => setTimeout(r, 150));
-                }
+            for (let idx = startCardIdx; idx < cardEls.length; idx++) {
                 if (!isPlayingQueue || myToken !== playbackToken) break;
 
                 const el = cardEls[idx];
                 highlightCard(idx, cardEls.length);
 
                 const blocks = Array.from(el.querySelectorAll('.relay-card-block'));
-                for (let lIdx = 0; lIdx < blocks.length; lIdx++) {
-                    if (!isPlayingQueue || myToken !== playbackToken) break;
-                    while (isPausedQueue && isPlayingQueue && myToken === playbackToken) {
-                        await new Promise(r => setTimeout(r, 150));
-                    }
+                const startLangIdx = (isResuming && idx === startCardIdx)
+                    ? Math.min(resumeFromSnapshot.langIndex, Math.max(0, blocks.length - 1))
+                    : 0;
+                const orderSummary = blocks.map((b, i) => `${i + 1}.${getLangLabel(b.getAttribute('data-lang') || targetLang).split(' (')[0]}`).join(' → ');
+
+                for (let lIdx = startLangIdx; lIdx < blocks.length; lIdx++) {
                     if (!isPlayingQueue || myToken !== playbackToken) break;
 
                     const lang = blocks[lIdx].getAttribute('data-lang') || targetLang;
+                    const langLabel = getLangLabel(lang);
                     const phrase = unescapeAttr(blocks[lIdx].getAttribute('data-text') || '');
+                    const chunks = splitForSmoothSpeech(phrase);
+                    const startChunkIdx = (isResuming && idx === startCardIdx && lIdx === startLangIdx)
+                        ? Math.min(resumeFromSnapshot.chunkIndex, Math.max(0, chunks.length - 1))
+                        : 0;
 
-                    showToast(`[순차 방송 ${idx + 1}/${cardEls.length} · ${lang.toUpperCase()}] 송출 중...`);
-                    await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                    highlightSpeakingLangBlock(blocks[lIdx]);
+                    setMonitorBanner({
+                        mode: 'live',
+                        badgeText: `릴레이 ${lIdx + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
+                        queueText: `항목 ${idx + 1}/${cardEls.length} · ${orderSummary}`,
+                        detailText: phrase
+                    });
+
+                    const res = await speakChunksWithPauseResume({
+                        chunks,
+                        lang,
+                        rate,
+                        token: myToken,
+                        startChunkIndex: startChunkIdx,
+                        onPauseSnapshot: (cIdx) => {
+                            pauseSnapshot = {
+                                cardIndex: idx,
+                                langIndex: lIdx,
+                                chunkIndex: cIdx,
+                                lang,
+                                langLabel,
+                                phrase,
+                                queueText: `항목 ${idx + 1}/${cardEls.length} · ${orderSummary}`
+                            };
+                        },
+                        onResume: () => {
+                            highlightCard(idx, cardEls.length);
+                            highlightSpeakingLangBlock(blocks[lIdx]);
+                            setMonitorBanner({
+                                mode: 'live',
+                                badgeText: `릴레이 ${lIdx + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
+                                queueText: `항목 ${idx + 1}/${cardEls.length} · ${orderSummary}`,
+                                detailText: phrase
+                            });
+                        }
+                    });
+
+                    if (res.status === 'cancelled' || myToken !== playbackToken) break;
+
                     if (lIdx < blocks.length - 1 && isPlayingQueue && myToken === playbackToken) {
                         await new Promise(r => setTimeout(r, 220));
                     }
                 }
             }
 
-            stopKeepAliveLoop();
             if (myToken === playbackToken) {
                 isPlayingQueue = false;
                 isPausedQueue = false;
+                pauseSnapshot = null;
                 updatePauseResumeUI();
                 clearHighlight();
                 stopBroadcastTimer();
-                showToast("전체 순차 방송이 완료되었습니다.");
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '순차 방송 완료',
+                    queueText: '',
+                    detailText: '전체 항목 및 선택 언어의 순차 방송이 완료되었습니다.'
+                });
             }
         }
 
         function masterPauseResume() {
-            if (!isPlayingQueue) { showToast("재생 중인 큐가 없습니다."); return; }
+            if (!isPlayingQueue && !pauseSnapshot) {
+                showToast("일시정지하거나 이어재생할 순차 방송 큐가 없습니다.", { mode: 'idle', badgeText: '대기 중' });
+                return;
+            }
 
             if (!isPausedQueue) {
                 isPausedQueue = true;
+                if (!pauseSnapshot) {
+                    const activeCard = document.querySelector('.card-item.active-broadcasting');
+                    const cardIndex = activeCard ? Number(activeCard.getAttribute('data-index') || 0) : 0;
+                    const activeLangBlock = activeCard ? activeCard.querySelector('.relay-card-block.active-speaking-lang') : null;
+                    const blocks = activeCard ? Array.from(activeCard.querySelectorAll('.relay-card-block')) : [];
+                    const langIndex = activeLangBlock ? Math.max(0, blocks.indexOf(activeLangBlock)) : 0;
+                    const lang = activeLangBlock ? (activeLangBlock.getAttribute('data-lang') || targetLang) : targetLang;
+                    const phrase = activeLangBlock ? unescapeAttr(activeLangBlock.getAttribute('data-text') || '') : '';
+                    pauseSnapshot = {
+                        cardIndex,
+                        langIndex,
+                        chunkIndex: 0,
+                        lang,
+                        langLabel: getLangLabel(lang),
+                        phrase,
+                        queueText: `항목 ${cardIndex + 1} · 언어 ${langIndex + 1}/${Math.max(1, blocks.length)}`
+                    };
+                }
                 if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
                 try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
                 pauseBroadcastTimer();
-                showToast("순차 재생이 일시정지되었습니다.");
+                updatePauseResumeUI();
+                setMonitorBanner({
+                    mode: 'paused',
+                    badgeText: `일시정지 · ${pauseSnapshot.langLabel} [${pauseSnapshot.lang.toUpperCase()}]`,
+                    queueText: pauseSnapshot.queueText,
+                    detailText: `일시정지됨 (이어재생 시 현재 문장부터 다시 읽습니다): ${pauseSnapshot.phrase}`
+                });
             } else {
+                const snap = pauseSnapshot;
                 isPausedQueue = false;
-                startBroadcastTimer(false);
-                showToast("재생을 재개합니다.");
+                updatePauseResumeUI();
+                if (!isPlayingQueue && snap) {
+                    masterPlay(snap);
+                } else {
+                    startBroadcastTimer(false);
+                }
             }
-            updatePauseResumeUI();
         }
 
         function updatePauseResumeUI() {
@@ -1984,13 +2343,21 @@
             playbackToken++;
             isPlayingQueue = false;
             isPausedQueue = false;
-            stopKeepAliveLoop();
+            isSpeakingActive = false;
+            pauseSnapshot = null;
             if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
             updatePauseResumeUI();
             try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
             clearHighlight();
             stopBroadcastTimer();
-            if (!silent) showToast("방송이 중지되었습니다.");
+            if (!silent) {
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '전체 정지됨',
+                    queueText: '',
+                    detailText: '브로드캐스트 송출이 완전히 정지되었습니다.'
+                });
+            }
         }
 
         async function updateCustomTranslation() {
@@ -2002,7 +2369,7 @@
             if (langs.length > 1) {
                 const lines = await Promise.all(langs.map(async (lang, idx) => {
                     const tr = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
-                    return `${idx + 1}. [${lang.toUpperCase()}] ${tr}`;
+                    return `${idx + 1}. [${getLangLabel(lang)}] ${tr}`;
                 }));
                 outputDiv.innerText = lines.join('\n\n');
             } else {
@@ -2015,12 +2382,12 @@
             committedSpeechText = '';
             document.getElementById('customKoInput').value = '';
             document.getElementById('customTranslatedOutput').innerText = "(번역 결과 대기 중...)";
-            showToast("통역기 내용이 삭제되었습니다.");
+            showToast("즉석 통역기 입력 내용이 삭제되었습니다.", { mode: 'idle', badgeText: '입력 삭제됨' });
         }
 
         function refreshCustomInterpreter() {
             updateCustomTranslation();
-            showToast("통역기가 새로고침되었습니다.");
+            showToast("즉석 통역기 번역이 새로고침되었습니다.", { mode: 'idle', badgeText: '번역 갱신됨' });
         }
 
         function saveCustomInterpreterAsTab() {
@@ -2028,7 +2395,7 @@
             const transText = document.getElementById('customTranslatedOutput').innerText.trim();
 
             if (!koText || transText.startsWith("(")) {
-                showToast("저장할 통역 내용이 없습니다.");
+                showToast("저장할 통역 내용이 없습니다.", { mode: 'idle', badgeText: '저장할 내용 없음' });
                 return;
             }
 
@@ -2049,12 +2416,15 @@
 
             renderDynamicTabs();
             filterCategory(newCatId);
-            showToast(`'${customTitle}' 탭으로 영구 저장되었습니다!`);
+            showToast(`'${customTitle}' 탭으로 영구 저장되었습니다.`, { mode: 'idle', badgeText: '메모 탭 저장됨' });
         }
 
         async function playCustomSpeech() {
             const koText = document.getElementById('customKoInput').value.trim();
-            if (!koText) { showToast("송출할 텍스트를 입력해 주세요."); return; }
+            if (!koText) {
+                showToast("송출할 한국어 텍스트를 입력해 주세요.", { mode: 'idle', badgeText: '입력 내용 없음' });
+                return;
+            }
 
             if (isRecognizing && recognition) {
                 isRecognizing = false;
@@ -2065,32 +2435,47 @@
             masterStop(true);
             const myToken = ++playbackToken;
             startBroadcastTimer(true);
-            startKeepAliveLoop();
 
             const langs = getBroadcastLangList();
             const rate = parseFloat(speechRateSelect.value) || 1.0;
+            const orderSummary = langs.map((c, idx) => `${idx + 1}.${getLangLabel(c).split(' (')[0]}`).join(' → ');
 
             for (let i = 0; i < langs.length; i++) {
                 if (myToken !== playbackToken) break;
                 const lang = langs[i];
+                const langLabel = getLangLabel(lang);
                 const phrase = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
-                showToast(`즉석 통역 송출 (${i + 1}/${langs.length} · ${lang.toUpperCase()})`);
-                await speakPhraseSmoothly(phrase, lang, rate, myToken);
+                const chunks = splitForSmoothSpeech(phrase);
+
+                setMonitorBanner({
+                    mode: 'live',
+                    badgeText: `즉석 송출 ${i + 1}/${langs.length} · ${langLabel} [${lang.toUpperCase()}]`,
+                    queueText: `순서: ${orderSummary}`,
+                    detailText: phrase
+                });
+
+                await speakChunksWithPauseResume({
+                    chunks,
+                    lang,
+                    rate,
+                    token: myToken,
+                    startChunkIndex: 0
+                });
+
                 if (i < langs.length - 1 && myToken === playbackToken) {
                     await new Promise(r => setTimeout(r, 220));
                 }
             }
 
-            stopKeepAliveLoop();
             if (myToken === playbackToken) {
                 stopBroadcastTimer();
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '즉석 송출 완료',
+                    queueText: '',
+                    detailText: `즉석 통역 송출(${langs.length}개 언어)이 완료되었습니다.`
+                });
             }
-        }
-
-        function showToast(msg) {
-            toastMsg.innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 2500);
         }
 
         function escapeHtml(str) {
