@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Global Guide Master - 김시민호 실시간 통·번역 & 브로드캐스트 시스템</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,17 +25,23 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, sans-serif; }
 
+        html {
+            touch-action: manipulation;
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px 14px;
             font-size: 15px;
+            touch-action: manipulation;
+            overflow-x: auto;
         }
 
         body.resizing-panels {
@@ -142,7 +148,7 @@
             color: #1e3a8a;
             border: 1px solid #93c5fd;
             border-radius: 999px;
-            padding: 3px 10px;
+            padding: 4px 11px;
             font-size: 12px;
             font-weight: 800;
         }
@@ -151,9 +157,9 @@
             color: #dc2626;
             border: none;
             border-radius: 50%;
-            width: 17px;
-            height: 17px;
-            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            font-size: 13px;
             font-weight: 900;
             line-height: 1;
             cursor: pointer;
@@ -166,17 +172,18 @@
             color: #ffffff;
         }
 
-        .cat-btn { padding: 7px 13px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
+        .cat-btn { padding: 8px 13px; min-height: 36px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
         .cat-btn:hover { background: #f1f5f9; color: var(--text-main); }
         .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
         .custom-tab-btn { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
         .custom-tab-btn.active { background: #9333ea; color: #ffffff; border-color: #9333ea; }
-        .tab-del-btn { opacity: 0.8; font-size: 13px; margin-left: 6px; padding: 0 5px; border-radius: 4px; }
+        .tab-del-btn { opacity: 0.85; font-size: 14px; margin-left: 6px; padding: 0 6px; border-radius: 4px; }
         .tab-del-btn:hover { background: rgba(239, 68, 68, 0.2); color: #ef4444; opacity: 1; }
 
         select {
-            padding: 7px 11px;
+            padding: 8px 11px;
+            min-height: 36px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             font-size: 13.5px;
@@ -189,7 +196,7 @@
         .multi-lang-popover {
             display: none;
             position: absolute;
-            top: 42px;
+            top: 44px;
             right: 0;
             width: 390px;
             max-height: 480px;
@@ -204,8 +211,8 @@
         .multi-lang-popover.open { display: block; }
         .relay-search-input {
             width: 100%;
-            padding: 6px 10px !important;
-            font-size: 12.5px !important;
+            padding: 7px 10px !important;
+            font-size: 13px !important;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             margin-bottom: 8px;
@@ -226,7 +233,7 @@
             background: #ffffff;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            padding: 4px 8px;
+            padding: 5px 8px;
             margin-top: 4px;
             font-size: 12px;
             font-weight: 700;
@@ -235,7 +242,7 @@
             background: #f1f5f9;
             border: 1px solid #cbd5e1;
             border-radius: 4px;
-            padding: 2px 6px;
+            padding: 3px 7px;
             font-size: 11px;
             font-weight: 800;
             cursor: pointer;
@@ -247,7 +254,7 @@
             background: #fee2e2;
             border: 1px solid #fca5a5;
             border-radius: 4px;
-            padding: 2px 6px;
+            padding: 3px 7px;
             font-size: 11px;
             font-weight: 800;
             cursor: pointer;
@@ -259,9 +266,9 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            padding: 5px 6px;
+            padding: 6px 6px;
             border-radius: 6px;
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
         }
@@ -269,14 +276,13 @@
         .voice-avail-badge {
             font-size: 10.5px;
             font-weight: 700;
-            padding: 1px 6px;
+            padding: 2px 6px;
             border-radius: 999px;
             flex-shrink: 0;
         }
         .voice-ok { background: #dcfce7; color: #166534; }
         .voice-cloud { background: #e0f2fe; color: #0369a1; }
 
-        /* 고대비 라이트/골드/앰버 송출 모니터 */
         .active-broadcast-monitor {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             color: #0f172a;
@@ -384,8 +390,8 @@
             color: #0369a1;
             border: 1px solid #bae6fd;
             border-radius: 6px;
-            padding: 3px 8px;
-            font-size: 11.5px;
+            padding: 5px 9px;
+            font-size: 12px;
             font-weight: 800;
             cursor: pointer;
             display: inline-flex;
@@ -430,9 +436,9 @@
             background: #ffffff;
             border: 1px solid #cbd5e1;
             color: #334155;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 700;
-            padding: 2px 7px;
+            padding: 3px 8px;
             border-radius: 5px;
             cursor: pointer;
             display: inline-flex;
@@ -443,7 +449,7 @@
 
         .workspace { display: flex; gap: 0; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
 
-        .panel { flex: 1 1 50%; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 0; height: 100%; min-width: 0; overflow: hidden; }
+        .panel { flex: 1 1 50%; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 420px; min-width: 0; }
         .panel-translator { border-top: 6px solid var(--primary); }
         .panel-interpreter { border-top: 6px solid var(--accent); }
 
@@ -467,7 +473,7 @@
             color: #0f172a;
             border: 1px solid #94a3b8;
             border-radius: 7px;
-            padding: 4px 9px;
+            padding: 5px 10px;
             font-size: 12px;
             font-weight: 800;
             cursor: pointer;
@@ -480,14 +486,13 @@
         .panel-collapse-btn:hover { background: #e2e8f0; }
 
         .panel-splitter {
-            width: 14px;
-            flex: 0 0 14px;
+            width: 16px;
+            flex: 0 0 16px;
             cursor: col-resize;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            touch-action: none;
         }
         .panel-splitter::before {
             content: '';
@@ -547,7 +552,7 @@
             border: 2px dashed #60a5fa;
             background-color: #eff6ff;
             border-radius: var(--radius-md);
-            padding: 11px 14px;
+            padding: 12px 14px;
             text-align: center;
             cursor: pointer;
             margin-bottom: 10px;
@@ -617,9 +622,10 @@
             padding: 12px 14px;
             font-size: 15px;
             font-weight: 500;
+            touch-action: manipulation;
         }
         #customKoInput {
-            resize: none;
+            resize: vertical;
             flex: 1;
             min-height: 110px;
         }
@@ -650,7 +656,7 @@
             flex-direction: column;
             gap: 12px;
             padding-right: 4px;
-            min-height: 0;
+            min-height: 180px;
         }
         .card-scroll-container::-webkit-scrollbar { width: 8px; }
         .card-scroll-container::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -665,13 +671,103 @@
             grid-template-columns: 1fr 1fr;
             gap: 14px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
         .dual-card.active-broadcasting {
             border: 3px solid #eab308;
             background: #fefce8 !important;
             box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
         }
+        .dual-card.is-selected-for-skip {
+            border-color: #2563eb;
+            background: #f8fbff;
+        }
+        .dual-card.is-skipped {
+            background: #f1f5f9;
+            border-style: dashed;
+            border-color: #94a3b8;
+            opacity: 0.68;
+        }
+        .dual-card.is-skipped .card-text {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .select-card-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #1e293b;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .select-card-label input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            accent-color: #2563eb;
+        }
+
+        .skip-toggle-btn {
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #6ee7b7;
+            border-radius: 6px;
+            padding: 4px 9px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .skip-toggle-btn:hover { background: #d1fae5; }
+        .skip-toggle-btn.skipped {
+            background: #fee2e2;
+            color: #b91c1c;
+            border-color: #fca5a5;
+        }
+        .skip-toggle-btn.skipped:hover { background: #fecaca; }
+
+        .queue-mini-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .mini-action-link {
+            background: #ffffff;
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 9px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .mini-action-link:hover { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+        .mini-action-link.skip-selected {
+            background: #fef2f2;
+            color: #b91c1c;
+            border-color: #fca5a5;
+        }
+        .mini-action-link.skip-selected:hover { background: #fee2e2; }
+        .mini-action-link.include-selected {
+            background: #ecfdf5;
+            color: #047857;
+            border-color: #6ee7b7;
+        }
+        .mini-action-link.include-selected:hover { background: #d1fae5; }
 
         .card-pane { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-width: 0; }
         .card-pane-original { border-right: 1px solid #cbd5e1; padding-right: 14px; }
@@ -682,7 +778,7 @@
 
         .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; font-size: 12.5px; flex-wrap: wrap; }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary); color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-weight: 800; transition: 0.2s; gap: 6px; white-space: nowrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary); color: white; border: none; padding: 9px 14px; min-height: 38px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-weight: 800; transition: 0.2s; gap: 6px; white-space: nowrap; }
         .btn:hover { background-color: var(--primary-hover); }
         .btn-danger { background-color: #ef4444; }
         .btn-danger:hover { background-color: #dc2626; }
@@ -696,9 +792,12 @@
         .btn-purple:hover { background-color: #7e22ce; }
         .btn-emerald { background-color: #059669; color: #ffffff; }
         .btn-emerald:hover { background-color: #047857; }
+        .btn-sky { background-color: #0284c7; color: #ffffff; }
+        .btn-sky:hover { background-color: #0369a1; }
 
         .mic-btn {
-            padding: 4px 10px;
+            padding: 5px 11px;
+            min-height: 32px;
             font-size: 12px;
             border-radius: 6px;
             background-color: #2563eb;
@@ -777,7 +876,7 @@
             .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
             .workspace { flex-direction: column; height: auto; gap: 12px; }
             .panel-splitter { display: none; }
-            .panel { height: auto; flex: none !important; width: 100% !important; }
+            .panel { height: auto; flex: none !important; width: 100% !important; min-height: 0; }
             .panel.panel-collapsed {
                 height: auto !important;
                 padding: 12px 16px;
@@ -792,7 +891,7 @@
                 writing-mode: horizontal-tb;
             }
             #customKoInput, #customTranslatedOutput { min-height: 110px; }
-            .card-scroll-container { max-height: 65vh; }
+            .card-scroll-container { max-height: none; }
         }
 
         @media (max-width: 640px) {
@@ -822,12 +921,12 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>좌우 패널 너비 조절 · 좌/우 패널 접기/펴기 · 100여 개국 전 언어 음성 송출</p>
+                <p>핀치 줌 지원 · 선택 항목 건너뛰기 · 좌우 패널 너비 조절 · 100여 개국 전 언어 음성 송출</p>
             </div>
         </div>
         <div class="header-status-group">
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-blue-600"></i> <span id="liveClockText">2026-11-26 (목) 17:56:00</span>
+                <i class="fa-regular fa-clock text-blue-600"></i> <span id="liveClockText">2026-11-27 (금) 00:07:00</span>
             </div>
         </div>
     </header>
@@ -993,14 +1092,26 @@
 
             <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 10px; flex-shrink: 0;">
                 <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-                    <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 (연속 자동 방송 제어)</span>
-                    <span id="liveBroadcastLangTag" style="font-size:12px; color:#1d4ed8; font-weight:800;"></span>
+                    <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 & 선택 건너뛰기 (<span id="selectedSkipCountText">선택 0개</span>)</span>
+                    <div class="queue-mini-actions">
+                        <button type="button" onclick="toggleSelectAllForSkip()" class="mini-action-link" title="현재 화면의 모든 항목 선택/선택해제">
+                            <i class="fa-regular fa-square-check"></i> 전체 선택
+                        </button>
+                        <button type="button" onclick="applySkipToSelected(true)" class="mini-action-link skip-selected" title="체크한 항목들을 송출 건너뛰기로 설정">
+                            <i class="fa-solid fa-forward-step"></i> 선택한 건 건너뛰기
+                        </button>
+                        <button type="button" onclick="applySkipToSelected(false)" class="mini-action-link include-selected" title="체크한 항목들을 송출 포함으로 복구">
+                            <i class="fa-solid fa-check"></i> 선택한 건 포함
+                        </button>
+                        <span id="liveBroadcastLangTag" style="font-size:12px; color:#1d4ed8; font-weight:800;"></span>
+                    </div>
                 </div>
                 <div class="playback-controls" style="margin-bottom: 0; display:flex; gap:8px; flex-wrap: wrap;">
                     <button type="button" onclick="masterPlay()" class="btn" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-play"></i> 순차 재생</button>
+                    <button type="button" onclick="skipCurrentItemNow()" class="btn btn-sky" style="flex:1; padding:9px 10px; font-size:13.5px;" title="현재 송출 중인 항목을 즉시 멈추고 다음 송출 대상 항목으로 이동"><i class="fa-solid fa-forward"></i> 다음 건너뛰기</button>
                     <button type="button" onclick="masterPauseResume()" id="pauseResumeBtn" class="btn btn-warning" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-pause" id="pauseResumeIcon"></i> <span id="pauseResumeText">일시정지</span></button>
                     <button type="button" onclick="masterStop()" class="btn btn-danger" style="flex:1; padding:9px 10px; font-size:13.5px;"><i class="fa-solid fa-stop"></i> 전체 정지</button>
-                    <button type="button" onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:9px 11px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 생성한 항목 초기화</button>
+                    <button type="button" onclick="resetGeneratedItems()" class="btn btn-secondary" style="padding:9px 11px; font-size:13px;" title="새 탭으로 저장된 데이터는 유지하고 현재 우측 패널 화면만 비움"><i class="fa-solid fa-folder-minus"></i> 화면 비우기</button>
                     <button type="button" onclick="resetAllData()" class="btn btn-dark-danger" style="padding:9px 11px; font-size:13px;" title="저장된 모든 탭 및 전체 데이터 완전 삭제"><i class="fa-solid fa-trash-can"></i> 전체 초기화</button>
                 </div>
             </div>
@@ -1027,9 +1138,9 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v50',
-            CATS: 'kim_simin_categories_v50',
-            RELAY: 'kim_simin_relay_langs_v50'
+            DATA: 'kim_simin_guide_master_v52',
+            CATS: 'kim_simin_categories_v52',
+            RELAY: 'kim_simin_relay_langs_v52'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -1037,25 +1148,29 @@
                 id: 1001,
                 category: 'safety',
                 titleKo: '승선 안전 및 구명조끼 안내',
-                contentKo: '승객 여러분께서는 운항 중 갑판 난간을 꼭 잡아주시고, 구명조끼 보관 위치와 착용 방법을 미리 확인해 주시기 바랍니다.'
+                contentKo: '승객 여러분께서는 운항 중 갑판 난간을 꼭 잡아주시고, 구명조끼 보관 위치와 착용 방법을 미리 확인해 주시기 바랍니다.',
+                skip: false
             },
             {
                 id: 1002,
                 category: 'history',
                 titleKo: '진주성과 촉석루 소개',
-                contentKo: '강변 언덕 위에 자리한 진주성은 임진왜란 진주대첩의 역사를 간직하고 있으며, 남강과 어우러진 촉석루의 풍경이 아름답습니다.'
+                contentKo: '강변 언덕 위에 자리한 진주성은 임진왜란 진주대첩의 역사를 간직하고 있으며, 남강과 어우러진 촉석루의 풍경이 아름답습니다.',
+                skip: false
             },
             {
                 id: 1003,
                 category: 'tour',
                 titleKo: '물빛나루쉼터 ~ 경남문화예술회관 코스',
-                contentKo: '지금 김시민호는 물빛나루쉼터를 출발해 남강 수변을 따라 경남문화예술회관 방면으로 순항하고 있습니다.'
+                contentKo: '지금 김시민호는 물빛나루쉼터를 출발해 남강 수변을 따라 경남문화예술회관 방면으로 순항하고 있습니다.',
+                skip: false
             },
             {
                 id: 1004,
                 category: 'emergency',
                 titleKo: '비상 상황 행동 요령',
-                contentKo: '비상 상황 발생 시 당황하지 마시고 승무원과 안내 방송의 지시에 따라 구명조끼를 착용한 뒤 지정된 집결 위치로 이동해 주십시오.'
+                contentKo: '비상 상황 발생 시 당황하지 마시고 승무원과 안내 방송의 지시에 따라 구명조끼를 착용한 뒤 지정된 집결 위치로 이동해 주십시오.',
+                skip: false
             }
         ];
 
@@ -1212,8 +1327,8 @@
                 const clamped = Math.max(0.2, Math.min(0.8, leftRatio));
                 const leftPct = (clamped * 100).toFixed(2);
                 const rightPct = ((1 - clamped) * 100).toFixed(2);
-                leftPanel.style.flex = `0 0 calc(${leftPct}% - 7px)`;
-                rightPanel.style.flex = `0 0 calc(${rightPct}% - 7px)`;
+                leftPanel.style.flex = `0 0 calc(${leftPct}% - 8px)`;
+                rightPanel.style.flex = `0 0 calc(${rightPct}% - 8px)`;
             }
 
             leftIcon.className = isLeftCollapsed ? 'fa-solid fa-chevron-right' : 'fa-solid fa-chevron-left';
@@ -1249,14 +1364,20 @@
             let isDragging = false;
 
             const startDrag = (e) => {
+                if (e.touches && e.touches.length > 1) return;
                 if (window.innerWidth <= 1024 || isLeftCollapsed || isRightCollapsed) return;
                 isDragging = true;
                 document.body.classList.add('resizing-panels');
-                e.preventDefault();
+                if (!e.touches) e.preventDefault();
             };
 
             const onDrag = (e) => {
                 if (!isDragging) return;
+                if (e.touches && e.touches.length > 1) {
+                    isDragging = false;
+                    document.body.classList.remove('resizing-panels');
+                    return;
+                }
                 const clientX = e.touches ? e.touches[0].clientX : e.clientX;
                 const rect = workspace.getBoundingClientRect();
                 if (rect.width <= 0) return;
@@ -1272,9 +1393,9 @@
             };
 
             splitter.addEventListener('mousedown', startDrag);
-            splitter.addEventListener('touchstart', startDrag, { passive: false });
+            splitter.addEventListener('touchstart', startDrag, { passive: true });
             window.addEventListener('mousemove', onDrag);
-            window.addEventListener('touchmove', onDrag, { passive: false });
+            window.addEventListener('touchmove', onDrag, { passive: true });
             window.addEventListener('mouseup', stopDrag);
             window.addEventListener('touchend', stopDrag);
 
@@ -1631,6 +1752,7 @@
         let guideData = [];
         let savedCustomCategories = [];
         let stagedItems = null;
+        let selectedForSkipIds = new Set();
         let targetLang = 'en';
         let relayLangs = [];
         let currentCategory = 'all';
@@ -1825,18 +1947,24 @@
         function loadData() {
             const savedData =
                 localStorage.getItem(STORAGE_KEYS.DATA) ||
+                localStorage.getItem('kim_simin_guide_master_v51') ||
+                localStorage.getItem('kim_simin_guide_master_v50') ||
                 localStorage.getItem('kim_simin_guide_master_v49') ||
                 localStorage.getItem('kim_simin_guide_master_v48') ||
                 localStorage.getItem('kim_simin_guide_master_v47');
 
             const savedCats =
                 localStorage.getItem(STORAGE_KEYS.CATS) ||
+                localStorage.getItem('kim_simin_categories_v51') ||
+                localStorage.getItem('kim_simin_categories_v50') ||
                 localStorage.getItem('kim_simin_categories_v49') ||
                 localStorage.getItem('kim_simin_categories_v48') ||
                 localStorage.getItem('kim_simin_categories_v47');
 
             const savedRelay =
                 localStorage.getItem(STORAGE_KEYS.RELAY) ||
+                localStorage.getItem('kim_simin_relay_langs_v51') ||
+                localStorage.getItem('kim_simin_relay_langs_v50') ||
                 localStorage.getItem('kim_simin_relay_langs_v49') ||
                 localStorage.getItem('kim_simin_relay_langs_v48') ||
                 localStorage.getItem('kim_simin_relay_langs_v47');
@@ -1844,7 +1972,9 @@
             if (savedData !== null) {
                 try {
                     const parsed = JSON.parse(savedData);
-                    guideData = Array.isArray(parsed) ? parsed : [...DEFAULT_SEED_DATA];
+                    guideData = Array.isArray(parsed)
+                        ? parsed.map(item => ({ ...item, skip: Boolean(item.skip) }))
+                        : [...DEFAULT_SEED_DATA];
                 } catch (e) {
                     guideData = [...DEFAULT_SEED_DATA];
                 }
@@ -1875,6 +2005,178 @@
             localStorage.setItem(STORAGE_KEYS.DATA, JSON.stringify(guideData));
             localStorage.setItem(STORAGE_KEYS.CATS, JSON.stringify(savedCustomCategories));
             localStorage.setItem(STORAGE_KEYS.RELAY, JSON.stringify(relayLangs));
+        }
+
+        function findItemById(id) {
+            const numericId = Number(id);
+            const inGuide = guideData.find(i => Number(i.id) === numericId);
+            if (inGuide) return inGuide;
+            if (Array.isArray(stagedItems)) {
+                return stagedItems.find(i => Number(i.id) === numericId) || null;
+            }
+            return null;
+        }
+
+        function updateSelectedSkipBadge() {
+            const el = document.getElementById('selectedSkipCountText');
+            if (!el) return;
+            const visibleIds = Array.from(document.querySelectorAll('#splitContainer .card-item'))
+                .map(card => Number(card.getAttribute('data-id')));
+            const visibleSelectedCount = visibleIds.filter(id => selectedForSkipIds.has(id)).length;
+            el.innerText = `선택 ${visibleSelectedCount}개`;
+        }
+
+        function toggleSelectItemForSkip(id, checked) {
+            const numericId = Number(id);
+            if (checked) selectedForSkipIds.add(numericId);
+            else selectedForSkipIds.delete(numericId);
+
+            const cardEl = document.querySelector(`.card-item[data-id="${numericId}"]`);
+            if (cardEl) {
+                cardEl.classList.toggle('is-selected-for-skip', checked);
+            }
+            updateSelectedSkipBadge();
+        }
+
+        function toggleSelectAllForSkip() {
+            const visibleCards = Array.from(document.querySelectorAll('#splitContainer .card-item'));
+            if (visibleCards.length === 0) return;
+
+            const visibleIds = visibleCards.map(c => Number(c.getAttribute('data-id')));
+            const allChecked = visibleIds.every(id => selectedForSkipIds.has(id));
+
+            if (allChecked) {
+                visibleIds.forEach(id => selectedForSkipIds.delete(id));
+            } else {
+                visibleIds.forEach(id => selectedForSkipIds.add(id));
+            }
+
+            visibleCards.forEach(card => {
+                const id = Number(card.getAttribute('data-id'));
+                const isChecked = selectedForSkipIds.has(id);
+                const cb = card.querySelector('.skip-select-checkbox');
+                if (cb) cb.checked = isChecked;
+                card.classList.toggle('is-selected-for-skip', isChecked);
+            });
+
+            updateSelectedSkipBadge();
+            showToast(
+                allChecked ? "현재 화면 항목 선택을 모두 해제했습니다." : `현재 화면 ${visibleIds.length}개 항목을 모두 선택했습니다.`,
+                { mode: 'idle', badgeText: allChecked ? '선택 해제' : `${visibleIds.length}개 선택됨` }
+            );
+        }
+
+        function applySkipToSelected(shouldSkip) {
+            const visibleCards = Array.from(document.querySelectorAll('#splitContainer .card-item'));
+            const targetIds = visibleCards
+                .map(c => Number(c.getAttribute('data-id')))
+                .filter(id => selectedForSkipIds.has(id));
+
+            if (targetIds.length === 0) {
+                showToast("먼저 건너뛰기 또는 송출 포함을 적용할 항목 체크박스를 선택해 주세요.", {
+                    mode: 'idle',
+                    badgeText: '선택 항목 없음'
+                });
+                return;
+            }
+
+            const activeCard = document.querySelector('#splitContainer .card-item.active-broadcasting');
+            const activeId = activeCard ? Number(activeCard.getAttribute('data-id')) : null;
+            const stoppingActive = shouldSkip && activeId && targetIds.includes(activeId) && isPlayingQueue;
+
+            targetIds.forEach(id => {
+                const item = findItemById(id);
+                if (!item) return;
+                item.skip = Boolean(shouldSkip);
+                if (guideData.some(g => Number(g.id) === id)) saveData();
+            });
+
+            targetIds.forEach(id => selectedForSkipIds.delete(id));
+
+            if (stoppingActive) {
+                skipCurrentItemNow();
+                return;
+            }
+
+            renderDualPanes();
+            showToast(
+                shouldSkip
+                    ? `선택한 ${targetIds.length}개 항목을 송출 건너뛰기로 설정했습니다.`
+                    : `선택한 ${targetIds.length}개 항목을 송출 대상에 포함했습니다.`,
+                { mode: 'idle', badgeText: shouldSkip ? `${targetIds.length}개 건너뛰기` : `${targetIds.length}개 포함` }
+            );
+        }
+
+        function toggleSkipItem(id, event = null) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            const item = findItemById(id);
+            if (!item) return;
+
+            item.skip = !Boolean(item.skip);
+            if (guideData.some(i => Number(i.id) === Number(id))) {
+                saveData();
+            }
+
+            const cardEl = document.querySelector(`.card-item[data-id="${Number(id)}"]`);
+            const isCurrentlyPlayingThis = cardEl && cardEl.classList.contains('active-broadcasting');
+
+            if (item.skip && isCurrentlyPlayingThis && isPlayingQueue) {
+                skipCurrentItemNow();
+                return;
+            }
+
+            renderDualPanes();
+            showToast(
+                item.skip
+                    ? `'${item.titleKo}' 항목이 송출 건너뛰기로 지정되었습니다.`
+                    : `'${item.titleKo}' 항목이 송출 대상에 포함되었습니다.`,
+                { mode: 'idle', badgeText: item.skip ? '건너뛰기 지정' : '송출 포함' }
+            );
+        }
+
+        function skipCurrentItemNow() {
+            const cardEls = Array.from(document.querySelectorAll('#splitContainer .card-item'));
+            if (cardEls.length === 0) return;
+
+            const activeCard = document.querySelector('#splitContainer .card-item.active-broadcasting');
+            const currentIdx = activeCard ? Number(activeCard.getAttribute('data-index') || 0) : -1;
+
+            let nextIdx = -1;
+            for (let i = currentIdx + 1; i < cardEls.length; i++) {
+                const id = Number(cardEls[i].getAttribute('data-id'));
+                const item = findItemById(id);
+                if (!item || !item.skip) {
+                    nextIdx = i;
+                    break;
+                }
+            }
+
+            if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
+            stopCloudAudio();
+            try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
+
+            if (nextIdx === -1) {
+                masterStop(true);
+                setMonitorBanner({
+                    mode: 'idle',
+                    badgeText: '남은 항목 없음',
+                    queueText: '',
+                    detailText: '남은 송출 대상 항목이 없어 브로드캐스트를 마쳤습니다.'
+                });
+                return;
+            }
+
+            const skippedSpan = Math.max(0, nextIdx - (currentIdx + 1));
+            masterPlay({ cardIndex: nextIdx, langIndex: 0, chunkIndex: 0 });
+            showToast(
+                skippedSpan > 0
+                    ? `건너뛰기 항목 ${skippedSpan}개를 지나 #${nextIdx + 1} 항목으로 이동했습니다.`
+                    : `#${nextIdx + 1} 항목으로 바로 이동했습니다.`,
+                { mode: 'live', badgeText: `#${nextIdx + 1} 항목으로 이동` }
+            );
         }
 
         function getBroadcastLangList() {
@@ -1922,7 +2224,7 @@
             bar.innerHTML = `
                 <span style="font-size:12px; font-weight:800; color:#1e3a8a;"><i class="fa-solid fa-layer-group"></i> 선택된 릴레이 언어:</span>
                 ${chipsHtml}
-                <button type="button" onclick="clearRelayLangs()" style="margin-left:auto; font-size:11.5px; font-weight:800; color:#dc2626; background:#fee2e2; border:1px solid #fca5a5; border-radius:6px; padding:2px 8px; cursor:pointer;">전체 해제</button>
+                <button type="button" onclick="clearRelayLangs()" style="margin-left:auto; font-size:11.5px; font-weight:800; color:#dc2626; background:#fee2e2; border:1px solid #fca5a5; border-radius:6px; padding:3px 9px; cursor:pointer;">전체 해제</button>
             `;
         }
 
@@ -1932,10 +2234,10 @@
             if (relayLangs.length > 0) {
                 const names = relayLangs.map((c, idx) => `${idx + 1}.${getLangLabel(c).split(' (')[0]}`).join(' → ');
                 labelEl.innerText = `릴레이 (${relayLangs.length}개국)`;
-                if (tagEl) tagEl.innerText = `릴레이 순서: ${names}`;
+                if (tagEl) tagEl.innerText = `릴레이: ${names}`;
             } else {
                 labelEl.innerText = `릴레이: 꺼짐`;
-                if (tagEl) tagEl.innerText = `선택 언어: ${getLangLabel(targetLang)}`;
+                if (tagEl) tagEl.innerText = `언어: ${getLangLabel(targetLang)}`;
             }
             renderSelectedRelayChips();
         }
@@ -2107,7 +2409,8 @@
             renderToken++;
             splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-broom text-3xl text-slate-400 mb-2"></i><br>우측 패널 표시 항목이 비워졌습니다.<br>저장된 탭을 클릭하면 언제든 다시 불러올 수 있습니다.</div>`;
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-info text-slate-500"></i> 화면 비워짐 (0개)`;
-            updateCounterDisplay(0, 0);
+            updateCounterDisplay(0, 0, 0);
+            updateSelectedSkipBadge();
 
             document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             currentCategory = 'cleared';
@@ -2125,17 +2428,18 @@
             if (!ok) return;
 
             Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
-            ['v49', 'v48', 'v47'].forEach(ver => {
+            ['v51', 'v50', 'v49', 'v48', 'v47'].forEach(ver => {
                 localStorage.removeItem(`kim_simin_guide_master_${ver}`);
                 localStorage.removeItem(`kim_simin_categories_${ver}`);
                 localStorage.removeItem(`kim_simin_relay_langs_${ver}`);
             });
 
-            guideData = [...DEFAULT_SEED_DATA];
+            guideData = DEFAULT_SEED_DATA.map(d => ({ ...d }));
             savedCustomCategories = [];
             relayLangs = [];
             translationCache = {};
             stagedItems = null;
+            selectedForSkipIds.clear();
 
             document.getElementById('uploadStagingBox').style.display = 'none';
             document.getElementById('documentTitleInput').value = '';
@@ -2174,6 +2478,7 @@
             if (!ok) return;
 
             masterStop(true);
+            selectedForSkipIds.delete(numericId);
 
             if (inGuide) {
                 guideData = guideData.filter(item => Number(item.id) !== numericId);
@@ -2306,7 +2611,8 @@
                 id: baseSeed + index,
                 category: tempCatId,
                 titleKo: `[${filename}] #${index + 1}`,
-                contentKo: line
+                contentKo: line,
+                skip: false
             }));
 
             const cleanTitle = filename.substring(0, filename.lastIndexOf('.')) || filename;
@@ -2332,6 +2638,7 @@
             stagedItems.forEach((item, idx) => {
                 item.category = newCatId;
                 item.titleKo = `[${customTitle}] #${idx + 1}`;
+                item.skip = Boolean(item.skip);
             });
 
             guideData = [...guideData, ...stagedItems];
@@ -2397,8 +2704,7 @@
 
         async function updateItemText(id, field, value, cardEl = null) {
             const cleaned = (value || '').trim();
-            const item = guideData.find(i => Number(i.id) === Number(id)) ||
-                         (Array.isArray(stagedItems) ? stagedItems.find(i => Number(i.id) === Number(id)) : null);
+            const item = findItemById(id);
             if (!item) return;
 
             if (field === 'title') {
@@ -2759,11 +3065,13 @@
             }
 
             const totalCount = filteredData.length;
+            const activePlayCount = filteredData.filter(item => !item.skip).length;
 
             if (totalCount === 0) {
                 rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 항목 없음 (0개)`;
                 splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-file-circle-exclamation text-3xl text-blue-400 mb-2"></i><br>선택된 탭에 등록된 항목이 없습니다.<br>상단에서 파일을 업로드하거나 즉석 통역을 저장해 보세요!</div>`;
-                updateCounterDisplay(0, 0);
+                updateCounterDisplay(0, 0, 0);
+                updateSelectedSkipBadge();
                 return;
             }
 
@@ -2787,8 +3095,10 @@
 
             splitContainer.innerHTML = '';
             preparedRows.forEach(({ item, index: i, translatedTitle, langBlocks }) => {
+                const isSkipped = Boolean(item.skip);
+                const isSelected = selectedForSkipIds.has(Number(item.id));
                 const rowEl = document.createElement('div');
-                rowEl.className = 'dual-card card-item';
+                rowEl.className = `dual-card card-item${isSkipped ? ' is-skipped' : ''}${isSelected ? ' is-selected-for-skip' : ''}`;
                 rowEl.setAttribute('data-index', i);
                 rowEl.setAttribute('data-id', item.id);
 
@@ -2797,12 +3107,23 @@
                     ? `<i class="fa-solid fa-chevron-down"></i> 펼치기`
                     : `<i class="fa-solid fa-chevron-up"></i> 접기`;
 
+                const skipBtnHtml = isSkipped
+                    ? `<button type="button" class="skip-toggle-btn skipped" onclick="toggleSkipItem(${item.id}, event)" title="송출 건너뛰기 중 · 클릭하면 송출 대상에 포함"><i class="fa-solid fa-forward-step"></i> 건너뛰기 중</button>`
+                    : `<button type="button" class="skip-toggle-btn" onclick="toggleSkipItem(${item.id}, event)" title="클릭하여 시간 맞춤용으로 이 항목 건너뛰기"><i class="fa-solid fa-check"></i> 송출 포함</button>`;
+
                 rowEl.innerHTML = `
                     <div class="card-pane card-pane-original">
                         <div>
                             <div class="card-header">
                                 <span class="text-slate-900 font-extrabold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText, this.closest('.dual-card'))" title="클릭하여 제목 직접 수정 가능">${escapeHtml(item.titleKo)}</span>
-                                <span style="font-family:monospace; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:11.5px; color:#334155; font-weight:700; flex-shrink:0;">#${i + 1} / ${totalCount}</span>
+                                <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                                    <label class="select-card-label" title="선택한 건 건너뛰기 / 포함 일괄 처리용 체크박스">
+                                        <input type="checkbox" class="skip-select-checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelectItemForSkip(${item.id}, this.checked)">
+                                        <span>선택</span>
+                                    </label>
+                                    ${skipBtnHtml}
+                                    <span style="font-family:monospace; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:11.5px; color:#334155; font-weight:700;">#${i + 1} / ${totalCount}</span>
+                                </div>
                             </div>
                             <p class="card-text" contenteditable="true" onblur="updateItemText(${item.id}, 'content', this.innerText, this.closest('.dual-card'))" title="클릭하여 본문 내용 직접 수정 가능">${escapeHtml(item.contentKo)}</p>
                         </div>
@@ -2841,15 +3162,17 @@
                 splitContainer.appendChild(rowEl);
             });
 
-            rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> 항목 준비됨: <b>${totalCount}개</b>`;
-            updateCounterDisplay(totalCount, 0);
+            rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> 송출 <b>${activePlayCount}</b> / ${totalCount}개`;
+            updateCounterDisplay(totalCount, 0, activePlayCount);
+            updateSelectedSkipBadge();
         }
 
-        function updateCounterDisplay(total, current) {
+        function updateCounterDisplay(total, current, activeCount = null) {
+            const playTotal = activeCount !== null ? activeCount : total;
             if (current > 0) {
-                headerCounterBadge.innerHTML = `<i class="fa-solid fa-volume-high text-amber-600 fa-bounce"></i> 방송 중: <b>${current} / ${total}번째 읽는 중</b>`;
+                headerCounterBadge.innerHTML = `<i class="fa-solid fa-volume-high text-amber-600 fa-bounce"></i> 방송 중: <b>${current} / ${total}번째</b>`;
             } else {
-                headerCounterBadge.innerHTML = `<i class="fa-solid fa-list-check text-blue-600"></i> 총 항목: <b>${total}개</b>`;
+                headerCounterBadge.innerHTML = `<i class="fa-solid fa-list-check text-blue-600"></i> 송출 <b>${playTotal}</b> / ${total}개`;
             }
         }
 
@@ -2887,7 +3210,8 @@
             } else {
                 filteredData = guideData.filter(item => item.category === currentCategory);
             }
-            updateCounterDisplay(filteredData.length, 0);
+            const activeCount = filteredData.filter(item => !item.skip).length;
+            updateCounterDisplay(filteredData.length, 0, activeCount);
 
             document.querySelectorAll('.card-item').forEach(el => el.classList.remove('active-broadcasting'));
             clearActiveLangHighlights();
@@ -3005,11 +3329,20 @@
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
             const startCardIdx = isResuming ? Math.min(resumeFromSnapshot.cardIndex, cardEls.length - 1) : 0;
+            let skippedCounter = 0;
 
             for (let idx = startCardIdx; idx < cardEls.length; idx++) {
                 if (!isPlayingQueue || myToken !== playbackToken) break;
 
                 const el = cardEls[idx];
+                const itemId = Number(el.getAttribute('data-id'));
+                const itemObj = findItemById(itemId);
+
+                if (itemObj && itemObj.skip) {
+                    skippedCounter++;
+                    continue;
+                }
+
                 highlightCard(idx, cardEls.length);
 
                 const blocks = Array.from(el.querySelectorAll('.relay-card-block'));
@@ -3033,7 +3366,7 @@
                     setMonitorBanner({
                         mode: 'live',
                         badgeText: `릴레이 ${lIdx + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
-                        queueText: `항목 ${idx + 1}/${cardEls.length} · ${orderSummary}`,
+                        queueText: `항목 ${idx + 1}/${cardEls.length} (건너뜀 ${skippedCounter}개) · ${orderSummary}`,
                         detailText: phrase
                     });
 
@@ -3084,8 +3417,8 @@
                 setMonitorBanner({
                     mode: 'idle',
                     badgeText: '순차 방송 완료',
-                    queueText: '',
-                    detailText: '전체 항목 및 선택 언어의 순차 방송이 완료되었습니다.'
+                    queueText: skippedCounter > 0 ? `건너뛴 항목: ${skippedCounter}개` : '',
+                    detailText: '선택된 송출 대상 항목의 순차 방송이 완료되었습니다.'
                 });
             }
         }
@@ -3234,7 +3567,8 @@
                 id: Date.now(),
                 category: newCatId,
                 titleKo: `[${customTitle}]`,
-                contentKo: koText
+                contentKo: koText,
+                skip: false
             };
 
             guideData.push(newItem);
