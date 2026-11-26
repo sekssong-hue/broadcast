@@ -288,11 +288,11 @@
             color: #0f172a;
             border: 2px solid #64748b;
             border-radius: var(--radius-md);
-            padding: 10px 14px;
-            margin-bottom: 10px;
+            padding: 9px 13px;
+            margin-bottom: 8px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             flex-shrink: 0;
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
         }
@@ -320,9 +320,9 @@
             gap: 6px;
             background: #1d4ed8;
             color: #ffffff;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
-            padding: 4px 11px;
+            padding: 3px 10px;
             border-radius: 999px;
         }
         .active-broadcast-monitor.is-live .monitor-country-pill {
@@ -349,10 +349,10 @@
             color: #7c2d12;
         }
         .monitor-status-msg {
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 800;
             color: #0f172a;
-            line-height: 1.4;
+            line-height: 1.35;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -360,6 +360,16 @@
         }
         .active-broadcast-monitor.is-paused .monitor-status-msg {
             color: #431407;
+        }
+
+        .right-sticky-controls-box {
+            background: #f8fafc;
+            border: 1.5px solid #64748b;
+            border-radius: var(--radius-md);
+            padding: 9px 12px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
         }
 
         .translated-relay-container.collapsed {
@@ -447,11 +457,35 @@
         }
         .copy-mini-btn:hover { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
 
-        .workspace { display: flex; gap: 0; width: 100%; max-width: 1480px; flex: 1; min-height: 0; align-items: stretch; margin-bottom: 4px; }
+        .workspace {
+            display: flex;
+            gap: 0;
+            width: 100%;
+            max-width: 1480px;
+            flex: 1 1 auto;
+            min-height: 0;
+            align-items: stretch;
+            margin-bottom: 4px;
+        }
 
-        .panel { flex: 1 1 50%; background: var(--panel-bg); border-radius: var(--radius-lg); padding: 14px 18px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; min-height: 420px; min-width: 0; }
+        .panel {
+            flex: 1 1 50%;
+            background: var(--panel-bg);
+            border-radius: var(--radius-lg);
+            padding: 14px 18px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            min-width: 0;
+        }
         .panel-translator { border-top: 6px solid var(--primary); }
-        .panel-interpreter { border-top: 6px solid var(--accent); }
+        .panel-interpreter {
+            border-top: 6px solid var(--accent);
+            max-height: calc(100dvh - 138px);
+            overflow: hidden;
+        }
 
         .panel-header-bar {
             display: flex;
@@ -460,7 +494,7 @@
             gap: 8px;
             flex-wrap: wrap;
             flex-shrink: 0;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-size: 16.5px;
             font-weight: 800;
             color: #0f172a;
@@ -511,6 +545,7 @@
         .panel.panel-collapsed {
             padding: 12px 10px;
             align-items: center;
+            max-height: none;
         }
         .panel.panel-collapsed > :not(.panel-header-bar) {
             display: none !important;
@@ -650,13 +685,15 @@
         }
 
         .card-scroll-container {
-            flex: 1;
+            flex: 1 1 auto;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             padding-right: 4px;
-            min-height: 180px;
+            padding-bottom: 36px;
+            min-height: 140px;
+            scroll-behavior: smooth;
         }
         .card-scroll-container::-webkit-scrollbar { width: 8px; }
         .card-scroll-container::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -671,16 +708,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 14px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
         .dual-card.active-broadcasting {
             border: 3px solid #eab308;
             background: #fefce8 !important;
             box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
-        }
-        .dual-card.is-selected-for-skip {
-            border-color: #2563eb;
-            background: #f8fbff;
         }
         .dual-card.is-skipped {
             background: #f1f5f9;
@@ -699,42 +733,29 @@
             gap: 5px;
             font-size: 12px;
             font-weight: 800;
-            color: #1e293b;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
+            color: #991b1b;
+            background: #fef2f2;
+            border: 1.5px solid #fca5a5;
             border-radius: 6px;
             padding: 4px 8px;
             cursor: pointer;
             user-select: none;
+            transition: 0.15s;
+        }
+        .select-card-label:hover {
+            background: #fee2e2;
+        }
+        .select-card-label.checked {
+            background: #dc2626;
+            color: #ffffff;
+            border-color: #b91c1c;
         }
         .select-card-label input[type="checkbox"] {
             width: 15px;
             height: 15px;
             cursor: pointer;
-            accent-color: #2563eb;
+            accent-color: #dc2626;
         }
-
-        .skip-toggle-btn {
-            background: #ecfdf5;
-            color: #047857;
-            border: 1px solid #6ee7b7;
-            border-radius: 6px;
-            padding: 4px 9px;
-            font-size: 11.5px;
-            font-weight: 800;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-        .skip-toggle-btn:hover { background: #d1fae5; }
-        .skip-toggle-btn.skipped {
-            background: #fee2e2;
-            color: #b91c1c;
-            border-color: #fca5a5;
-        }
-        .skip-toggle-btn.skipped:hover { background: #fecaca; }
 
         .queue-mini-actions {
             display: flex;
@@ -756,12 +777,6 @@
             gap: 4px;
         }
         .mini-action-link:hover { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
-        .mini-action-link.skip-selected {
-            background: #fef2f2;
-            color: #b91c1c;
-            border-color: #fca5a5;
-        }
-        .mini-action-link.skip-selected:hover { background: #fee2e2; }
         .mini-action-link.include-selected {
             background: #ecfdf5;
             color: #047857;
@@ -876,9 +891,11 @@
             .toolbar-settings { justify-content: space-between; padding-top: 8px; border-top: 1px solid #cbd5e1; }
             .workspace { flex-direction: column; height: auto; gap: 12px; }
             .panel-splitter { display: none; }
-            .panel { height: auto; flex: none !important; width: 100% !important; min-height: 0; }
+            .panel { height: auto; flex: none !important; width: 100% !important; min-height: 0; max-height: none; overflow: visible; }
+            .panel-interpreter { max-height: 82dvh; overflow: hidden; }
             .panel.panel-collapsed {
                 height: auto !important;
+                max-height: none;
                 padding: 12px 16px;
                 align-items: stretch;
             }
@@ -891,7 +908,7 @@
                 writing-mode: horizontal-tb;
             }
             #customKoInput, #customTranslatedOutput { min-height: 110px; }
-            .card-scroll-container { max-height: none; }
+            .card-scroll-container { max-height: none; flex: 1 1 auto; overflow-y: auto; }
         }
 
         @media (max-width: 640px) {
@@ -911,7 +928,7 @@
             .btn-group-row { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
             .dual-card { grid-template-columns: 1fr; padding: 12px; }
             .card-pane-original { border-right: none; padding-right: 0; border-bottom: 1px solid #cbd5e1; padding-bottom: 12px; }
-            .card-scroll-container { max-height: none; overflow-y: visible; }
+            .card-scroll-container { max-height: none; overflow-y: auto; }
         }
     </style>
 </head>
@@ -921,7 +938,7 @@
         <div class="header-title-area">
             <div>
                 <h1><i class="fa-solid fa-ship text-blue-600"></i> 김시민호 AI 브로드캐스트 통합 콘솔</h1>
-                <p>핀치 줌 지원 · 선택 항목 건너뛰기 · 좌우 패널 너비 조절 · 100여 개국 전 언어 음성 송출</p>
+                <p>핀치 줌 지원 · 체크 즉시 실시간 건너뛰기 · 원문 수정 즉시 재번역 · 제어바 상단 고정</p>
             </div>
         </div>
         <div class="header-status-group">
@@ -1090,18 +1107,12 @@
                 </div>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 10px; flex-shrink: 0;">
-                <div style="margin-bottom: 8px; font-size: 13px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
-                    <span><i class="fa-solid fa-list-check text-blue-600"></i> 순차 재생 큐 & 선택 건너뛰기 (<span id="selectedSkipCountText">선택 0개</span>)</span>
+            <div class="right-sticky-controls-box">
+                <div style="margin-bottom: 8px; font-size: 12.5px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <span><i class="fa-solid fa-bolt text-rose-600"></i> 체크 즉시 건너뛰기 활성 (<span id="selectedSkipCountText">건너뜀 0개</span>)</span>
                     <div class="queue-mini-actions">
-                        <button type="button" onclick="toggleSelectAllForSkip()" class="mini-action-link" title="현재 화면의 모든 항목 선택/선택해제">
-                            <i class="fa-regular fa-square-check"></i> 전체 선택
-                        </button>
-                        <button type="button" onclick="applySkipToSelected(true)" class="mini-action-link skip-selected" title="체크한 항목들을 송출 건너뛰기로 설정">
-                            <i class="fa-solid fa-forward-step"></i> 선택한 건 건너뛰기
-                        </button>
-                        <button type="button" onclick="applySkipToSelected(false)" class="mini-action-link include-selected" title="체크한 항목들을 송출 포함으로 복구">
-                            <i class="fa-solid fa-check"></i> 선택한 건 포함
+                        <button type="button" onclick="clearAllSkippedItems()" class="mini-action-link include-selected" title="건너뛰기 체크된 모든 항목을 다시 송출 대상에 포함">
+                            <i class="fa-solid fa-rotate-left"></i> 건너뛰기 전체 해제
                         </button>
                         <span id="liveBroadcastLangTag" style="font-size:12px; color:#1d4ed8; font-weight:800;"></span>
                     </div>
@@ -1138,9 +1149,9 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v52',
-            CATS: 'kim_simin_categories_v52',
-            RELAY: 'kim_simin_relay_langs_v52'
+            DATA: 'kim_simin_guide_master_v54',
+            CATS: 'kim_simin_categories_v54',
+            RELAY: 'kim_simin_relay_langs_v54'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -1485,6 +1496,7 @@
         let speechErrorStreak = 0;
         let customTranslateToken = 0;
         let renderToken = 0;
+        const itemEditTimers = new Map();
 
         function scheduleLiveTranslation() {
             if (translateDebounceTimer) clearTimeout(translateDebounceTimer);
@@ -1752,7 +1764,6 @@
         let guideData = [];
         let savedCustomCategories = [];
         let stagedItems = null;
-        let selectedForSkipIds = new Set();
         let targetLang = 'en';
         let relayLangs = [];
         let currentCategory = 'all';
@@ -1766,6 +1777,9 @@
         let isSpeakingActive = false;
         let isAllTranslationsFolded = false;
         let pauseSnapshot = null;
+        let currentActiveItemId = null;
+        let currentActiveCardIndex = -1;
+        let liveSkipAbortResolver = null;
 
         const targetLangSelect = document.getElementById('targetLangSelect');
         const speechRateSelect = document.getElementById('speechRateSelect');
@@ -1947,6 +1961,8 @@
         function loadData() {
             const savedData =
                 localStorage.getItem(STORAGE_KEYS.DATA) ||
+                localStorage.getItem('kim_simin_guide_master_v53') ||
+                localStorage.getItem('kim_simin_guide_master_v52') ||
                 localStorage.getItem('kim_simin_guide_master_v51') ||
                 localStorage.getItem('kim_simin_guide_master_v50') ||
                 localStorage.getItem('kim_simin_guide_master_v49') ||
@@ -1955,6 +1971,8 @@
 
             const savedCats =
                 localStorage.getItem(STORAGE_KEYS.CATS) ||
+                localStorage.getItem('kim_simin_categories_v53') ||
+                localStorage.getItem('kim_simin_categories_v52') ||
                 localStorage.getItem('kim_simin_categories_v51') ||
                 localStorage.getItem('kim_simin_categories_v50') ||
                 localStorage.getItem('kim_simin_categories_v49') ||
@@ -1963,6 +1981,8 @@
 
             const savedRelay =
                 localStorage.getItem(STORAGE_KEYS.RELAY) ||
+                localStorage.getItem('kim_simin_relay_langs_v53') ||
+                localStorage.getItem('kim_simin_relay_langs_v52') ||
                 localStorage.getItem('kim_simin_relay_langs_v51') ||
                 localStorage.getItem('kim_simin_relay_langs_v50') ||
                 localStorage.getItem('kim_simin_relay_langs_v49') ||
@@ -2017,124 +2037,111 @@
             return null;
         }
 
+        function invalidateTranslationCacheForText(text) {
+            const clean = (text || '').trim();
+            if (!clean) return;
+            const suffix = `::${clean}`;
+            Object.keys(translationCache).forEach((key) => {
+                if (key.endsWith(suffix)) {
+                    delete translationCache[key];
+                }
+            });
+        }
+
         function updateSelectedSkipBadge() {
             const el = document.getElementById('selectedSkipCountText');
             if (!el) return;
             const visibleIds = Array.from(document.querySelectorAll('#splitContainer .card-item'))
                 .map(card => Number(card.getAttribute('data-id')));
-            const visibleSelectedCount = visibleIds.filter(id => selectedForSkipIds.has(id)).length;
-            el.innerText = `선택 ${visibleSelectedCount}개`;
+            const skippedVisibleCount = visibleIds.filter(id => {
+                const it = findItemById(id);
+                return Boolean(it && it.skip);
+            }).length;
+            el.innerText = `건너뜀 ${skippedVisibleCount}개`;
         }
 
-        function toggleSelectItemForSkip(id, checked) {
-            const numericId = Number(id);
-            if (checked) selectedForSkipIds.add(numericId);
-            else selectedForSkipIds.delete(numericId);
-
-            const cardEl = document.querySelector(`.card-item[data-id="${numericId}"]`);
-            if (cardEl) {
-                cardEl.classList.toggle('is-selected-for-skip', checked);
-            }
-            updateSelectedSkipBadge();
-        }
-
-        function toggleSelectAllForSkip() {
-            const visibleCards = Array.from(document.querySelectorAll('#splitContainer .card-item'));
-            if (visibleCards.length === 0) return;
-
-            const visibleIds = visibleCards.map(c => Number(c.getAttribute('data-id')));
-            const allChecked = visibleIds.every(id => selectedForSkipIds.has(id));
-
-            if (allChecked) {
-                visibleIds.forEach(id => selectedForSkipIds.delete(id));
-            } else {
-                visibleIds.forEach(id => selectedForSkipIds.add(id));
+        function jumpToNextNonSkippedAfter(fromCardIndex) {
+            const cardEls = Array.from(document.querySelectorAll('#splitContainer .card-item'));
+            let nextIdx = -1;
+            for (let i = fromCardIndex + 1; i < cardEls.length; i++) {
+                const id = Number(cardEls[i].getAttribute('data-id'));
+                const item = findItemById(id);
+                if (!item || !item.skip) {
+                    nextIdx = i;
+                    break;
+                }
             }
 
-            visibleCards.forEach(card => {
-                const id = Number(card.getAttribute('data-id'));
-                const isChecked = selectedForSkipIds.has(id);
-                const cb = card.querySelector('.skip-select-checkbox');
-                if (cb) cb.checked = isChecked;
-                card.classList.toggle('is-selected-for-skip', isChecked);
-            });
-
-            updateSelectedSkipBadge();
-            showToast(
-                allChecked ? "현재 화면 항목 선택을 모두 해제했습니다." : `현재 화면 ${visibleIds.length}개 항목을 모두 선택했습니다.`,
-                { mode: 'idle', badgeText: allChecked ? '선택 해제' : `${visibleIds.length}개 선택됨` }
-            );
-        }
-
-        function applySkipToSelected(shouldSkip) {
-            const visibleCards = Array.from(document.querySelectorAll('#splitContainer .card-item'));
-            const targetIds = visibleCards
-                .map(c => Number(c.getAttribute('data-id')))
-                .filter(id => selectedForSkipIds.has(id));
-
-            if (targetIds.length === 0) {
-                showToast("먼저 건너뛰기 또는 송출 포함을 적용할 항목 체크박스를 선택해 주세요.", {
+            if (nextIdx === -1) {
+                masterStop(true);
+                setMonitorBanner({
                     mode: 'idle',
-                    badgeText: '선택 항목 없음'
+                    badgeText: '남은 항목 없음',
+                    queueText: '',
+                    detailText: '남은 송출 대상 항목이 없어 브로드캐스트를 마쳤습니다.'
                 });
                 return;
             }
 
-            const activeCard = document.querySelector('#splitContainer .card-item.active-broadcasting');
-            const activeId = activeCard ? Number(activeCard.getAttribute('data-id')) : null;
-            const stoppingActive = shouldSkip && activeId && targetIds.includes(activeId) && isPlayingQueue;
-
-            targetIds.forEach(id => {
-                const item = findItemById(id);
-                if (!item) return;
-                item.skip = Boolean(shouldSkip);
-                if (guideData.some(g => Number(g.id) === id)) saveData();
-            });
-
-            targetIds.forEach(id => selectedForSkipIds.delete(id));
-
-            if (stoppingActive) {
-                skipCurrentItemNow();
-                return;
-            }
-
-            renderDualPanes();
-            showToast(
-                shouldSkip
-                    ? `선택한 ${targetIds.length}개 항목을 송출 건너뛰기로 설정했습니다.`
-                    : `선택한 ${targetIds.length}개 항목을 송출 대상에 포함했습니다.`,
-                { mode: 'idle', badgeText: shouldSkip ? `${targetIds.length}개 건너뛰기` : `${targetIds.length}개 포함` }
-            );
+            masterPlay({ cardIndex: nextIdx, langIndex: 0, chunkIndex: 0 });
         }
 
-        function toggleSkipItem(id, event = null) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            const item = findItemById(id);
+        function handleInstantSkipCheckbox(id, isChecked) {
+            const numericId = Number(id);
+            const item = findItemById(numericId);
             if (!item) return;
 
-            item.skip = !Boolean(item.skip);
-            if (guideData.some(i => Number(i.id) === Number(id))) {
+            item.skip = Boolean(isChecked);
+            if (guideData.some(g => Number(g.id) === numericId)) {
                 saveData();
             }
 
-            const cardEl = document.querySelector(`.card-item[data-id="${Number(id)}"]`);
-            const isCurrentlyPlayingThis = cardEl && cardEl.classList.contains('active-broadcasting');
+            const cardEl = document.querySelector(`.card-item[data-id="${numericId}"]`);
+            if (cardEl) {
+                cardEl.classList.toggle('is-skipped', item.skip);
+                const labelEl = cardEl.querySelector('.select-card-label');
+                if (labelEl) labelEl.classList.toggle('checked', item.skip);
+            }
+            updateSelectedSkipBadge();
 
-            if (item.skip && isCurrentlyPlayingThis && isPlayingQueue) {
-                skipCurrentItemNow();
+            const isCurrentlyPlayingThis = currentActiveItemId !== null && Number(currentActiveItemId) === numericId;
+            const activeIdxSnapshot = currentActiveCardIndex;
+
+            if (item.skip && isCurrentlyPlayingThis && (isPlayingQueue || isSpeakingActive)) {
+                showToast(`'${item.titleKo}' 건너뛰기 체크됨 → 즉시 다음 항목으로 전환해 재생합니다.`, {
+                    mode: 'live',
+                    badgeText: '즉시 건너뛰기 재생'
+                });
+                jumpToNextNonSkippedAfter(activeIdxSnapshot >= 0 ? activeIdxSnapshot : 0);
                 return;
             }
 
-            renderDualPanes();
             showToast(
                 item.skip
-                    ? `'${item.titleKo}' 항목이 송출 건너뛰기로 지정되었습니다.`
+                    ? `'${item.titleKo}' 항목이 건너뛰기로 체크되었습니다.`
                     : `'${item.titleKo}' 항목이 송출 대상에 포함되었습니다.`,
-                { mode: 'idle', badgeText: item.skip ? '건너뛰기 지정' : '송출 포함' }
+                { mode: 'idle', badgeText: item.skip ? '건너뛰기 체크됨' : '송출 포함됨' }
             );
+        }
+
+        function clearAllSkippedItems() {
+            const visibleCards = Array.from(document.querySelectorAll('#splitContainer .card-item'));
+            let changed = 0;
+            visibleCards.forEach(card => {
+                const id = Number(card.getAttribute('data-id'));
+                const item = findItemById(id);
+                if (item && item.skip) {
+                    item.skip = false;
+                    changed++;
+                    if (guideData.some(g => Number(g.id) === id)) saveData();
+                }
+            });
+            if (changed === 0) {
+                showToast("해제할 건너뛰기 항목이 없습니다.", { mode: 'idle', badgeText: '건너뛰기 없음' });
+                return;
+            }
+            renderDualPanes();
+            showToast(`${changed}개 항목의 건너뛰기 체크를 해제했습니다.`, { mode: 'idle', badgeText: `${changed}개 포함됨` });
         }
 
         function skipCurrentItemNow() {
@@ -2142,7 +2149,9 @@
             if (cardEls.length === 0) return;
 
             const activeCard = document.querySelector('#splitContainer .card-item.active-broadcasting');
-            const currentIdx = activeCard ? Number(activeCard.getAttribute('data-index') || 0) : -1;
+            const currentIdx = currentActiveCardIndex >= 0
+                ? currentActiveCardIndex
+                : (activeCard ? Number(activeCard.getAttribute('data-index') || 0) : -1);
 
             let nextIdx = -1;
             for (let i = currentIdx + 1; i < cardEls.length; i++) {
@@ -2153,10 +2162,6 @@
                     break;
                 }
             }
-
-            if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
-            stopCloudAudio();
-            try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
 
             if (nextIdx === -1) {
                 masterStop(true);
@@ -2173,9 +2178,9 @@
             masterPlay({ cardIndex: nextIdx, langIndex: 0, chunkIndex: 0 });
             showToast(
                 skippedSpan > 0
-                    ? `건너뛰기 항목 ${skippedSpan}개를 지나 #${nextIdx + 1} 항목으로 이동했습니다.`
-                    : `#${nextIdx + 1} 항목으로 바로 이동했습니다.`,
-                { mode: 'live', badgeText: `#${nextIdx + 1} 항목으로 이동` }
+                    ? `건너뛰기 항목 ${skippedSpan}개를 지나 #${nextIdx + 1} 항목으로 이동해 재생합니다.`
+                    : `#${nextIdx + 1} 항목으로 바로 이동해 재생합니다.`,
+                { mode: 'live', badgeText: `#${nextIdx + 1} 항목 재생` }
             );
         }
 
@@ -2428,7 +2433,7 @@
             if (!ok) return;
 
             Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
-            ['v51', 'v50', 'v49', 'v48', 'v47'].forEach(ver => {
+            ['v53', 'v52', 'v51', 'v50', 'v49', 'v48', 'v47'].forEach(ver => {
                 localStorage.removeItem(`kim_simin_guide_master_${ver}`);
                 localStorage.removeItem(`kim_simin_categories_${ver}`);
                 localStorage.removeItem(`kim_simin_relay_langs_${ver}`);
@@ -2439,7 +2444,6 @@
             relayLangs = [];
             translationCache = {};
             stagedItems = null;
-            selectedForSkipIds.clear();
 
             document.getElementById('uploadStagingBox').style.display = 'none';
             document.getElementById('documentTitleInput').value = '';
@@ -2478,7 +2482,6 @@
             if (!ok) return;
 
             masterStop(true);
-            selectedForSkipIds.delete(numericId);
 
             if (inGuide) {
                 guideData = guideData.filter(item => Number(item.id) !== numericId);
@@ -2702,36 +2705,115 @@
             showToast("문서 탭이 삭제되었습니다.", { mode: 'idle', badgeText: '탭 삭제 완료' });
         }
 
-        async function updateItemText(id, field, value, cardEl = null) {
+        function handleItemLiveInput(id, field, value, cardEl = null) {
+            const timerKey = `${id}:${field}`;
+            if (itemEditTimers.has(timerKey)) {
+                clearTimeout(itemEditTimers.get(timerKey));
+            }
+            const t = setTimeout(() => {
+                itemEditTimers.delete(timerKey);
+                updateItemText(id, field, value, cardEl, { notify: false });
+            }, 350);
+            itemEditTimers.set(timerKey, t);
+        }
+
+        async function updateItemText(id, field, value, cardEl = null, options = { notify: true }) {
+            const timerKey = `${id}:${field}`;
+            if (itemEditTimers.has(timerKey)) {
+                clearTimeout(itemEditTimers.get(timerKey));
+                itemEditTimers.delete(timerKey);
+            }
+
             const cleaned = (value || '').trim();
             const item = findItemById(id);
             if (!item) return;
 
+            const prevTitle = item.titleKo || '';
+            const prevContent = item.contentKo || '';
+
             if (field === 'title') {
+                if (prevTitle === cleaned) return;
+                invalidateTranslationCacheForText(prevTitle);
                 item.titleKo = cleaned;
             } else if (field === 'content') {
+                if (prevContent === cleaned) return;
+                invalidateTranslationCacheForText(prevContent);
                 item.contentKo = cleaned;
             }
+
             if (guideData.some(i => Number(i.id) === Number(id))) {
                 saveData();
             }
 
-            if (cardEl && field === 'content') {
-                const displayLangs = getBroadcastLangList();
-                const relayContainer = cardEl.querySelector('.translated-relay-container');
-                const origListenBtn = cardEl.querySelector('.orig-listen-btn');
+            const targetCard = cardEl || document.querySelector(`.card-item[data-id="${Number(id)}"]`);
+            if (targetCard) {
+                const origListenBtn = targetCard.querySelector('.orig-listen-btn');
                 if (origListenBtn) {
                     origListenBtn.setAttribute('data-orig-text', item.contentKo);
                 }
-                if (relayContainer) {
-                    const blocks = await Promise.all(displayLangs.map(async (langCode, idx) => {
-                        const trText = langCode === 'ko' ? item.contentKo : await fetchGoogleTranslation(item.contentKo, langCode);
-                        return buildRelayBlockHtml(langCode, idx, trText);
-                    }));
-                    relayContainer.innerHTML = blocks.join('');
+
+                const displayLangs = getBroadcastLangList();
+                const primaryLang = displayLangs[0] || targetLang;
+
+                if (field === 'title') {
+                    const headerTitleEl = targetCard.querySelector('.card-pane:last-child .card-header > span:first-child');
+                    if (headerTitleEl) {
+                        headerTitleEl.innerText = item.titleKo
+                            ? await fetchGoogleTranslation(item.titleKo, primaryLang, { forceRefresh: true })
+                            : '';
+                    }
+                } else if (field === 'content') {
+                    const relayContainer = targetCard.querySelector('.translated-relay-container');
+                    if (relayContainer) {
+                        const blocks = await Promise.all(displayLangs.map(async (langCode, idx) => {
+                            const trText = langCode === 'ko'
+                                ? item.contentKo
+                                : await fetchGoogleTranslation(item.contentKo, langCode, { forceRefresh: true });
+                            return buildRelayBlockHtml(langCode, idx, trText);
+                        }));
+                        relayContainer.innerHTML = blocks.join('');
+                    }
                 }
             }
-            showToast("수정 사항이 저장되고 번역이 갱신되었습니다.", { mode: 'idle', badgeText: '수정 저장됨' });
+
+            if (options.notify) {
+                showToast("수정된 원문이 실시간으로 재번역되어 반영되었습니다.", { mode: 'idle', badgeText: '실시간 재번역 완료' });
+            }
+        }
+
+        async function refreshCardRelayFromLatest(cardEl) {
+            if (!cardEl) return [];
+            const itemId = Number(cardEl.getAttribute('data-id'));
+            const itemObj = findItemById(itemId);
+            const contentEl = cardEl.querySelector('.card-pane-original .card-text');
+            const latestKo = itemObj
+                ? (itemObj.contentKo || '').trim()
+                : (contentEl ? contentEl.innerText.trim() : '');
+
+            if (itemObj && latestKo !== (itemObj.contentKo || '').trim()) {
+                invalidateTranslationCacheForText(itemObj.contentKo);
+                itemObj.contentKo = latestKo;
+                if (guideData.some(i => Number(i.id) === itemId)) saveData();
+            }
+
+            const displayLangs = getBroadcastLangList();
+            const relayContainer = cardEl.querySelector('.translated-relay-container');
+            const origListenBtn = cardEl.querySelector('.orig-listen-btn');
+            if (origListenBtn) {
+                origListenBtn.setAttribute('data-orig-text', latestKo);
+            }
+
+            if (relayContainer && latestKo) {
+                const blocks = await Promise.all(displayLangs.map(async (langCode, idx) => {
+                    const trText = langCode === 'ko'
+                        ? latestKo
+                        : await fetchGoogleTranslation(latestKo, langCode, { forceRefresh: true });
+                    return buildRelayBlockHtml(langCode, idx, trText);
+                }));
+                relayContainer.innerHTML = blocks.join('');
+            }
+
+            return Array.from(cardEl.querySelectorAll('.relay-card-block'));
         }
 
         function buildRelayBlockHtml(langCode, idx, trText) {
@@ -2777,13 +2859,15 @@
             document.body.removeChild(ta);
         }
 
-        async function fetchGoogleTranslation(text, tl) {
+        async function fetchGoogleTranslation(text, tl, options = {}) {
             const clean = (text || '').trim();
             if (!clean) return "";
             if (tl === 'ko') return clean;
 
             const cacheKey = `${tl}::${clean}`;
-            if (translationCache[cacheKey]) return translationCache[cacheKey];
+            if (!options.forceRefresh && translationCache[cacheKey]) {
+                return translationCache[cacheKey];
+            }
 
             try {
                 const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(clean)}`;
@@ -2858,9 +2942,16 @@
             }
         }
 
+        function isCurrentItemMarkedSkip() {
+            if (currentActiveItemId === null) return false;
+            const item = findItemById(currentActiveItemId);
+            return Boolean(item && item.skip);
+        }
+
         function speakViaCloudTts(chunk, lang, userRate, token) {
             return new Promise((resolve) => {
                 if (token !== playbackToken) return resolve('cancelled');
+                if (isCurrentItemMarkedSkip()) return resolve('skipped_live');
                 stopCloudAudio();
 
                 const ttsLang = encodeURIComponent(lang);
@@ -2876,6 +2967,7 @@
                 const done = (status) => {
                     if (finished) return;
                     finished = true;
+                    if (liveSkipAbortResolver === done) liveSkipAbortResolver = null;
                     if (activeFallbackTimer) {
                         clearTimeout(activeFallbackTimer);
                         activeFallbackTimer = null;
@@ -2883,6 +2975,7 @@
                     isSpeakingActive = false;
                     resolve(status);
                 };
+                liveSkipAbortResolver = done;
 
                 const safetyMs = Math.max(6000, Math.min(35000, (chunk.length * 180) / Math.max(0.5, userRate) + 5000));
                 activeFallbackTimer = setTimeout(() => {
@@ -2893,7 +2986,8 @@
                 audio.onended = () => done('done');
                 audio.onerror = () => {
                     stopCloudAudio();
-                    if (isPausedQueue) done('paused');
+                    if (isCurrentItemMarkedSkip()) done('skipped_live');
+                    else if (isPausedQueue) done('paused');
                     else done('cloud_failed');
                 };
 
@@ -2901,7 +2995,8 @@
                 audio.src = audioUrl;
                 audio.play().catch(() => {
                     stopCloudAudio();
-                    if (isPausedQueue) done('paused');
+                    if (isCurrentItemMarkedSkip()) done('skipped_live');
+                    else if (isPausedQueue) done('paused');
                     else done('cloud_failed');
                 });
             });
@@ -2910,6 +3005,7 @@
         function speakViaFallbackVoice(chunk, userRate, token) {
             return new Promise((resolve) => {
                 if (token !== playbackToken || !('speechSynthesis' in window)) return resolve('done');
+                if (isCurrentItemMarkedSkip()) return resolve('skipped_live');
                 const fallbackVoice = pickNaturalVoice('en') || pickNaturalVoice('ko') || cachedVoices[0] || null;
                 const utter = new SpeechSynthesisUtterance(chunk);
                 if (fallbackVoice) {
@@ -2917,14 +3013,24 @@
                     utter.lang = fallbackVoice.lang;
                 }
                 utter.rate = Math.max(0.75, Math.min(2.0, userRate * 0.95));
-                utter.onend = () => { isSpeakingActive = false; resolve('done'); };
-                utter.onerror = () => { isSpeakingActive = false; resolve(isPausedQueue ? 'paused' : 'done'); };
+
+                let finished = false;
+                const done = (status) => {
+                    if (finished) return;
+                    finished = true;
+                    if (liveSkipAbortResolver === done) liveSkipAbortResolver = null;
+                    isSpeakingActive = false;
+                    resolve(status);
+                };
+                liveSkipAbortResolver = done;
+
+                utter.onend = () => done('done');
+                utter.onerror = () => done(isCurrentItemMarkedSkip() ? 'skipped_live' : (isPausedQueue ? 'paused' : 'done'));
                 isSpeakingActive = true;
                 try {
                     window.speechSynthesis.speak(utter);
                 } catch (e) {
-                    isSpeakingActive = false;
-                    resolve('done');
+                    done('done');
                 }
             });
         }
@@ -2932,6 +3038,7 @@
         function speakChunkOnce(chunk, lang, userRate, token) {
             return new Promise(async (resolve) => {
                 if (token !== playbackToken) return resolve('cancelled');
+                if (isCurrentItemMarkedSkip()) return resolve('skipped_live');
                 if (!chunk) return resolve('done');
 
                 const speechTag = mapSpeechLangTag(lang);
@@ -2956,6 +3063,7 @@
                 const done = (reason = 'done') => {
                     if (finished) return;
                     finished = true;
+                    if (liveSkipAbortResolver === done) liveSkipAbortResolver = null;
                     isSpeakingActive = false;
                     if (activeFallbackTimer) {
                         clearTimeout(activeFallbackTimer);
@@ -2963,6 +3071,7 @@
                     }
                     resolve(reason);
                 };
+                liveSkipAbortResolver = done;
 
                 const estimatedMs = (chunk.length * 170) / Math.max(0.5, tuning.rate) + 6000;
                 const safetyMs = Math.max(6000, Math.min(50000, estimatedMs));
@@ -2977,7 +3086,9 @@
 
                 utter.onend = () => done('done');
                 utter.onerror = async (ev) => {
-                    if (isPausedQueue || ev.error === 'interrupted' || ev.error === 'canceled') {
+                    if (isCurrentItemMarkedSkip()) {
+                        done('skipped_live');
+                    } else if (isPausedQueue || ev.error === 'interrupted' || ev.error === 'canceled') {
                         done('paused');
                     } else {
                         const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
@@ -2998,7 +3109,12 @@
         async function waitWhilePaused(token, onResumeCallback = null) {
             if (!isPausedQueue) return true;
             while (isPausedQueue && token === playbackToken) {
-                await new Promise(r => setTimeout(r, 120));
+                if (isCurrentItemMarkedSkip()) {
+                    isPausedQueue = false;
+                    updatePauseResumeUI();
+                    return 'skipped_live';
+                }
+                await new Promise(r => setTimeout(r, 100));
             }
             if (token !== playbackToken) return false;
             if (typeof onResumeCallback === 'function') {
@@ -3019,11 +3135,13 @@
         }) {
             for (let cIdx = startChunkIndex; cIdx < chunks.length; cIdx++) {
                 if (token !== playbackToken) return { status: 'cancelled', nextChunkIndex: cIdx };
+                if (isCurrentItemMarkedSkip()) return { status: 'skipped_live', nextChunkIndex: cIdx };
 
                 if (isPausedQueue) {
                     if (typeof onPauseSnapshot === 'function') onPauseSnapshot(cIdx);
-                    const ok = await waitWhilePaused(token, onResume);
-                    if (!ok) return { status: 'cancelled', nextChunkIndex: cIdx };
+                    const waitRes = await waitWhilePaused(token, onResume);
+                    if (waitRes === false) return { status: 'cancelled', nextChunkIndex: cIdx };
+                    if (waitRes === 'skipped_live') return { status: 'skipped_live', nextChunkIndex: cIdx };
                 }
 
                 if (typeof onChunkStart === 'function') {
@@ -3033,18 +3151,22 @@
                 const result = await speakChunkOnce(chunks[cIdx], lang, rate, token);
 
                 if (token !== playbackToken) return { status: 'cancelled', nextChunkIndex: cIdx };
+                if (result === 'skipped_live' || isCurrentItemMarkedSkip()) {
+                    return { status: 'skipped_live', nextChunkIndex: cIdx };
+                }
 
                 if (isPausedQueue || result === 'paused') {
                     isPausedQueue = true;
                     if (typeof onPauseSnapshot === 'function') onPauseSnapshot(cIdx);
-                    const ok = await waitWhilePaused(token, onResume);
-                    if (!ok) return { status: 'cancelled', nextChunkIndex: cIdx };
+                    const waitRes = await waitWhilePaused(token, onResume);
+                    if (waitRes === false) return { status: 'cancelled', nextChunkIndex: cIdx };
+                    if (waitRes === 'skipped_live') return { status: 'skipped_live', nextChunkIndex: cIdx };
                     cIdx--;
                     continue;
                 }
 
                 if (cIdx < chunks.length - 1 && token === playbackToken) {
-                    await new Promise(r => setTimeout(r, 180));
+                    await new Promise(r => setTimeout(r, 150));
                 }
             }
             return { status: 'completed', nextChunkIndex: chunks.length };
@@ -3096,9 +3218,9 @@
             splitContainer.innerHTML = '';
             preparedRows.forEach(({ item, index: i, translatedTitle, langBlocks }) => {
                 const isSkipped = Boolean(item.skip);
-                const isSelected = selectedForSkipIds.has(Number(item.id));
+                const isActiveNow = currentActiveItemId !== null && Number(currentActiveItemId) === Number(item.id);
                 const rowEl = document.createElement('div');
-                rowEl.className = `dual-card card-item${isSkipped ? ' is-skipped' : ''}${isSelected ? ' is-selected-for-skip' : ''}`;
+                rowEl.className = `dual-card card-item${isActiveNow ? ' active-broadcasting' : ''}${isSkipped ? ' is-skipped' : ''}`;
                 rowEl.setAttribute('data-index', i);
                 rowEl.setAttribute('data-id', item.id);
 
@@ -3107,30 +3229,25 @@
                     ? `<i class="fa-solid fa-chevron-down"></i> 펼치기`
                     : `<i class="fa-solid fa-chevron-up"></i> 접기`;
 
-                const skipBtnHtml = isSkipped
-                    ? `<button type="button" class="skip-toggle-btn skipped" onclick="toggleSkipItem(${item.id}, event)" title="송출 건너뛰기 중 · 클릭하면 송출 대상에 포함"><i class="fa-solid fa-forward-step"></i> 건너뛰기 중</button>`
-                    : `<button type="button" class="skip-toggle-btn" onclick="toggleSkipItem(${item.id}, event)" title="클릭하여 시간 맞춤용으로 이 항목 건너뛰기"><i class="fa-solid fa-check"></i> 송출 포함</button>`;
-
                 rowEl.innerHTML = `
                     <div class="card-pane card-pane-original">
                         <div>
                             <div class="card-header">
-                                <span class="text-slate-900 font-extrabold" contenteditable="true" onblur="updateItemText(${item.id}, 'title', this.innerText, this.closest('.dual-card'))" title="클릭하여 제목 직접 수정 가능">${escapeHtml(item.titleKo)}</span>
+                                <span class="text-slate-900 font-extrabold" contenteditable="true" oninput="handleItemLiveInput(${item.id}, 'title', this.innerText, this.closest('.dual-card'))" onblur="updateItemText(${item.id}, 'title', this.innerText, this.closest('.dual-card'))" title="입력/수정 시 실시간 재번역됩니다">${escapeHtml(item.titleKo)}</span>
                                 <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                                    <label class="select-card-label" title="선택한 건 건너뛰기 / 포함 일괄 처리용 체크박스">
-                                        <input type="checkbox" class="skip-select-checkbox" ${isSelected ? 'checked' : ''} onchange="toggleSelectItemForSkip(${item.id}, this.checked)">
-                                        <span>선택</span>
+                                    <label class="select-card-label ${isSkipped ? 'checked' : ''}" title="체크 즉시 송출 건너뛰기(송출 중이면 바로 다음 항목 재생)">
+                                        <input type="checkbox" class="skip-select-checkbox" ${isSkipped ? 'checked' : ''} onchange="handleInstantSkipCheckbox(${item.id}, this.checked)">
+                                        <span>${isSkipped ? '건너뛰기 ON' : '건너뛰기'}</span>
                                     </label>
-                                    ${skipBtnHtml}
                                     <span style="font-family:monospace; background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:11.5px; color:#334155; font-weight:700;">#${i + 1} / ${totalCount}</span>
                                 </div>
                             </div>
-                            <p class="card-text" contenteditable="true" onblur="updateItemText(${item.id}, 'content', this.innerText, this.closest('.dual-card'))" title="클릭하여 본문 내용 직접 수정 가능">${escapeHtml(item.contentKo)}</p>
+                            <p class="card-text" contenteditable="true" oninput="handleItemLiveInput(${item.id}, 'content', this.innerText, this.closest('.dual-card'))" onblur="updateItemText(${item.id}, 'content', this.innerText, this.closest('.dual-card'))" title="원문을 수정하면 실시간으로 다시 번역되어 반영됩니다">${escapeHtml(item.contentKo)}</p>
                         </div>
                         <div class="card-footer">
-                            <span style="color:var(--accent); font-weight:700;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 가능)</span>
+                            <span style="color:var(--accent); font-weight:700;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 시 즉시 재번역)</span>
                             <div style="display:flex; gap:6px;">
-                                <button type="button" class="btn btn-secondary orig-listen-btn" data-orig-text="${escapeAttr(item.contentKo)}" onclick="speakSingleText(this.getAttribute('data-orig-text'), 'ko', ${i})" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
+                                <button type="button" class="btn btn-secondary orig-listen-btn" data-orig-text="${escapeAttr(item.contentKo)}" onclick="speakSingleText(this.getAttribute('data-orig-text'), 'ko', ${i}, this.closest('.dual-card'))" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
                                 <button type="button" onclick="deleteItem(${item.id}, event)" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i> 삭제</button>
                             </div>
                         </div>
@@ -3163,7 +3280,7 @@
             });
 
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> 송출 <b>${activePlayCount}</b> / ${totalCount}개`;
-            updateCounterDisplay(totalCount, 0, activePlayCount);
+            updateCounterDisplay(totalCount, isPlayingQueue && currentActiveCardIndex >= 0 ? currentActiveCardIndex + 1 : 0, activePlayCount);
             updateSelectedSkipBadge();
         }
 
@@ -3186,13 +3303,28 @@
             renderDualPanes();
         }
 
+        function scrollCardIntoViewTop(targetEl) {
+            if (!targetEl || !splitContainer) return;
+            const containerRect = splitContainer.getBoundingClientRect();
+            const cardRect = targetEl.getBoundingClientRect();
+            const targetScrollTop = splitContainer.scrollTop + (cardRect.top - containerRect.top) - 6;
+            splitContainer.scrollTo({
+                top: Math.max(0, targetScrollTop),
+                behavior: 'smooth'
+            });
+        }
+
         function highlightCard(index, total) {
+            currentActiveCardIndex = index;
+            const cardEls = document.querySelectorAll('#splitContainer .card-item');
+            const targetEl = cardEls[index];
+            currentActiveItemId = targetEl ? Number(targetEl.getAttribute('data-id')) : null;
             updateCounterDisplay(total, index + 1);
 
-            document.querySelectorAll('.card-item').forEach((el, idx) => {
+            cardEls.forEach((el, idx) => {
                 if (idx === index) {
                     el.classList.add('active-broadcasting');
-                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    scrollCardIntoViewTop(el);
                 } else {
                     el.classList.remove('active-broadcasting');
                 }
@@ -3200,6 +3332,8 @@
         }
 
         function clearHighlight() {
+            currentActiveItemId = null;
+            currentActiveCardIndex = -1;
             let filteredData = [];
             if (currentCategory === 'all') {
                 filteredData = guideData;
@@ -3217,8 +3351,24 @@
             clearActiveLangHighlights();
         }
 
-        async function speakSingleText(text, lang, cardIndex = -1) {
-            const phrase = unescapeAttr(text || '');
+        async function speakSingleText(text, lang, cardIndex = -1, cardEl = null) {
+            let phrase = unescapeAttr(text || '');
+            if (cardEl && lang === 'ko') {
+                const itemId = Number(cardEl.getAttribute('data-id'));
+                const itemObj = findItemById(itemId);
+                const domContent = cardEl.querySelector('.card-pane-original .card-text');
+                const latestKo = domContent ? domContent.innerText.trim() : (itemObj ? itemObj.contentKo : phrase);
+                if (latestKo) {
+                    phrase = latestKo;
+                    if (itemObj) {
+                        invalidateTranslationCacheForText(itemObj.contentKo);
+                        itemObj.contentKo = latestKo;
+                        if (guideData.some(g => Number(g.id) === itemId)) saveData();
+                    }
+                    const btn = cardEl.querySelector('.orig-listen-btn');
+                    if (btn) btn.setAttribute('data-orig-text', latestKo);
+                }
+            }
             if (!phrase) return;
             masterStop(true);
             const myToken = ++playbackToken;
@@ -3259,17 +3409,17 @@
         }
 
         async function playCardRelay(cardIndex) {
-            const cardEl = document.querySelectorAll('.card-item')[cardIndex];
+            const cardEl = document.querySelectorAll('#splitContainer .card-item')[cardIndex];
             if (!cardEl) return;
 
             masterStop(true);
             const myToken = ++playbackToken;
-            const total = document.querySelectorAll('.card-item').length;
+            const total = document.querySelectorAll('#splitContainer .card-item').length;
             highlightCard(cardIndex, total);
             startBroadcastTimer(true);
 
             const rate = parseFloat(speechRateSelect.value) || 1.0;
-            const blocks = Array.from(cardEl.querySelectorAll('.relay-card-block'));
+            const blocks = await refreshCardRelayFromLatest(cardEl);
             const orderSummary = blocks.map((b, i) => `${i + 1}.${getLangLabel(b.getAttribute('data-lang') || targetLang).split(' (')[0]}`).join(' → ');
 
             for (let i = 0; i < blocks.length; i++) {
@@ -3313,7 +3463,7 @@
         }
 
         async function masterPlay(resumeFromSnapshot = null) {
-            const cardEls = Array.from(document.querySelectorAll('.card-item'));
+            const cardEls = Array.from(document.querySelectorAll('#splitContainer .card-item'));
             if (cardEls.length === 0) {
                 showToast("재생할 항목이 없습니다.", { mode: 'idle', badgeText: '재생 항목 없음' });
                 return;
@@ -3345,24 +3495,37 @@
 
                 highlightCard(idx, cardEls.length);
 
-                const blocks = Array.from(el.querySelectorAll('.relay-card-block'));
+                const blocks = await refreshCardRelayFromLatest(el);
+                if (!isPlayingQueue || myToken !== playbackToken) break;
+
                 const startLangIdx = (isResuming && idx === startCardIdx)
                     ? Math.min(resumeFromSnapshot.langIndex, Math.max(0, blocks.length - 1))
                     : 0;
                 const orderSummary = blocks.map((b, i) => `${i + 1}.${getLangLabel(b.getAttribute('data-lang') || targetLang).split(' (')[0]}`).join(' → ');
 
+                let abortedCurrentCardBySkip = false;
+
                 for (let lIdx = startLangIdx; lIdx < blocks.length; lIdx++) {
                     if (!isPlayingQueue || myToken !== playbackToken) break;
 
-                    const lang = blocks[lIdx].getAttribute('data-lang') || targetLang;
+                    const latestItem = findItemById(itemId);
+                    if (latestItem && latestItem.skip) {
+                        skippedCounter++;
+                        abortedCurrentCardBySkip = true;
+                        break;
+                    }
+
+                    const latestBlocks = await refreshCardRelayFromLatest(el);
+                    const activeBlock = latestBlocks[lIdx] || blocks[lIdx];
+                    const lang = activeBlock.getAttribute('data-lang') || targetLang;
                     const langLabel = getLangLabel(lang);
-                    const phrase = unescapeAttr(blocks[lIdx].getAttribute('data-text') || '');
+                    const phrase = unescapeAttr(activeBlock.getAttribute('data-text') || '');
                     const chunks = splitForSmoothSpeech(phrase);
                     const startChunkIdx = (isResuming && idx === startCardIdx && lIdx === startLangIdx)
                         ? Math.min(resumeFromSnapshot.chunkIndex, Math.max(0, chunks.length - 1))
                         : 0;
 
-                    highlightSpeakingLangBlock(blocks[lIdx]);
+                    highlightSpeakingLangBlock(activeBlock);
                     setMonitorBanner({
                         mode: 'live',
                         badgeText: `릴레이 ${lIdx + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
@@ -3389,7 +3552,7 @@
                         },
                         onResume: () => {
                             highlightCard(idx, cardEls.length);
-                            highlightSpeakingLangBlock(blocks[lIdx]);
+                            highlightSpeakingLangBlock(activeBlock);
                             setMonitorBanner({
                                 mode: 'live',
                                 badgeText: `릴레이 ${lIdx + 1}/${blocks.length} · ${langLabel} [${lang.toUpperCase()}]`,
@@ -3400,10 +3563,19 @@
                     });
 
                     if (res.status === 'cancelled' || myToken !== playbackToken) break;
+                    if (res.status === 'skipped_live') {
+                        skippedCounter++;
+                        abortedCurrentCardBySkip = true;
+                        break;
+                    }
 
                     if (lIdx < blocks.length - 1 && isPlayingQueue && myToken === playbackToken) {
-                        await new Promise(r => setTimeout(r, 220));
+                        await new Promise(r => setTimeout(r, 200));
                     }
+                }
+
+                if (abortedCurrentCardBySkip) {
+                    continue;
                 }
             }
 
@@ -3485,6 +3657,7 @@
             isPlayingQueue = false;
             isPausedQueue = false;
             isSpeakingActive = false;
+            liveSkipAbortResolver = null;
             pauseSnapshot = null;
             if (activeFallbackTimer) { clearTimeout(activeFallbackTimer); activeFallbackTimer = null; }
             stopCloudAudio();
@@ -3514,13 +3687,13 @@
             const langs = getBroadcastLangList();
             if (langs.length > 1) {
                 const lines = await Promise.all(langs.map(async (lang, idx) => {
-                    const tr = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
+                    const tr = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang, { forceRefresh: true });
                     return `${idx + 1}. [${getLangLabel(lang)}] ${tr}`;
                 }));
                 if (myToken !== customTranslateToken) return;
                 outputDiv.innerText = lines.join('\n\n');
             } else {
-                const translated = await fetchGoogleTranslation(koText, langs[0]);
+                const translated = await fetchGoogleTranslation(koText, langs[0], { forceRefresh: true });
                 if (myToken !== customTranslateToken) return;
                 outputDiv.innerText = translated;
             }
@@ -3606,7 +3779,7 @@
                 if (myToken !== playbackToken) break;
                 const lang = langs[i];
                 const langLabel = getLangLabel(lang);
-                const phrase = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
+                const phrase = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang, { forceRefresh: true });
                 const chunks = splitForSmoothSpeech(phrase);
 
                 setMonitorBanner({
