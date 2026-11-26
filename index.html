@@ -82,16 +82,16 @@
             font-family: monospace;
             font-size: 16px !important;
             font-weight: 800 !important;
-            background: #0f172a !important;
-            color: #38bdf8 !important;
+            background: #f1f5f9 !important;
+            color: #0f172a !important;
             padding: 7px 14px !important;
             border-radius: 8px !important;
-            border: 2px solid #334155 !important;
+            border: 2px solid #94a3b8 !important;
             display: flex;
             align-items: center;
             gap: 8px;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
         }
 
         .top-toolbar {
@@ -276,26 +276,30 @@
         .voice-ok { background: #dcfce7; color: #166534; }
         .voice-cloud { background: #e0f2fe; color: #0369a1; }
 
+        /* 고대비 라이트/골드/앰버 송출 모니터 */
         .active-broadcast-monitor {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #ffffff;
-            border: 2px solid #3b82f6;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #0f172a;
+            border: 2px solid #64748b;
             border-radius: var(--radius-md);
-            padding: 9px 14px;
+            padding: 10px 14px;
             margin-bottom: 10px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
         }
         .active-broadcast-monitor.is-live {
-            border-color: #facc15;
-            box-shadow: 0 0 16px rgba(250, 204, 21, 0.28);
+            background: linear-gradient(135deg, #fefce8 0%, #fef08a 100%);
+            color: #0f172a;
+            border-color: #eab308;
+            box-shadow: 0 0 14px rgba(234, 179, 8, 0.35);
         }
         .active-broadcast-monitor.is-paused {
-            border-color: #f59e0b;
-            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            color: #431407;
+            border-color: #ea580c;
         }
         .monitor-top-row {
             display: flex;
@@ -308,24 +312,48 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: #2563eb;
+            background: #1d4ed8;
             color: #ffffff;
             font-size: 13px;
             font-weight: 800;
-            padding: 4px 10px;
+            padding: 4px 11px;
             border-radius: 999px;
         }
-        .monitor-country-pill.paused { background: #d97706; }
-        .monitor-country-pill.idle { background: #475569; }
+        .active-broadcast-monitor.is-live .monitor-country-pill {
+            background: #b45309;
+            color: #ffffff;
+        }
+        .monitor-country-pill.paused {
+            background: #c2410c;
+            color: #ffffff;
+        }
+        .monitor-country-pill.idle {
+            background: #334155;
+            color: #ffffff;
+        }
+        .monitor-queue-text {
+            font-size: 12px;
+            font-weight: 800;
+            color: #1e3a8a;
+        }
+        .active-broadcast-monitor.is-live .monitor-queue-text {
+            color: #78350f;
+        }
+        .active-broadcast-monitor.is-paused .monitor-queue-text {
+            color: #7c2d12;
+        }
         .monitor-status-msg {
-            font-size: 13px;
-            font-weight: 700;
-            color: #e2e8f0;
-            line-height: 1.35;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+        .active-broadcast-monitor.is-paused .monitor-status-msg {
+            color: #431407;
         }
 
         .translated-relay-container.collapsed {
@@ -694,6 +722,52 @@
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
+        .ui-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            z-index: 120;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        .ui-modal-backdrop.open {
+            display: flex;
+        }
+        .ui-modal-card {
+            background: #ffffff;
+            border: 1px solid #94a3b8;
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+            width: 100%;
+            max-width: 420px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .ui-modal-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ui-modal-desc {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #334155;
+            line-height: 1.5;
+        }
+        .ui-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
         @media (max-width: 1024px) {
             body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; }
             header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -753,7 +827,7 @@
         </div>
         <div class="header-status-group">
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-sky-400"></i> <span id="liveClockText">2026-11-25 (수) 20:48:00</span>
+                <i class="fa-regular fa-clock text-blue-600"></i> <span id="liveClockText">2026-11-26 (목) 17:56:00</span>
             </div>
         </div>
     </header>
@@ -910,7 +984,7 @@
                     <span id="monitorCountryPill" class="monitor-country-pill idle">
                         <i class="fa-solid fa-tower-broadcast"></i> <span id="monitorCountryText">송출 대기 중</span>
                     </span>
-                    <span id="monitorRelayQueueText" style="font-size:12px; font-weight:700; color:#93c5fd;"></span>
+                    <span id="monitorRelayQueueText" class="monitor-queue-text"></span>
                 </div>
                 <div id="monitorStatusDetail" class="monitor-status-msg">
                     재생 버튼을 누르면 현재 송출 중인 국가와 언어가 이곳에 실시간으로 표시됩니다.
@@ -935,13 +1009,27 @@
         </div>
     </div>
 
+    <div id="uiModalBackdrop" class="ui-modal-backdrop" role="dialog" aria-modal="true">
+        <div class="ui-modal-card">
+            <div id="uiModalTitle" class="ui-modal-title"></div>
+            <div id="uiModalDesc" class="ui-modal-desc"></div>
+            <div id="uiModalInputWrap" style="display:none;">
+                <input type="text" id="uiModalInput" placeholder="제목을 입력하세요">
+            </div>
+            <div class="ui-modal-actions">
+                <button type="button" id="uiModalCancelBtn" class="btn btn-secondary" style="padding:8px 14px; font-size:13px;">취소</button>
+                <button type="button" id="uiModalConfirmBtn" class="btn" style="padding:8px 14px; font-size:13px;">확인</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v49',
-            CATS: 'kim_simin_categories_v49',
-            RELAY: 'kim_simin_relay_langs_v49'
+            DATA: 'kim_simin_guide_master_v50',
+            CATS: 'kim_simin_categories_v50',
+            RELAY: 'kim_simin_relay_langs_v50'
         };
 
         const DEFAULT_SEED_DATA = [
@@ -970,6 +1058,96 @@
                 contentKo: '비상 상황 발생 시 당황하지 마시고 승무원과 안내 방송의 지시에 따라 구명조끼를 착용한 뒤 지정된 집결 위치로 이동해 주십시오.'
             }
         ];
+
+        function openConfirmModal({ title, message, confirmText = '확인', confirmClass = 'btn-danger' }) {
+            return new Promise((resolve) => {
+                const backdrop = document.getElementById('uiModalBackdrop');
+                const titleEl = document.getElementById('uiModalTitle');
+                const descEl = document.getElementById('uiModalDesc');
+                const inputWrap = document.getElementById('uiModalInputWrap');
+                const cancelBtn = document.getElementById('uiModalCancelBtn');
+                const confirmBtn = document.getElementById('uiModalConfirmBtn');
+
+                titleEl.innerHTML = `<i class="fa-solid fa-circle-question text-amber-500"></i> ${escapeHtml(title)}`;
+                descEl.innerText = message;
+                inputWrap.style.display = 'none';
+
+                confirmBtn.className = `btn ${confirmClass}`;
+                confirmBtn.innerText = confirmText;
+
+                const cleanup = (result) => {
+                    backdrop.classList.remove('open');
+                    confirmBtn.removeEventListener('click', onConfirm);
+                    cancelBtn.removeEventListener('click', onCancel);
+                    backdrop.removeEventListener('click', onBackdropClick);
+                    document.removeEventListener('keydown', onKeyDown);
+                    resolve(result);
+                };
+
+                const onConfirm = () => cleanup(true);
+                const onCancel = () => cleanup(false);
+                const onBackdropClick = (e) => { if (e.target === backdrop) cleanup(false); };
+                const onKeyDown = (e) => {
+                    if (e.key === 'Escape') cleanup(false);
+                    else if (e.key === 'Enter') cleanup(true);
+                };
+
+                confirmBtn.addEventListener('click', onConfirm);
+                cancelBtn.addEventListener('click', onCancel);
+                backdrop.addEventListener('click', onBackdropClick);
+                document.addEventListener('keydown', onKeyDown);
+                backdrop.classList.add('open');
+                confirmBtn.focus();
+            });
+        }
+
+        function openPromptModal({ title, message, defaultValue = '', placeholder = '', confirmText = '저장' }) {
+            return new Promise((resolve) => {
+                const backdrop = document.getElementById('uiModalBackdrop');
+                const titleEl = document.getElementById('uiModalTitle');
+                const descEl = document.getElementById('uiModalDesc');
+                const inputWrap = document.getElementById('uiModalInputWrap');
+                const inputEl = document.getElementById('uiModalInput');
+                const cancelBtn = document.getElementById('uiModalCancelBtn');
+                const confirmBtn = document.getElementById('uiModalConfirmBtn');
+
+                titleEl.innerHTML = `<i class="fa-solid fa-pen-to-square text-emerald-600"></i> ${escapeHtml(title)}`;
+                descEl.innerText = message;
+                inputWrap.style.display = 'block';
+                inputEl.value = defaultValue;
+                inputEl.placeholder = placeholder;
+
+                confirmBtn.className = 'btn btn-emerald';
+                confirmBtn.innerText = confirmText;
+
+                const cleanup = (val) => {
+                    backdrop.classList.remove('open');
+                    confirmBtn.removeEventListener('click', onConfirm);
+                    cancelBtn.removeEventListener('click', onCancel);
+                    backdrop.removeEventListener('click', onBackdropClick);
+                    document.removeEventListener('keydown', onKeyDown);
+                    resolve(val);
+                };
+
+                const onConfirm = () => cleanup(inputEl.value.trim());
+                const onCancel = () => cleanup(null);
+                const onBackdropClick = (e) => { if (e.target === backdrop) cleanup(null); };
+                const onKeyDown = (e) => {
+                    if (e.key === 'Escape') cleanup(null);
+                    else if (e.key === 'Enter') cleanup(inputEl.value.trim());
+                };
+
+                confirmBtn.addEventListener('click', onConfirm);
+                cancelBtn.addEventListener('click', onCancel);
+                backdrop.addEventListener('click', onBackdropClick);
+                document.addEventListener('keydown', onKeyDown);
+                backdrop.classList.add('open');
+                setTimeout(() => {
+                    inputEl.focus();
+                    inputEl.select();
+                }, 20);
+            });
+        }
 
         function updateLiveClock() {
             const now = new Date();
@@ -1182,12 +1360,23 @@
         let isRecognizing = false;
         let committedSpeechText = '';
         let translateDebounceTimer = null;
+        let speechRestartTimer = null;
+        let speechErrorStreak = 0;
+        let customTranslateToken = 0;
+        let renderToken = 0;
 
         function scheduleLiveTranslation() {
             if (translateDebounceTimer) clearTimeout(translateDebounceTimer);
             translateDebounceTimer = setTimeout(() => {
                 updateCustomTranslation();
-            }, 280);
+            }, 260);
+        }
+
+        function clearSpeechRestartTimer() {
+            if (speechRestartTimer) {
+                clearTimeout(speechRestartTimer);
+                speechRestartTimer = null;
+            }
         }
 
         function initSpeechRecognition() {
@@ -1200,6 +1389,8 @@
             rec.interimResults = true;
 
             rec.onstart = function() {
+                clearSpeechRestartTimer();
+                speechErrorStreak = 0;
                 isRecognizing = true;
                 const currentVal = document.getElementById('customKoInput').value;
                 committedSpeechText = currentVal ? (currentVal.trim() + ' ') : '';
@@ -1210,6 +1401,7 @@
             };
 
             rec.onresult = function(event) {
+                speechErrorStreak = 0;
                 let sessionFinal = '';
                 let sessionInterim = '';
 
@@ -1232,13 +1424,24 @@
             rec.onerror = function(event) {
                 if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
                     isRecognizing = false;
+                    clearSpeechRestartTimer();
                     stopVoiceRecognitionUI();
                     showToast("마이크 권한이 차단되었습니다. 브라우저 설정에서 마이크를 허용해 주세요.", { mode: 'paused', badgeText: '마이크 권한 필요' });
-                } else if (event.error === 'network') {
+                } else if (event.error === 'audio-capture') {
                     isRecognizing = false;
+                    clearSpeechRestartTimer();
                     stopVoiceRecognitionUI();
-                    showToast("네트워크 오류로 음성 인식이 중단되었습니다.", { mode: 'paused', badgeText: '음성 인식 오류' });
+                    showToast("마이크 장치를 찾을 수 없거나 사용할 수 없습니다.", { mode: 'paused', badgeText: '마이크 장치 오류' });
+                } else if (event.error === 'network') {
+                    speechErrorStreak++;
+                    if (speechErrorStreak >= 3) {
+                        isRecognizing = false;
+                        clearSpeechRestartTimer();
+                        stopVoiceRecognitionUI();
+                        showToast("네트워크 오류로 음성 인식이 중단되었습니다.", { mode: 'paused', badgeText: '음성 인식 오류' });
+                    }
                 } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
+                    speechErrorStreak++;
                     showToast(`음성 인식 알림: ${event.error}`, { mode: 'live', badgeText: '음성 인식 알림' });
                 }
             };
@@ -1246,15 +1449,25 @@
             rec.onend = function() {
                 const inputEl = document.getElementById('customKoInput');
                 if (inputEl) committedSpeechText = inputEl.value ? (inputEl.value.trim() + ' ') : '';
-                if (isRecognizing) {
+                if (!isRecognizing) {
+                    stopVoiceRecognitionUI();
+                    return;
+                }
+                if (speechErrorStreak >= 4) {
+                    isRecognizing = false;
+                    stopVoiceRecognitionUI();
+                    showToast("음성 인식 재시도 한도에 도달해 자동 종료되었습니다.", { mode: 'paused', badgeText: '음성 인식 종료' });
+                    return;
+                }
+                clearSpeechRestartTimer();
+                speechRestartTimer = setTimeout(() => {
+                    if (!isRecognizing || !recognition) return;
                     try {
-                        rec.start();
+                        recognition.start();
                     } catch (e) {
                         stopVoiceRecognitionUI();
                     }
-                } else {
-                    stopVoiceRecognitionUI();
-                }
+                }, 320);
             };
 
             return rec;
@@ -1262,6 +1475,7 @@
 
         function stopVoiceRecognitionUI() {
             isRecognizing = false;
+            clearSpeechRestartTimer();
             const btn = document.getElementById('voiceInputBtn');
             const text = document.getElementById('voiceInputText');
             const inputEl = document.getElementById('customKoInput');
@@ -1281,12 +1495,14 @@
 
             if (isRecognizing) {
                 isRecognizing = false;
+                clearSpeechRestartTimer();
                 try { recognition.stop(); } catch (e) {}
                 stopVoiceRecognitionUI();
                 updateCustomTranslation();
                 showToast("음성 인식이 종료되었습니다.", { mode: 'idle', badgeText: '음성 입력 종료' });
             } else {
                 masterStop(true);
+                speechErrorStreak = 0;
                 committedSpeechText = document.getElementById('customKoInput').value
                     ? (document.getElementById('customKoInput').value.trim() + ' ')
                     : '';
@@ -1607,9 +1823,23 @@
         }
 
         function loadData() {
-            const savedData = localStorage.getItem(STORAGE_KEYS.DATA) || localStorage.getItem('kim_simin_guide_master_v48') || localStorage.getItem('kim_simin_guide_master_v47');
-            const savedCats = localStorage.getItem(STORAGE_KEYS.CATS) || localStorage.getItem('kim_simin_categories_v48') || localStorage.getItem('kim_simin_categories_v47');
-            const savedRelay = localStorage.getItem(STORAGE_KEYS.RELAY) || localStorage.getItem('kim_simin_relay_langs_v48') || localStorage.getItem('kim_simin_relay_langs_v47');
+            const savedData =
+                localStorage.getItem(STORAGE_KEYS.DATA) ||
+                localStorage.getItem('kim_simin_guide_master_v49') ||
+                localStorage.getItem('kim_simin_guide_master_v48') ||
+                localStorage.getItem('kim_simin_guide_master_v47');
+
+            const savedCats =
+                localStorage.getItem(STORAGE_KEYS.CATS) ||
+                localStorage.getItem('kim_simin_categories_v49') ||
+                localStorage.getItem('kim_simin_categories_v48') ||
+                localStorage.getItem('kim_simin_categories_v47');
+
+            const savedRelay =
+                localStorage.getItem(STORAGE_KEYS.RELAY) ||
+                localStorage.getItem('kim_simin_relay_langs_v49') ||
+                localStorage.getItem('kim_simin_relay_langs_v48') ||
+                localStorage.getItem('kim_simin_relay_langs_v47');
 
             if (savedData !== null) {
                 try {
@@ -1655,6 +1885,7 @@
         }
 
         function removeRelayLang(code) {
+            const wasActive = isPlayingQueue || isSpeakingActive || isPausedQueue;
             masterStop(true);
             const removedLabel = getLangLabel(code);
             relayLangs = relayLangs.filter(c => c !== code);
@@ -1662,10 +1893,15 @@
             renderMultiLangUI();
             updateCustomTranslation();
             if (currentCategory !== 'cleared') renderDualPanes();
-            showToast(`릴레이에서 '${removedLabel}' 언어가 해제되었습니다.`, {
-                mode: 'idle',
-                badgeText: relayLangs.length > 0 ? `릴레이 ${relayLangs.length}개국` : '단일 언어 모드'
-            });
+            showToast(
+                wasActive
+                    ? `방송 중 '${removedLabel}' 언어가 해제되어 송출을 정지했습니다.`
+                    : `릴레이에서 '${removedLabel}' 언어가 해제되었습니다.`,
+                {
+                    mode: 'idle',
+                    badgeText: relayLangs.length > 0 ? `릴레이 ${relayLangs.length}개국` : '단일 언어 모드'
+                }
+            );
         }
 
         function renderSelectedRelayChips() {
@@ -1868,6 +2104,7 @@
                 document.getElementById('fileInput').value = '';
             }
 
+            renderToken++;
             splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-broom text-3xl text-slate-400 mb-2"></i><br>우측 패널 표시 항목이 비워졌습니다.<br>저장된 탭을 클릭하면 언제든 다시 불러올 수 있습니다.</div>`;
             rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-info text-slate-500"></i> 화면 비워짐 (0개)`;
             updateCounterDisplay(0, 0);
@@ -1878,42 +2115,84 @@
             showToast("새 탭 저장 데이터는 유지하고 우측 패널 화면만 비웠습니다.", { mode: 'idle', badgeText: '화면 비워짐' });
         }
 
-        function resetAllData() {
-            if (confirm("⚠️ 주의: 저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?")) {
-                Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
-                localStorage.removeItem('kim_simin_guide_master_v48');
-                localStorage.removeItem('kim_simin_categories_v48');
-                localStorage.removeItem('kim_simin_relay_langs_v48');
+        async function resetAllData() {
+            const ok = await openConfirmModal({
+                title: '전체 데이터 초기화',
+                message: '저장된 모든 탭, 항목, 릴레이 언어 설정을 완전히 초기화하시겠습니까?',
+                confirmText: '전체 초기화',
+                confirmClass: 'btn-dark-danger'
+            });
+            if (!ok) return;
 
-                guideData = [...DEFAULT_SEED_DATA];
-                savedCustomCategories = [];
-                relayLangs = [];
-                translationCache = {};
-                stagedItems = null;
+            Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
+            ['v49', 'v48', 'v47'].forEach(ver => {
+                localStorage.removeItem(`kim_simin_guide_master_${ver}`);
+                localStorage.removeItem(`kim_simin_categories_${ver}`);
+                localStorage.removeItem(`kim_simin_relay_langs_${ver}`);
+            });
 
-                document.getElementById('uploadStagingBox').style.display = 'none';
-                document.getElementById('documentTitleInput').value = '';
-                document.getElementById('fileInput').value = '';
-                saveData();
-                masterStop(true);
-                broadcastSeconds = 0;
-                document.getElementById('timerDisplay').innerText = "00:00";
-                renderMultiLangUI();
-                renderDynamicTabs();
-                updateCustomTranslation();
-                filterCategory('all');
-                showToast("모든 데이터가 기본 상태로 초기화되었습니다.", { mode: 'idle', badgeText: '초기화 완료' });
-            }
+            guideData = [...DEFAULT_SEED_DATA];
+            savedCustomCategories = [];
+            relayLangs = [];
+            translationCache = {};
+            stagedItems = null;
+
+            document.getElementById('uploadStagingBox').style.display = 'none';
+            document.getElementById('documentTitleInput').value = '';
+            document.getElementById('fileInput').value = '';
+            saveData();
+            masterStop(true);
+            broadcastSeconds = 0;
+            document.getElementById('timerDisplay').innerText = "00:00";
+            renderMultiLangUI();
+            renderDynamicTabs();
+            updateCustomTranslation();
+            filterCategory('all');
+            showToast("모든 데이터가 기본 상태로 초기화되었습니다.", { mode: 'idle', badgeText: '초기화 완료' });
         }
 
-        function deleteItem(id) {
-            if (confirm("이 항목을 삭제하시겠습니까?")) {
-                masterStop(true);
-                guideData = guideData.filter(item => item.id !== id);
-                saveData();
-                renderDualPanes();
-                showToast("항목이 삭제되었습니다.", { mode: 'idle', badgeText: '항목 삭제됨' });
+        async function deleteItem(id, event = null) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
             }
+            const numericId = Number(id);
+            const inGuide = guideData.some(item => Number(item.id) === numericId);
+            const inStaged = Array.isArray(stagedItems) && stagedItems.some(item => Number(item.id) === numericId);
+
+            if (!inGuide && !inStaged) {
+                showToast("삭제할 항목을 찾지 못했습니다.", { mode: 'idle', badgeText: '항목 없음' });
+                return;
+            }
+
+            const ok = await openConfirmModal({
+                title: '원문 항목 삭제',
+                message: '선택한 원문 및 번역 항목을 삭제하시겠습니까?',
+                confirmText: '삭제',
+                confirmClass: 'btn-danger'
+            });
+            if (!ok) return;
+
+            masterStop(true);
+
+            if (inGuide) {
+                guideData = guideData.filter(item => Number(item.id) !== numericId);
+                saveData();
+            }
+
+            if (inStaged) {
+                stagedItems = stagedItems.filter(item => Number(item.id) !== numericId);
+                const infoEl = document.getElementById('stagingInfo');
+                if (infoEl) infoEl.innerText = `추출 문장: ${stagedItems.length}개`;
+                if (stagedItems.length === 0) {
+                    stagedItems = null;
+                    document.getElementById('uploadStagingBox').style.display = 'none';
+                    document.getElementById('documentTitleInput').value = '';
+                }
+            }
+
+            await renderDualPanes();
+            showToast("항목이 삭제되었습니다.", { mode: 'idle', badgeText: '항목 삭제됨' });
         }
 
         function initLanguageSelector() {
@@ -2036,6 +2315,7 @@
             document.getElementById('uploadStagingBox').style.display = 'flex';
 
             currentCategory = tempCatId;
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             renderDualPanes();
             showToast(`'${filename}' 파일(${lines.length}개 문장)이 미리 로드되었습니다.`, { mode: 'idle', badgeText: '문서 미리보기' });
         }
@@ -2096,39 +2376,39 @@
             });
         }
 
-        function removeCustomTab(event, categoryId) {
+        async function removeCustomTab(event, categoryId) {
             event.stopPropagation();
-            if (confirm("이 문서 탭과 포함된 모든 항목을 삭제하시겠습니까?")) {
-                masterStop(true);
-                savedCustomCategories = savedCustomCategories.filter(cat => cat.id !== categoryId);
-                guideData = guideData.filter(item => item.category !== categoryId);
-                saveData();
-                renderDynamicTabs();
-                filterCategory('all');
-                showToast("문서 탭이 삭제되었습니다.", { mode: 'idle', badgeText: '탭 삭제 완료' });
-            }
+            const ok = await openConfirmModal({
+                title: '문서 탭 삭제',
+                message: '이 문서 탭과 포함된 모든 항목을 삭제하시겠습니까?',
+                confirmText: '탭 삭제',
+                confirmClass: 'btn-danger'
+            });
+            if (!ok) return;
+
+            masterStop(true);
+            savedCustomCategories = savedCustomCategories.filter(cat => cat.id !== categoryId);
+            guideData = guideData.filter(item => item.category !== categoryId);
+            saveData();
+            renderDynamicTabs();
+            filterCategory('all');
+            showToast("문서 탭이 삭제되었습니다.", { mode: 'idle', badgeText: '탭 삭제 완료' });
         }
 
         async function updateItemText(id, field, value, cardEl = null) {
             const cleaned = (value || '').trim();
-            const item = guideData.find(i => i.id === id);
-            if (!item) {
-                if (stagedItems) {
-                    const stItem = stagedItems.find(i => i.id === id);
-                    if (stItem) {
-                        if (field === 'title') stItem.titleKo = cleaned;
-                        else if (field === 'content') stItem.contentKo = cleaned;
-                    }
-                }
-                return;
-            }
+            const item = guideData.find(i => Number(i.id) === Number(id)) ||
+                         (Array.isArray(stagedItems) ? stagedItems.find(i => Number(i.id) === Number(id)) : null);
+            if (!item) return;
 
             if (field === 'title') {
                 item.titleKo = cleaned;
             } else if (field === 'content') {
                 item.contentKo = cleaned;
             }
-            saveData();
+            if (guideData.some(i => Number(i.id) === Number(id))) {
+                saveData();
+            }
 
             if (cardEl && field === 'content') {
                 const displayLangs = getBroadcastLangList();
@@ -2208,9 +2488,12 @@
                 if (data && Array.isArray(data[0])) {
                     data[0].forEach(item => { if (item && item[0]) translated += item[0]; });
                 }
-                const result = translated.trim() || clean;
-                translationCache[cacheKey] = result;
-                return result;
+                const result = translated.trim();
+                if (result) {
+                    translationCache[cacheKey] = result;
+                    return result;
+                }
+                return `[번역 지연] ${clean}`;
             } catch (e) {
                 return `[번역 지연] ${clean}`;
             }
@@ -2223,23 +2506,31 @@
                 .trim();
             if (!cleaned) return [];
 
+            const maxChunkLen = 135;
             const rawSentences = cleaned.match(/[^.!?。！？\n]+[.!?。！？\n]*|[^.!?。！？\n]+$/g);
             const sentences = (rawSentences || [cleaned]).map(s => s.trim()).filter(Boolean);
 
             const chunks = [];
             for (const sent of sentences) {
-                if (sent.length <= 160) {
+                if (sent.length <= maxChunkLen) {
                     chunks.push(sent);
                 } else {
                     const parts = sent.split(/(?<=[,;，、；])\s+/);
                     let buffer = '';
                     for (const part of parts) {
                         const candidate = buffer ? `${buffer} ${part}` : part;
-                        if (candidate.length <= 160) {
+                        if (candidate.length <= maxChunkLen) {
                             buffer = candidate;
                         } else {
                             if (buffer) chunks.push(buffer.trim());
-                            buffer = part;
+                            if (part.length > maxChunkLen) {
+                                for (let i = 0; i < part.length; i += maxChunkLen) {
+                                    chunks.push(part.slice(i, i + maxChunkLen).trim());
+                                }
+                                buffer = '';
+                            } else {
+                                buffer = part;
+                            }
                         }
                     }
                     if (buffer) chunks.push(buffer.trim());
@@ -2267,7 +2558,7 @@
                 stopCloudAudio();
 
                 const ttsLang = encodeURIComponent(lang);
-                const encodedText = encodeURIComponent(chunk.slice(0, 180));
+                const encodedText = encodeURIComponent(chunk.slice(0, 140));
                 const audioUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${ttsLang}&q=${encodedText}`;
 
                 const audio = new Audio();
@@ -2454,6 +2745,8 @@
         }
 
         async function renderDualPanes() {
+            const myRenderToken = ++renderToken;
+
             let filteredData = [];
             if (currentCategory === 'all') {
                 filteredData = guideData;
@@ -2490,10 +2783,14 @@
                 return { item, index: i, translatedTitle, langBlocks };
             }));
 
+            if (myRenderToken !== renderToken) return;
+
+            splitContainer.innerHTML = '';
             preparedRows.forEach(({ item, index: i, translatedTitle, langBlocks }) => {
                 const rowEl = document.createElement('div');
                 rowEl.className = 'dual-card card-item';
                 rowEl.setAttribute('data-index', i);
+                rowEl.setAttribute('data-id', item.id);
 
                 const foldedClass = isAllTranslationsFolded ? 'collapsed' : '';
                 const foldBtnHtml = isAllTranslationsFolded
@@ -2513,7 +2810,7 @@
                             <span style="color:var(--accent); font-weight:700;"><i class="fa-solid fa-pen"></i> 한국어 원문 (수정 가능)</span>
                             <div style="display:flex; gap:6px;">
                                 <button type="button" class="btn btn-secondary orig-listen-btn" data-orig-text="${escapeAttr(item.contentKo)}" onclick="speakSingleText(this.getAttribute('data-orig-text'), 'ko', ${i})" style="padding:5px 10px; font-size:11.5px;"><i class="fa-solid fa-volume-high"></i> 원문 듣기</button>
-                                <button type="button" onclick="deleteItem(${item.id})" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i></button>
+                                <button type="button" onclick="deleteItem(${item.id}, event)" class="btn btn-danger" style="padding:5px 8px; font-size:11.5px;" title="항목 삭제"><i class="fa-solid fa-trash"></i> 삭제</button>
                             </div>
                         </div>
                     </div>
@@ -2873,9 +3170,13 @@
         }
 
         async function updateCustomTranslation() {
+            const myToken = ++customTranslateToken;
             const koText = document.getElementById('customKoInput').value.trim();
             const outputDiv = document.getElementById('customTranslatedOutput');
-            if (!koText) { outputDiv.innerText = "(번역 결과 대기 중...)"; return; }
+            if (!koText) {
+                outputDiv.innerText = "(번역 결과 대기 중...)";
+                return;
+            }
 
             const langs = getBroadcastLangList();
             if (langs.length > 1) {
@@ -2883,14 +3184,17 @@
                     const tr = lang === 'ko' ? koText : await fetchGoogleTranslation(koText, lang);
                     return `${idx + 1}. [${getLangLabel(lang)}] ${tr}`;
                 }));
+                if (myToken !== customTranslateToken) return;
                 outputDiv.innerText = lines.join('\n\n');
             } else {
                 const translated = await fetchGoogleTranslation(koText, langs[0]);
+                if (myToken !== customTranslateToken) return;
                 outputDiv.innerText = translated;
             }
         }
 
         function clearCustomInput() {
+            customTranslateToken++;
             committedSpeechText = '';
             document.getElementById('customKoInput').value = '';
             document.getElementById('customTranslatedOutput').innerText = "(번역 결과 대기 중...)";
@@ -2902,7 +3206,7 @@
             showToast("즉석 통역기 번역이 새로고침되었습니다.", { mode: 'idle', badgeText: '번역 갱신됨' });
         }
 
-        function saveCustomInterpreterAsTab() {
+        async function saveCustomInterpreterAsTab() {
             const koText = document.getElementById('customKoInput').value.trim();
             const transText = document.getElementById('customTranslatedOutput').innerText.trim();
 
@@ -2911,8 +3215,19 @@
                 return;
             }
 
-            const customTitle = prompt("저장할 문서 탭의 이름을 입력하세요:", "즉석 통역 메모");
+            const customTitle = await openPromptModal({
+                title: '새 탭으로 저장',
+                message: '저장할 문서 탭의 이름을 입력하세요:',
+                defaultValue: '즉석 통역 메모',
+                placeholder: '예: 즉석 통역 메모',
+                confirmText: '탭 저장'
+            });
             if (!customTitle) return;
+
+            const langs = getBroadcastLangList();
+            if (langs.length === 1 && langs[0] !== 'ko' && !transText.startsWith('[번역 지연]')) {
+                translationCache[`${langs[0]}::${koText}`] = transText;
+            }
 
             const newCatId = 'custom_int_' + Date.now();
             const newItem = {
@@ -2940,6 +3255,7 @@
 
             if (isRecognizing && recognition) {
                 isRecognizing = false;
+                clearSpeechRestartTimer();
                 try { recognition.stop(); } catch (e) {}
                 stopVoiceRecognitionUI();
             }
