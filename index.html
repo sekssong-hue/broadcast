@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Global Guide Master - 김시민호 실시간 통·번역 & 브로드캐스트 시스템</title>
+    <!-- Tailwind CSS 및 아이콘·PDF.js 라이브러리 로드 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <style>
+        /* 전체 테마 색상 및 공통 변수 정의 */
         :root {
             --bg-main: #e2e8f0;
             --panel-bg: #ffffff;
@@ -23,6 +25,7 @@
             --radius-md: 10px;
         }
 
+        /* 기본 박스 모델 및 폰트 설정 */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, sans-serif; }
 
         html {
@@ -44,11 +47,13 @@
             overflow-x: auto;
         }
 
+        /* 패널 크기 조절 중 커서 고정 */
         body.resizing-panels {
             cursor: col-resize !important;
             user-select: none !important;
         }
 
+        /* 최상단 헤더 스타일 */
         header {
             margin-bottom: 8px;
             width: 100%;
@@ -69,6 +74,7 @@
         header p { font-size: 12.5px; color: var(--text-muted); font-weight: 600; text-align: left; }
         .header-status-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
+        /* 방송 소요시간 배지 스타일 */
         #broadcastTimerBadge {
             font-family: monospace;
             font-size: 13.5px !important;
@@ -84,6 +90,27 @@
             white-space: nowrap;
         }
 
+        /* 우측 상단 현재 방송 순서(* / **번째) 배지 스타일 */
+        #broadcastLivePositionBadge {
+            font-size: 13.5px !important;
+            font-weight: 800 !important;
+            background: #eff6ff !important;
+            color: #1e3a8a !important;
+            padding: 5px 11px !important;
+            border-radius: 8px !important;
+            border: 1.5px solid #93c5fd !important;
+            display: inline-flex !important;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        #broadcastLivePositionBadge.is-active {
+            background: #fef08a !important;
+            color: #78350f !important;
+            border-color: #eab308 !important;
+        }
+
+        /* 실시간 시계 배지 */
         .live-clock-badge {
             font-family: monospace;
             font-size: 16px !important;
@@ -100,6 +127,7 @@
             box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
         }
 
+        /* 상단 툴바 영역 */
         .top-toolbar {
             width: 100%;
             max-width: 1480px;
@@ -128,6 +156,7 @@
         .setting-item { display: flex; align-items: center; gap: 6px; position: relative; }
         .setting-label { font-size: 13.5px; font-weight: 700; color: var(--text-main); white-space: nowrap; }
 
+        /* 선택된 릴레이 언어 칩 바 */
         .selected-relay-chips-bar {
             display: none;
             width: 100%;
@@ -172,6 +201,7 @@
             color: #ffffff;
         }
 
+        /* 카테고리 및 커스텀 탭 버튼 */
         .cat-btn { padding: 8px 13px; min-height: 36px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid var(--border-color); background: #f8fafc; color: var(--text-muted); transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
         .cat-btn:hover { background: #f1f5f9; color: var(--text-main); }
         .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -193,6 +223,7 @@
             cursor: pointer;
         }
 
+        /* 다국적 릴레이 팝오버 */
         .multi-lang-popover {
             display: none;
             position: absolute;
@@ -283,6 +314,7 @@
         .voice-ok { background: #dcfce7; color: #166534; }
         .voice-cloud { background: #e0f2fe; color: #0369a1; }
 
+        /* 실시간 송출 모니터 배너 */
         .active-broadcast-monitor {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             color: #0f172a;
@@ -362,6 +394,7 @@
             color: #431407;
         }
 
+        /* 우측 상단 고정 제어 박스 */
         .right-sticky-controls-box {
             background: #f8fafc;
             border: 1.5px solid #64748b;
@@ -372,6 +405,83 @@
             box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
         }
 
+        /* 송출 음량 조절바 및 음소거 ON/OFF 바 스타일 */
+        .audio-volume-bar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px 10px;
+            margin-bottom: 8px;
+        }
+        .volume-control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 220px;
+            min-width: 180px;
+        }
+        .volume-slider-input {
+            flex: 1;
+            height: 8px;
+            accent-color: #2563eb;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .volume-slider-input.is-muted {
+            accent-color: #dc2626;
+            opacity: 0.7;
+        }
+        .volume-percent-tag {
+            font-family: monospace;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #1e3a8a;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 2px 8px;
+            border-radius: 6px;
+            min-width: 52px;
+            text-align: center;
+        }
+        .volume-percent-tag.is-muted {
+            color: #991b1b;
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+        .mute-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            min-height: 34px;
+            border-radius: 7px;
+            font-size: 12.5px;
+            font-weight: 800;
+            cursor: pointer;
+            border: 1.5px solid #94a3b8;
+            background: #f1f5f9;
+            color: #0f172a;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+        .mute-toggle-btn:hover {
+            background: #e2e8f0;
+        }
+        .mute-toggle-btn.muted-on {
+            background: #dc2626;
+            color: #ffffff;
+            border-color: #991b1b;
+        }
+        .mute-toggle-btn.muted-on:hover {
+            background: #b91c1c;
+        }
+
+        /* 번역 접기/펼치기 스타일 */
         .translated-relay-container.collapsed {
             display: none;
         }
@@ -411,6 +521,7 @@
         }
         .fold-toggle-btn:hover { background: #bae6fd; }
 
+        /* 언어별 번역 카드 블록 */
         .relay-card-block {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -457,6 +568,7 @@
         }
         .copy-mini-btn:hover { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
 
+        /* 좌/우 분할 워크스페이스 */
         .workspace {
             display: flex;
             gap: 0;
@@ -519,6 +631,7 @@
         }
         .panel-collapse-btn:hover { background: #e2e8f0; }
 
+        /* 좌/우 분할 경계 핸들 */
         .panel-splitter {
             width: 16px;
             flex: 0 0 16px;
@@ -542,6 +655,7 @@
             height: 84px;
         }
 
+        /* 패널 접힘 상태 스타일 */
         .panel.panel-collapsed {
             padding: 12px 10px;
             align-items: center;
@@ -583,6 +697,7 @@
             gap: 6px;
         }
 
+        /* 파일 업로드 드롭존 */
         .upload-zone {
             border: 2px dashed #60a5fa;
             background-color: #eff6ff;
@@ -610,6 +725,7 @@
             flex-shrink: 0;
         }
 
+        /* 즉석 입력 통역기 박스 */
         .custom-input-box {
             background: #f8fafc;
             border: 1px solid var(--border-color);
@@ -684,6 +800,7 @@
             white-space: pre-line;
         }
 
+        /* 우측 스크롤 카드 컨테이너 */
         .card-scroll-container {
             flex: 1 1 auto;
             overflow-y: auto;
@@ -793,6 +910,7 @@
 
         .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f5f9; font-size: 12.5px; flex-wrap: wrap; }
 
+        /* 버튼 스타일 */
         .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--primary); color: white; border: none; padding: 9px 14px; min-height: 38px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-weight: 800; transition: 0.2s; gap: 6px; white-space: nowrap; }
         .btn:hover { background-color: var(--primary-hover); }
         .btn-danger { background-color: #ef4444; }
@@ -810,6 +928,7 @@
         .btn-sky { background-color: #0284c7; color: #ffffff; }
         .btn-sky:hover { background-color: #0369a1; }
 
+        /* 음성 입력 마이크 버튼 */
         .mic-btn {
             padding: 5px 11px;
             min-height: 32px;
@@ -836,6 +955,7 @@
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
+        /* 확인/입력 모달 */
         .ui-modal-backdrop {
             display: none;
             position: fixed;
@@ -882,6 +1002,7 @@
             margin-top: 4px;
         }
 
+        /* 태블릿 및 모바일 반응형 레이아웃 */
         @media (max-width: 1024px) {
             body { height: auto; min-height: 100dvh; overflow-y: auto; padding: 12px; }
             header { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -916,7 +1037,7 @@
             header { padding: 12px; }
             header h1 { font-size: 18px; }
             .live-clock-badge { font-size: 14.5px !important; padding: 6px 12px !important; }
-            #broadcastTimerBadge, .large-counter-badge { font-size: 13px !important; padding: 5px 10px !important; }
+            #broadcastTimerBadge, #broadcastLivePositionBadge, .large-counter-badge { font-size: 13px !important; padding: 5px 10px !important; }
             .toolbar-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
             .setting-item { flex-direction: column; align-items: flex-start; gap: 4px; }
             .setting-item select { width: 100%; }
@@ -934,6 +1055,7 @@
 </head>
 <body>
 
+    <!-- 상단 헤더: 시스템 제목 및 실시간 시계 -->
     <header>
         <div class="header-title-area">
             <div>
@@ -943,11 +1065,12 @@
         </div>
         <div class="header-status-group">
             <div class="live-clock-badge">
-                <i class="fa-regular fa-clock text-blue-600"></i> <span id="liveClockText">2026-11-27 (금) 00:07:00</span>
+                <i class="fa-regular fa-clock text-blue-600"></i> <span id="liveClockText">2026-11-28 (토) 10:11:00</span>
             </div>
         </div>
     </header>
 
+    <!-- 카테고리/문서 탭 및 언어·송출 속도 설정 툴바 -->
     <div class="top-toolbar">
         <div class="toolbar-main-row">
             <div class="toolbar-group" id="categoryNav">
@@ -1008,12 +1131,13 @@
         <div id="selectedRelayChipsBar" class="selected-relay-chips-bar"></div>
     </div>
 
+    <!-- 메인 좌/우 작업 영역 -->
     <div class="workspace" id="workspaceArea">
+        <!-- 왼쪽 패널: 파일 업로드 및 실시간 AI 즉석 입력 통역기 -->
         <div class="panel panel-translator" id="leftPanel">
             <div class="panel-header-bar">
                 <span class="panel-title-group"><i class="fa-solid fa-folder-open text-blue-600"></i> 문서 업로드 및 즉석 통역</span>
                 <div class="panel-header-actions">
-                    <span id="headerCounterBadge" class="large-counter-badge">총 항목: 0개</span>
                     <button type="button" id="leftPanelToggleBtn" onclick="togglePanelCollapse('left')" class="panel-collapse-btn" title="왼쪽 패널 접기/펴기">
                         <i class="fa-solid fa-chevron-left" id="leftPanelToggleIcon"></i> <span id="leftPanelToggleText">접기</span>
                     </button>
@@ -1076,8 +1200,10 @@
             </div>
         </div>
 
+        <!-- 좌/우 패널 너비 조절 핸들 -->
         <div class="panel-splitter" id="panelSplitter" title="드래그하여 좌/우 너비 조절 · 더블클릭 시 50:50 초기화"></div>
 
+        <!-- 오른쪽 패널: 방송 순서 배지, 송출 개수 배지, 브로드캐스트 제어 및 비교 카드 -->
         <div class="panel panel-interpreter" id="rightPanel">
             <div class="panel-header-bar">
                 <span class="panel-title-group"><i class="fa-solid fa-columns text-emerald-600"></i> 라이브 비교 및 브로드캐스트 제어</span>
@@ -1088,6 +1214,8 @@
                     <div id="broadcastTimerBadge">
                         <i class="fa-solid fa-stopwatch" id="timerIcon"></i> 소요시간: <span id="timerDisplay">00:00</span>
                     </div>
+                    <!-- '송출 ** / **개' 배지 왼쪽에 배치한 방송 순서 배지 -->
+                    <span id="broadcastLivePositionBadge"><i class="fa-solid fa-volume-high text-blue-600"></i> 방송 중: <b>대기</b></span>
                     <span id="rightPanelCounterBadge" class="large-counter-badge">대기 중...</span>
                     <button type="button" id="rightPanelToggleBtn" onclick="togglePanelCollapse('right')" class="panel-collapse-btn" title="오른쪽 패널 접기/펴기">
                         <i class="fa-solid fa-chevron-right" id="rightPanelToggleIcon"></i> <span id="rightPanelToggleText">접기</span>
@@ -1108,6 +1236,21 @@
             </div>
 
             <div class="right-sticky-controls-box">
+                <!-- 송출 음량 조절바 및 음소거 ON/OFF 토글 영역 -->
+                <div class="audio-volume-bar-row">
+                    <div class="volume-control-group">
+                        <span style="font-size:12.5px; font-weight:800; color:#0f172a; white-space:nowrap;">
+                            <i class="fa-solid fa-sliders text-blue-600"></i> 송출 음량:
+                        </span>
+                        <input type="range" id="volumeSlider" class="volume-slider-input" min="0" max="100" step="1" value="100" oninput="handleVolumeSliderChange(this.value)" title="송출 음성 볼륨 조절 (0% ~ 100%)">
+                        <span id="volumePercentLabel" class="volume-percent-tag">100%</span>
+                    </div>
+                    <button type="button" id="muteToggleBtn" class="mute-toggle-btn" onclick="toggleMuteState()" title="음소거 ON / OFF 전환">
+                        <i class="fa-solid fa-volume-high" id="muteToggleIcon"></i>
+                        <span id="muteToggleText">음소거 OFF</span>
+                    </button>
+                </div>
+
                 <div style="margin-bottom: 8px; font-size: 12.5px; font-weight: 800; color: var(--text-main); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <span><i class="fa-solid fa-bolt text-rose-600"></i> 체크 즉시 건너뛰기 활성 (<span id="selectedSkipCountText">건너뜀 0개</span>)</span>
                     <div class="queue-mini-actions">
@@ -1131,6 +1274,7 @@
         </div>
     </div>
 
+    <!-- 확인/입력 모달 -->
     <div id="uiModalBackdrop" class="ui-modal-backdrop" role="dialog" aria-modal="true">
         <div class="ui-modal-card">
             <div id="uiModalTitle" class="ui-modal-title"></div>
@@ -1146,14 +1290,18 @@
     </div>
 
     <script>
+        // PDF.js 워커 경로 설정
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
+        // 로컬 스토리지 키 모음
         const STORAGE_KEYS = {
-            DATA: 'kim_simin_guide_master_v54',
-            CATS: 'kim_simin_categories_v54',
-            RELAY: 'kim_simin_relay_langs_v54'
+            DATA: 'kim_simin_guide_master_v57',
+            CATS: 'kim_simin_categories_v57',
+            RELAY: 'kim_simin_relay_langs_v57',
+            AUDIO: 'kim_simin_audio_prefs_v57'
         };
 
+        // 기본 안내 문구 시드 데이터
         const DEFAULT_SEED_DATA = [
             {
                 id: 1001,
@@ -1185,6 +1333,170 @@
             }
         ];
 
+        // 송출 음량(0.0 ~ 1.0) 및 음소거 상태 변수
+        let broadcastVolume = 1.0;
+        let previousUnmutedVolume = 1.0;
+        let isMuted = false;
+
+        // 현재 실제 적용될 볼륨(음소거 시 0) 계산
+        function getEffectiveBroadcastVolume() {
+            if (isMuted) return 0;
+            return Math.max(0, Math.min(1, broadcastVolume));
+        }
+
+        // 활성 클라우드 오디오 및 음량 UI 동기화
+        function syncAudioVolumeState() {
+            const effectiveVol = getEffectiveBroadcastVolume();
+
+            if (activeCloudAudio) {
+                try {
+                    activeCloudAudio.volume = effectiveVol;
+                    activeCloudAudio.muted = isMuted || effectiveVol === 0;
+                } catch (e) {}
+            }
+
+            const slider = document.getElementById('volumeSlider');
+            const pctLabel = document.getElementById('volumePercentLabel');
+            const muteBtn = document.getElementById('muteToggleBtn');
+            const muteIcon = document.getElementById('muteToggleIcon');
+            const muteText = document.getElementById('muteToggleText');
+
+            const displayPct = Math.round(effectiveVol * 100);
+            if (slider) {
+                slider.value = String(displayPct);
+                slider.classList.toggle('is-muted', isMuted || displayPct === 0);
+            }
+            if (pctLabel) {
+                pctLabel.innerText = isMuted ? '0% (음소거)' : `${displayPct}%`;
+                pctLabel.classList.toggle('is-muted', isMuted || displayPct === 0);
+            }
+            if (muteBtn && muteIcon && muteText) {
+                if (isMuted) {
+                    muteBtn.classList.add('muted-on');
+                    muteIcon.className = 'fa-solid fa-volume-xmark';
+                    muteText.innerText = '음소거 ON';
+                } else {
+                    muteBtn.classList.remove('muted-on');
+                    muteIcon.className = displayPct === 0 ? 'fa-solid fa-volume-off' : 'fa-solid fa-volume-high';
+                    muteText.innerText = '음소거 OFF';
+                }
+            }
+
+            saveAudioPrefs();
+        }
+
+        // 음량 슬라이더 조작 핸들러
+        function handleVolumeSliderChange(rawVal) {
+            const num = Math.max(0, Math.min(100, Number(rawVal) || 0));
+            const nextVol = num / 100;
+
+            if (num > 0) {
+                isMuted = false;
+                broadcastVolume = nextVol;
+                previousUnmutedVolume = nextVol;
+            } else {
+                broadcastVolume = 0;
+                isMuted = true;
+            }
+
+            syncAudioVolumeState();
+        }
+
+        // 음소거 ON / OFF 토글 핸들러
+        function toggleMuteState() {
+            if (!isMuted) {
+                if (broadcastVolume > 0) {
+                    previousUnmutedVolume = broadcastVolume;
+                }
+                isMuted = true;
+                syncAudioVolumeState();
+                showToast("송출 음소거가 켜졌습니다. (음소거 ON)", {
+                    mode: isPlayingQueue || isSpeakingActive ? 'live' : 'idle',
+                    badgeText: '음소거 ON'
+                });
+            } else {
+                isMuted = false;
+                broadcastVolume = previousUnmutedVolume > 0 ? previousUnmutedVolume : 1.0;
+                syncAudioVolumeState();
+                showToast(`송출 음소거가 해제되었습니다. (음량 ${Math.round(broadcastVolume * 100)}%)`, {
+                    mode: isPlayingQueue || isSpeakingActive ? 'live' : 'idle',
+                    badgeText: `음소거 OFF · ${Math.round(broadcastVolume * 100)}%`
+                });
+            }
+        }
+
+        function saveAudioPrefs() {
+            try {
+                localStorage.setItem(STORAGE_KEYS.AUDIO, JSON.stringify({
+                    volume: broadcastVolume,
+                    previousUnmutedVolume,
+                    isMuted
+                }));
+            } catch (e) {}
+        }
+
+        function loadAudioPrefs() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEYS.AUDIO);
+                if (!raw) return;
+                const parsed = JSON.parse(raw);
+                if (typeof parsed.volume === 'number') {
+                    broadcastVolume = Math.max(0, Math.min(1, parsed.volume));
+                }
+                if (typeof parsed.previousUnmutedVolume === 'number' && parsed.previousUnmutedVolume > 0) {
+                    previousUnmutedVolume = Math.max(0.05, Math.min(1, parsed.previousUnmutedVolume));
+                }
+                isMuted = Boolean(parsed.isMuted);
+            } catch (e) {}
+            syncAudioVolumeState();
+        }
+
+        // 원문 공백 및 줄바꿈 정리
+        function sanitizeSourceText(rawText) {
+            return String(rawText || '')
+                .replace(/\u00A0/g, ' ')
+                .replace(/[ \t]+/g, ' ')
+                .replace(/\s*\n\s*/g, ' ')
+                .trim();
+        }
+
+        // 번역 API 타겟 언어 코드 보정
+        function mapTranslateTargetLang(langCode) {
+            const norm = String(langCode || 'en').trim();
+            const lower = norm.toLowerCase();
+            if (lower === 'zh-hk') return 'zh-TW';
+            if (lower === 'fil') return 'tl';
+            return norm;
+        }
+
+        // 주요 고유명사 및 관광 명칭 표기 보정
+        function applyTermNormalization(koreanText, translatedText, tl) {
+            let out = String(translatedText || '').trim();
+            if (!out) return out;
+            const lower = String(tl || '').toLowerCase();
+
+            if (koreanText.includes('김시민호')) {
+                if (lower === 'en') {
+                    out = out.replace(/Kim Citizen(s)?\s*(Boat|Ship|Vessel)?/gi, 'Kim Si-min Cruise');
+                } else if (lower === 'ja') {
+                    out = out.replace(/キムシミン号|金市民号/g, 'キムシミン号');
+                } else if (lower.startsWith('zh')) {
+                    out = out.replace(/金市民号/g, '金市民号');
+                }
+            }
+            if (koreanText.includes('물빛나루쉼터') && lower === 'en') {
+                out = out.replace(/Water Light Ferry Shelter|Mulbit Naru Rest Area/gi, 'Mulbitnaru Rest Pier');
+            }
+            if (koreanText.includes('진주성') && lower === 'en') {
+                out = out.replace(/Pearl Fortress|Jinju Castle/gi, 'Jinjuseong Fortress');
+            }
+            if (koreanText.includes('촉석루') && lower === 'en') {
+                out = out.replace(/Chokseongnu Pavilion/gi, 'Chokseongnu Pavilion');
+            }
+            return out;
+        }
+
+        // 확인 다이얼로그 모달
         function openConfirmModal({ title, message, confirmText = '확인', confirmClass = 'btn-danger' }) {
             return new Promise((resolve) => {
                 const backdrop = document.getElementById('uiModalBackdrop');
@@ -1227,6 +1539,7 @@
             });
         }
 
+        // 텍스트 입력 다이얼로그 모달
         function openPromptModal({ title, message, defaultValue = '', placeholder = '', confirmText = '저장' }) {
             return new Promise((resolve) => {
                 const backdrop = document.getElementById('uiModalBackdrop');
@@ -1275,6 +1588,7 @@
             });
         }
 
+        // 상단 현재 시각 업데이트
         function updateLiveClock() {
             const now = new Date();
             const year = now.getFullYear();
@@ -1291,6 +1605,7 @@
         setInterval(updateLiveClock, 1000);
         updateLiveClock();
 
+        // 좌/우 패널 너비 비율 및 접기 상태 관리
         let leftRatio = 0.5;
         let isLeftCollapsed = false;
         let isRightCollapsed = false;
@@ -1420,6 +1735,7 @@
             window.addEventListener('resize', applyPanelLayout);
         }
 
+        // 방송 소요시간 타이머 제어
         let broadcastTimerInterval = null;
         let broadcastSeconds = 0;
 
@@ -1453,6 +1769,7 @@
             pauseBroadcastTimer();
         }
 
+        // 송출 모니터 배너 갱신
         function setMonitorBanner({ mode = 'idle', badgeText = '송출 대기 중', queueText = '', detailText = '' }) {
             const box = document.getElementById('activeBroadcastMonitor');
             const pill = document.getElementById('monitorCountryPill');
@@ -1488,6 +1805,7 @@
             });
         }
 
+        // 실시간 음성 인식 (Web Speech API)
         let recognition = null;
         let isRecognizing = false;
         let committedSpeechText = '';
@@ -1647,6 +1965,7 @@
             }
         }
 
+        // 지원 언어 목록
         const rawLanguageList = [
             { code: "af", name: "남아프리카공화국 (Afrikaans)" },
             { code: "sq", name: "알바니아 (Albanian)" },
@@ -1761,6 +2080,7 @@
 
         const sortedLanguageList = [...rawLanguageList].sort((a, b) => a.name.localeCompare(b.name, 'ko'));
 
+        // 전역 상태 변수
         let guideData = [];
         let savedCustomCategories = [];
         let stagedItems = null;
@@ -1779,12 +2099,13 @@
         let pauseSnapshot = null;
         let currentActiveItemId = null;
         let currentActiveCardIndex = -1;
+        let currentDisplayTotalCount = 0;
         let liveSkipAbortResolver = null;
 
         const targetLangSelect = document.getElementById('targetLangSelect');
         const speechRateSelect = document.getElementById('speechRateSelect');
         const splitContainer = document.getElementById('splitContainer');
-        const headerCounterBadge = document.getElementById('headerCounterBadge');
+        const broadcastLivePositionBadge = document.getElementById('broadcastLivePositionBadge');
         const rightPanelCounterBadge = document.getElementById('rightPanelCounterBadge');
 
         function stopCloudAudio() {
@@ -1958,9 +2279,13 @@
             return found ? found.name : code;
         }
 
+        // 저장된 데이터 불러오기
         function loadData() {
             const savedData =
                 localStorage.getItem(STORAGE_KEYS.DATA) ||
+                localStorage.getItem('kim_simin_guide_master_v56') ||
+                localStorage.getItem('kim_simin_guide_master_v55') ||
+                localStorage.getItem('kim_simin_guide_master_v54') ||
                 localStorage.getItem('kim_simin_guide_master_v53') ||
                 localStorage.getItem('kim_simin_guide_master_v52') ||
                 localStorage.getItem('kim_simin_guide_master_v51') ||
@@ -1971,6 +2296,9 @@
 
             const savedCats =
                 localStorage.getItem(STORAGE_KEYS.CATS) ||
+                localStorage.getItem('kim_simin_categories_v56') ||
+                localStorage.getItem('kim_simin_categories_v55') ||
+                localStorage.getItem('kim_simin_categories_v54') ||
                 localStorage.getItem('kim_simin_categories_v53') ||
                 localStorage.getItem('kim_simin_categories_v52') ||
                 localStorage.getItem('kim_simin_categories_v51') ||
@@ -1981,6 +2309,9 @@
 
             const savedRelay =
                 localStorage.getItem(STORAGE_KEYS.RELAY) ||
+                localStorage.getItem('kim_simin_relay_langs_v56') ||
+                localStorage.getItem('kim_simin_relay_langs_v55') ||
+                localStorage.getItem('kim_simin_relay_langs_v54') ||
                 localStorage.getItem('kim_simin_relay_langs_v53') ||
                 localStorage.getItem('kim_simin_relay_langs_v52') ||
                 localStorage.getItem('kim_simin_relay_langs_v51') ||
@@ -2025,6 +2356,7 @@
             localStorage.setItem(STORAGE_KEYS.DATA, JSON.stringify(guideData));
             localStorage.setItem(STORAGE_KEYS.CATS, JSON.stringify(savedCustomCategories));
             localStorage.setItem(STORAGE_KEYS.RELAY, JSON.stringify(relayLangs));
+            saveAudioPrefs();
         }
 
         function findItemById(id) {
@@ -2038,7 +2370,7 @@
         }
 
         function invalidateTranslationCacheForText(text) {
-            const clean = (text || '').trim();
+            const clean = sanitizeSourceText(text);
             if (!clean) return;
             const suffix = `::${clean}`;
             Object.keys(translationCache).forEach((key) => {
@@ -2433,7 +2765,7 @@
             if (!ok) return;
 
             Object.values(STORAGE_KEYS).forEach(k => localStorage.removeItem(k));
-            ['v53', 'v52', 'v51', 'v50', 'v49', 'v48', 'v47'].forEach(ver => {
+            ['v56', 'v55', 'v54', 'v53', 'v52', 'v51', 'v50', 'v49', 'v48', 'v47'].forEach(ver => {
                 localStorage.removeItem(`kim_simin_guide_master_${ver}`);
                 localStorage.removeItem(`kim_simin_categories_${ver}`);
                 localStorage.removeItem(`kim_simin_relay_langs_${ver}`);
@@ -2444,6 +2776,10 @@
             relayLangs = [];
             translationCache = {};
             stagedItems = null;
+            broadcastVolume = 1.0;
+            previousUnmutedVolume = 1.0;
+            isMuted = false;
+            syncAudioVolumeState();
 
             document.getElementById('uploadStagingBox').style.display = 'none';
             document.getElementById('documentTitleInput').value = '';
@@ -2530,6 +2866,7 @@
         });
 
         function initApp() {
+            loadAudioPrefs();
             refreshSystemVoices();
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.onvoiceschanged = refreshSystemVoices;
@@ -2606,7 +2943,7 @@
             if (!textContent.trim()) { showToast("파일 내용이 비어 있습니다.", { mode: 'idle', badgeText: '빈 파일' }); return; }
 
             masterStop(true);
-            const lines = textContent.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
+            const lines = textContent.split(/\r?\n/).map(line => sanitizeSourceText(line)).filter(line => line.length > 0);
             const tempCatId = 'staged_' + Date.now();
             const baseSeed = Date.now();
 
@@ -2724,7 +3061,7 @@
                 itemEditTimers.delete(timerKey);
             }
 
-            const cleaned = (value || '').trim();
+            const cleaned = sanitizeSourceText(value);
             const item = findItemById(id);
             if (!item) return;
 
@@ -2787,10 +3124,10 @@
             const itemObj = findItemById(itemId);
             const contentEl = cardEl.querySelector('.card-pane-original .card-text');
             const latestKo = itemObj
-                ? (itemObj.contentKo || '').trim()
-                : (contentEl ? contentEl.innerText.trim() : '');
+                ? sanitizeSourceText(itemObj.contentKo)
+                : (contentEl ? sanitizeSourceText(contentEl.innerText) : '');
 
-            if (itemObj && latestKo !== (itemObj.contentKo || '').trim()) {
+            if (itemObj && latestKo !== sanitizeSourceText(itemObj.contentKo)) {
                 invalidateTranslationCacheForText(itemObj.contentKo);
                 itemObj.contentKo = latestKo;
                 if (guideData.some(i => Number(i.id) === itemId)) saveData();
@@ -2859,8 +3196,20 @@
             document.body.removeChild(ta);
         }
 
+        async function requestSingleTranslate(cleanText, apiTl) {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${encodeURIComponent(apiTl)}&dt=t&q=${encodeURIComponent(cleanText)}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("Network response was not ok");
+            const data = await res.json();
+            let translated = "";
+            if (data && Array.isArray(data[0])) {
+                data[0].forEach(item => { if (item && item[0]) translated += item[0]; });
+            }
+            return translated.trim();
+        }
+
         async function fetchGoogleTranslation(text, tl, options = {}) {
-            const clean = (text || '').trim();
+            const clean = sanitizeSourceText(text);
             if (!clean) return "";
             if (tl === 'ko') return clean;
 
@@ -2869,24 +3218,24 @@
                 return translationCache[cacheKey];
             }
 
-            try {
-                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(clean)}`;
-                const res = await fetch(url);
-                if (!res.ok) throw new Error("Network response was not ok");
-                const data = await res.json();
-                let translated = "";
-                if (data && Array.isArray(data[0])) {
-                    data[0].forEach(item => { if (item && item[0]) translated += item[0]; });
+            const apiTl = mapTranslateTargetLang(tl);
+
+            for (let attempt = 0; attempt < 2; attempt++) {
+                try {
+                    const rawTranslated = await requestSingleTranslate(clean, apiTl);
+                    const normalized = applyTermNormalization(clean, rawTranslated, tl);
+                    if (normalized) {
+                        translationCache[cacheKey] = normalized;
+                        return normalized;
+                    }
+                } catch (e) {
+                    if (attempt === 0) {
+                        await new Promise(r => setTimeout(r, 220));
+                    }
                 }
-                const result = translated.trim();
-                if (result) {
-                    translationCache[cacheKey] = result;
-                    return result;
-                }
-                return `[번역 지연] ${clean}`;
-            } catch (e) {
-                return `[번역 지연] ${clean}`;
             }
+
+            return `[번역 지연] ${clean}`;
         }
 
         function splitForSmoothSpeech(text) {
@@ -2948,19 +3297,23 @@
             return Boolean(item && item.skip);
         }
 
+        // 클라우드 TTS 음성 재생(현재 음량 및 음소거 상태 반영)
         function speakViaCloudTts(chunk, lang, userRate, token) {
             return new Promise((resolve) => {
                 if (token !== playbackToken) return resolve('cancelled');
                 if (isCurrentItemMarkedSkip()) return resolve('skipped_live');
                 stopCloudAudio();
 
-                const ttsLang = encodeURIComponent(lang);
+                const ttsLang = encodeURIComponent(mapTranslateTargetLang(lang));
                 const encodedText = encodeURIComponent(chunk.slice(0, 140));
                 const audioUrl = `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${ttsLang}&q=${encodedText}`;
 
+                const effectiveVol = getEffectiveBroadcastVolume();
                 const audio = new Audio();
                 activeCloudAudio = audio;
                 audio.preload = 'auto';
+                audio.volume = effectiveVol;
+                audio.muted = isMuted || effectiveVol === 0;
                 audio.playbackRate = Math.max(0.75, Math.min(2.0, userRate));
 
                 let finished = false;
@@ -3002,6 +3355,7 @@
             });
         }
 
+        // 폴백 기기 TTS 재생(현재 음량 및 음소거 상태 반영)
         function speakViaFallbackVoice(chunk, userRate, token) {
             return new Promise((resolve) => {
                 if (token !== playbackToken || !('speechSynthesis' in window)) return resolve('done');
@@ -3013,6 +3367,7 @@
                     utter.lang = fallbackVoice.lang;
                 }
                 utter.rate = Math.max(0.75, Math.min(2.0, userRate * 0.95));
+                utter.volume = getEffectiveBroadcastVolume();
 
                 let finished = false;
                 const done = (status) => {
@@ -3035,6 +3390,7 @@
             });
         }
 
+        // 문장 조각 단위 음성 송출(현재 음량 및 음소거 상태 반영)
         function speakChunkOnce(chunk, lang, userRate, token) {
             return new Promise(async (resolve) => {
                 if (token !== playbackToken) return resolve('cancelled');
@@ -3044,6 +3400,7 @@
                 const speechTag = mapSpeechLangTag(lang);
                 const voice = pickNaturalVoice(lang);
                 const tuning = getNaturalVoiceTuning(lang, userRate);
+                const effectiveVol = getEffectiveBroadcastVolume();
 
                 if (!voice) {
                     const cloudStatus = await speakViaCloudTts(chunk, lang, userRate, token);
@@ -3082,7 +3439,7 @@
                 utter.voice = voice;
                 utter.rate = tuning.rate;
                 utter.pitch = tuning.pitch;
-                utter.volume = 1.0;
+                utter.volume = effectiveVol;
 
                 utter.onend = () => done('done');
                 utter.onerror = async (ev) => {
@@ -3172,6 +3529,7 @@
             return { status: 'completed', nextChunkIndex: chunks.length };
         }
 
+        // 우측 카드 렌더링
         async function renderDualPanes() {
             const myRenderToken = ++renderToken;
 
@@ -3190,7 +3548,7 @@
             const activePlayCount = filteredData.filter(item => !item.skip).length;
 
             if (totalCount === 0) {
-                rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 항목 없음 (0개)`;
+                rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> 송출 0 / 0개`;
                 splitContainer.innerHTML = `<div style="text-align:center; padding:40px 20px; color:var(--text-muted); font-size:14px; font-weight:600;"><i class="fa-solid fa-file-circle-exclamation text-3xl text-blue-400 mb-2"></i><br>선택된 탭에 등록된 항목이 없습니다.<br>상단에서 파일을 업로드하거나 즉석 통역을 저장해 보세요!</div>`;
                 updateCounterDisplay(0, 0, 0);
                 updateSelectedSkipBadge();
@@ -3284,12 +3642,20 @@
             updateSelectedSkipBadge();
         }
 
+        // 우측 상단 '방송 중: * / **번째' 배지 및 '송출 ** / **개' 배지 동기화
         function updateCounterDisplay(total, current, activeCount = null) {
+            currentDisplayTotalCount = total;
             const playTotal = activeCount !== null ? activeCount : total;
-            if (current > 0) {
-                headerCounterBadge.innerHTML = `<i class="fa-solid fa-volume-high text-amber-600 fa-bounce"></i> 방송 중: <b>${current} / ${total}번째</b>`;
-            } else {
-                headerCounterBadge.innerHTML = `<i class="fa-solid fa-list-check text-blue-600"></i> 송출 <b>${playTotal}</b> / ${total}개`;
+            rightPanelCounterBadge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> 송출 <b>${playTotal}</b> / ${total}개`;
+
+            if (broadcastLivePositionBadge) {
+                if (current > 0 && total > 0) {
+                    broadcastLivePositionBadge.classList.add('is-active');
+                    broadcastLivePositionBadge.innerHTML = `<i class="fa-solid fa-volume-high text-amber-700 fa-bounce"></i> 방송 중: <b>${current} / ${total}번째</b>`;
+                } else {
+                    broadcastLivePositionBadge.classList.remove('is-active');
+                    broadcastLivePositionBadge.innerHTML = `<i class="fa-solid fa-volume-high text-blue-600"></i> 방송 중: <b>대기</b>`;
+                }
             }
         }
 
@@ -3357,7 +3723,7 @@
                 const itemId = Number(cardEl.getAttribute('data-id'));
                 const itemObj = findItemById(itemId);
                 const domContent = cardEl.querySelector('.card-pane-original .card-text');
-                const latestKo = domContent ? domContent.innerText.trim() : (itemObj ? itemObj.contentKo : phrase);
+                const latestKo = domContent ? sanitizeSourceText(domContent.innerText) : (itemObj ? itemObj.contentKo : phrase);
                 if (latestKo) {
                     phrase = latestKo;
                     if (itemObj) {
@@ -3409,12 +3775,12 @@
         }
 
         async function playCardRelay(cardIndex) {
-            const cardEl = document.querySelectorAll('#splitContainer .card-item')[cardIndex];
+            const cardEl = document.querySelectorAll('.card-item')[cardIndex];
             if (!cardEl) return;
 
             masterStop(true);
             const myToken = ++playbackToken;
-            const total = document.querySelectorAll('#splitContainer .card-item').length;
+            const total = document.querySelectorAll('.card-item').length;
             highlightCard(cardIndex, total);
             startBroadcastTimer(true);
 
@@ -3675,9 +4041,10 @@
             }
         }
 
+        // 실시간 AI 즉석 입력 통역기 함수들
         async function updateCustomTranslation() {
             const myToken = ++customTranslateToken;
-            const koText = document.getElementById('customKoInput').value.trim();
+            const koText = sanitizeSourceText(document.getElementById('customKoInput').value);
             const outputDiv = document.getElementById('customTranslatedOutput');
             if (!koText) {
                 outputDiv.innerText = "(번역 결과 대기 중...)";
@@ -3713,7 +4080,7 @@
         }
 
         async function saveCustomInterpreterAsTab() {
-            const koText = document.getElementById('customKoInput').value.trim();
+            const koText = sanitizeSourceText(document.getElementById('customKoInput').value);
             const transText = document.getElementById('customTranslatedOutput').innerText.trim();
 
             if (!koText || transText.startsWith("(")) {
@@ -3754,7 +4121,7 @@
         }
 
         async function playCustomSpeech() {
-            const koText = document.getElementById('customKoInput').value.trim();
+            const koText = sanitizeSourceText(document.getElementById('customKoInput').value);
             if (!koText) {
                 showToast("송출할 한국어 텍스트를 입력해 주세요.", { mode: 'idle', badgeText: '입력 내용 없음' });
                 return;
@@ -3813,6 +4180,7 @@
             }
         }
 
+        // HTML 및 속성 이스케이프 헬퍼
         function escapeHtml(str) {
             if (!str) return '';
             return String(str)
